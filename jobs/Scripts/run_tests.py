@@ -44,12 +44,9 @@ class StreamInfo:
     color_space     : str = ""
     subsampling     : str = ""
     bit_depth       : int = 0
-
-
-class StreamQuality:
-    psnr : int = 0
-    ssim : int = 0
-    vmaf : int = 0
+    psnr            : float = 0
+    ssim            : float = 0
+    vmaf            : float = 0
 
 
 def fill_stream_info(mediainfo, stream, info: StreamInfo):
@@ -63,31 +60,31 @@ def fill_stream_info(mediainfo, stream, info: StreamInfo):
         # extract data
         match = re.search(r"Width.*\: (\d+)", output)
         if match is not None:
-            info.width = match.group(1)
+            info.width = int(match.group(1))
 
         match = re.search(r"Height.*\: (\d+)", output)
         if match is not None:
-            info.height = match.group(1)
+            info.height = int(match.group(1))
 
         match = re.search(r"Stream size.*\: (\d+)", output)
         if match is not None:
-            info.size = match.group(1)
+            info.size = int(match.group(1))
 
         match = re.search(r"Bit rate.*\: (\d+)", output)
         if match is not None:
-            info.bitrate = match.group(1)
+            info.bitrate = int(match.group(1))
 
         match = re.search(r"Frame count.*\: (\d+)", output)
         if match is not None:
-            info.num_frames = match.group(1)
+            info.num_frames = int(match.group(1))
 
         match = re.search(r"Frame rate.*\: ([\d,\.]+)", output)
         if match is not None:
-            info.fps = match.group(1)
+            info.fps = float(match.group(1))
 
         match = re.search(r"Format settings, GOP.*N=(\d+)", output)
         if match is not None:
-            info.gop_size = match.group(1)
+            info.gop_size = int(match.group(1))
 
         match = re.search(r"colour_primaries_Original.*\: ([\.,\w]+)", output)
         if match is not None:
@@ -103,13 +100,13 @@ def fill_stream_info(mediainfo, stream, info: StreamInfo):
 
         match = re.search(r"Bit depth.*\: (\d+)", output)
         if match is not None:
-            info.bit_depth = match.group(1)
+            info.bit_depth = int(match.group(1))
     else:
         print("fill_stream_info failed")
         print(output)
 
 
-def fill_stream_quality(ffmpeg, stream, ref_stream, quality: StreamQuality):
+def fill_stream_quality(ffmpeg, stream, ref_stream, info: StreamInfo):
     # ffmpeg_vmaf -i output.mp4 -i input.mp4 -filter_complex "ssim;[0:v][1:v]psnr;[0:v][1:v]libvmaf" -f null -
     success, output = run_executable(
         [
@@ -121,15 +118,15 @@ def fill_stream_quality(ffmpeg, stream, ref_stream, quality: StreamQuality):
     if success:
         match = re.search(r"PSNR.*average\:([\.,\d]+)", output)
         if match is not None:
-            quality.psnr = match.group(1)
+            info.psnr = float(match.group(1))
 
         match = re.search(r"SSIM.*All\:([\.,\d]+)", output)
         if match is not None:
-            quality.ssim = match.group(1)
+            info.ssim = float(match.group(1))
 
         match = re.search(r"VMAF score\: ([\.,\d]+)", output)
         if match is not None:
-            quality.vmaf = match.group(1)
+            info.vmaf = float(match.group(1))
     else:
         print("fill_stream_quality failed")
         print(output)
@@ -144,6 +141,32 @@ def prepare_keys(case: dict, input_stream: str, output_stream: str) -> str:
     keys = keys.replace("<output_stream>", output_stream)
     return keys
 
+# Keep this function consistent with jobs_test_xilinx\jobs\Tests\Smoke\README.txt
+def compare_to_refs(stream_info: StreamInfo, ref_values, input_stream_info: StreamInfo) -> bool:
+    default_type = ref_values["default_type"] if "default_type" in ref_values else "skip"
+    test_result = True
+
+    for value_name in stream_info.__dict__:
+        stream_value = stream_info.__dict__[value_name]
+        if value_name in ref_values:
+            ref_value = ref_values[value_name]
+
+            if ref_value["type"] == "equal":
+                if stream_value != ref_value["value"]: test_result = False
+            elif ref_value["type"] == "range":
+                range = ref_value["value"]
+                if (stream_value < range[0]) or (len(range) == 2 and stream_value > range[1]): test_result = False
+            elif ref_value["type"] == "input":
+                if value_name not in input_stream_info.__dict__ or stream_value != input_stream_info.__dict__[value_name]: test_result = False
+            elif ref_value["type"] == "skip":
+                continue
+        else:
+            if default_type == "input":
+                if value_name not in input_stream_info.__dict__ or stream_value != input_stream_info.__dict__[value_name]: test_result = False
+            elif default_type == "skip":
+                continue
+
+    return test_result
 
 def execute_tests(args, current_conf):
     rc = 0
@@ -151,7 +174,8 @@ def execute_tests(args, current_conf):
     with open(test_cases_path, "r") as json_file:
         cases = json.load(json_file)
 
-    ffmpeg_path = os.path.abspath(os.path.join(args.tool_path, "ffmpeg_vmaf.exe"))  # noqa
+    ffmpeg_path = os.path.abspath(os.path.join(args.tool_path, "ffmpeg.exe"))  # noqa
+    ffmpeg_vmaf_path = os.path.abspath(os.path.join(args.tool_path, "ffmpeg_vmaf.exe"))  # noqa
     mediainfo_path = os.path.abspath(os.path.join(args.tool_path, "MediaInfo.exe"))  # noqa
     previous_case = None
 
@@ -198,22 +222,25 @@ def execute_tests(args, current_conf):
                 # results processing
                 if success:
                     info = StreamInfo()
-                    quality = StreamQuality()
+                    input_info = StreamInfo()
 
+                    fill_stream_info(mediainfo_path, input_stream, input_info)
                     fill_stream_info(mediainfo_path, output_stream, info)
-                    fill_stream_quality(ffmpeg_path, output_stream, input_stream, quality)
+                    fill_stream_quality(ffmpeg_vmaf_path, output_stream, input_stream, info)
 
                     main_logger.debug(str(info.__dict__))
-                    main_logger.debug(str(quality.__dict__))
                     # print(str(info.__dict__))
-                    # print(str(quality.__dict__))
 
+                    test_result = compare_to_refs(info, case["ref_values"], input_info)
+                    test_case_status = "passed" if test_result else "failed"
+                    
                 else:
                     print("FAIL")
+                    test_case_status = "failed"
                     main_logger.debug(output)
                     print(output)
 
-                save_results(args, case, cases, execution_time=execution_time, test_case_status="passed", error_messages=error_messages)
+                save_results(args, case, cases, execution_time=execution_time, test_case_status=test_case_status, error_messages=error_messages)
                 break
             except Exception as e:
                 execution_time = time.time() - case_start_time

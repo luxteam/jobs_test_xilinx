@@ -2,7 +2,7 @@ import json
 import os
 import platform
 import re
-import subprocess
+from subprocess import Popen, PIPE, check_output, STDOUT, CalledProcessError
 import time
 import traceback
 from datetime import datetime
@@ -21,14 +21,15 @@ def run_executable(command):
     main_logger.debug(f"Run command {command}")
     success = False
     try:
-        output = subprocess.check_output(
-            command, stderr=subprocess.STDOUT
+        output = check_output(
+            command, stderr=STDOUT
         ).decode()
         success = True
-    except subprocess.CalledProcessError as e:
+    except CalledProcessError as e:
         output = e.output.decode()
     except Exception as e:
         output = str(e)
+
     return (success, output)
 
 
@@ -151,15 +152,19 @@ def execute_tests(args, current_conf):
     with open(test_cases_path, "r") as json_file:
         cases = json.load(json_file)
 
-    ffmpeg_path = os.path.abspath(os.path.join(args.tool_path, "ffmpeg_vmaf.exe"))  # noqa
+    logs_path = os.path.abspath(os.path.join(args.output, "tool_logs"))
+    ffmpeg_path = os.path.abspath(os.path.join(args.tool_path, "ffmpeg.exe"))  # noqa
+    ffmpeg_vmaf_path = os.path.abspath(os.path.join(args.tool_path, "ffmpeg_vmaf.exe"))  # noqa
     mediainfo_path = os.path.abspath(os.path.join(args.tool_path, "MediaInfo.exe"))  # noqa
     previous_case = None
 
     for case in [x for x in cases if not is_case_skipped(x, current_conf)]:
-        # temp path
+        output_path = os.path.abspath(os.path.join(args.output, "Color", case["case"]))
+        if not os.path.exists(output_path):
+            os.makedirs(output_path)
+
         input_stream = os.path.abspath(os.path.join(args.tool_path, "input.mp4"))
-        # input_stream = "C:\\Users\\PaSergeev\\Dev\\Luxoft\\jobs_test_xilinx\\goldens\\input.mp4"  # path to input stream
-        output_stream = os.path.abspath(os.path.join(args.output, f"{case['case']}.mp4"))  # path to output stream
+        output_stream = os.path.join(output_path, f"{case['case']}.mp4")
         main_logger.debug(f"input stream: {input_stream}")
         main_logger.debug(f"output stream: {output_stream}")
         reference_stream = input_stream
@@ -180,8 +185,8 @@ def execute_tests(args, current_conf):
 
             try:
                 prepared_keys = prepare_keys(case, input_stream, output_stream)
-                keys_description = f"FFmpeg parameters: {prepared_keys}"
                 case["prepared_keys"] = prepared_keys
+                keys_description = f"FFmpeg parameters: {prepared_keys}"
                 case["script_info"].append(keys_description)
                 main_logger.debug(keys_description)
 
@@ -192,26 +197,28 @@ def execute_tests(args, current_conf):
                 # тк иногда у нас в прогонах для зайлинкса застревали всякие декодеры
 
                 # main logic
-                success, output = run_executable(command)
+                log = os.path.join(logs_path, f"{case['case']}.log")
+                with open(log, "w+") as file:
+                    # TODO: set timeout for process
+                    Popen(command, stderr=file.fileno(), stdout=file.fileno()).wait()
                 execution_time = time.time() - case_start_time
 
+                # read log
+                with open(log, "r") as file:
+                    log_content = file.read()
+
+                # check the log on errors
+                if "error" in log_content.lower():
+                    raise Exception(f"FFmpeg failed to process command: {prepared_keys}")
+
                 # results processing
-                if success:
-                    info = StreamInfo()
-                    quality = StreamQuality()
+                info = StreamInfo()
+                quality = StreamQuality()
+                fill_stream_info(mediainfo_path, output_stream, info)
+                fill_stream_quality(ffmpeg_vmaf_path, output_stream, input_stream, quality)
 
-                    fill_stream_info(mediainfo_path, output_stream, info)
-                    fill_stream_quality(ffmpeg_path, output_stream, input_stream, quality)
-
-                    main_logger.debug(str(info.__dict__))
-                    main_logger.debug(str(quality.__dict__))
-                    # print(str(info.__dict__))
-                    # print(str(quality.__dict__))
-
-                else:
-                    print("FAIL")
-                    main_logger.debug(output)
-                    print(output)
+                main_logger.debug(str(info.__dict__))
+                main_logger.debug(str(quality.__dict__))
 
                 save_results(args, case, cases, execution_time=execution_time, test_case_status="passed", error_messages=error_messages)
                 break
@@ -378,6 +385,9 @@ def run_tests(args):
     try:
         if not os.path.exists(os.path.join(args.output, "Color")):
             os.makedirs(os.path.join(args.output, "Color"))
+
+        if not os.path.exists(os.path.join(args.output, "tool_logs")):
+            os.makedirs(os.path.join(args.output, "tool_logs"))
 
         render_device = get_gpu()
         system_pl = platform.system()

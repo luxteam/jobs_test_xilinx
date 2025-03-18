@@ -4,7 +4,45 @@
       "status": "active",
       "ffmpeg_parameters": "-y -i <input_stream> -usage 1 -c:v h264_amf <output_stream>",
       "script_info": [
-      ]
+      ],
+      "ref_values": {
+        "default_type": "input",
+        "size": {
+          "type": "range",
+          "value": [500000, 501000]
+        },
+        "bitrate": {
+          "type": "range",
+          "value": [115000, 125000]
+        },
+        "num_frames": {
+          "type": "equal",
+          "value": 997
+        },
+        "fps": {
+          "type": "range",
+          "value": [29, 31]
+        },
+        "gop_size": {
+          "type": "skip"
+        },
+        "color_primaries": {
+          "type": "equal",
+          "value": "BT.709"
+        },
+        "psnr": {
+          "type": "range",
+          "value": [70, 73]
+        },
+        "ssim": {
+          "type": "range",
+          "value": [0.99]
+        },
+        "vmaf": {
+          "type": "range",
+          "value": [97]
+        }
+      }
     },
     {
       "case": "Usage_2",

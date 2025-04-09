@@ -71,6 +71,6 @@ dmypy.json
 .vscode/
 
 # local ignores
-Xilinx/
+Xilinx*/
 *.log
 Work/

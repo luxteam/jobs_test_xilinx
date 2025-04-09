@@ -8,7 +8,7 @@ ROOT_PATH = os.path.abspath(
 )
 sys.path.append(ROOT_PATH)
 
-from run_tests import run_tests # noqa
+from run_tests import run_tests  # noqa: E402
 
 
 def createArgsParser():
@@ -25,5 +25,3 @@ def createArgsParser():
 
 args = createArgsParser().parse_args()
 run_tests(args)
-
-# run.bat "none" "Smoke"

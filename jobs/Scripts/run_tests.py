@@ -1,204 +1,60 @@
 import json
 import os
 import platform
-import re
-from subprocess import Popen, PIPE, check_output, STDOUT, CalledProcessError
 import time
 import traceback
+from copy import deepcopy
 from datetime import datetime
+from subprocess import Popen
 from shutil import copyfile
 
-from utils import is_case_skipped
+from process_results import (fill_stream_info, fill_stream_quality,
+                             compare_to_refs, STREAM_INFO)
+from utils import is_case_skipped, save_logs
 
-from jobs_launcher.common.scripts.script_info_by_platform import get_script_info  # noqa
+from jobs_launcher.common.scripts.script_info_by_platform import get_script_info  # noqa: E501
 from jobs_launcher.common.scripts.status_by_platform import get_status
-from jobs_launcher.core.config import (CASE_REPORT_SUFFIX, RENDER_REPORT_BASE,
-                                       VIDEO_KEY, main_logger)
+from jobs_launcher.core.config import (CASE_REPORT_SUFFIX, VIDEO_KEY,
+                                       main_logger)
 from jobs_launcher.core.system_info import get_gpu
 
 
-def run_executable(command):
-    main_logger.debug(f"Run command {command}")
-    success = False
-    try:
-        output = check_output(
-            command, stderr=STDOUT
-        ).decode()
-        success = True
-    except CalledProcessError as e:
-        output = e.output.decode()
-    except Exception as e:
-        output = str(e)
-
-    return (success, output)
-
-
-class StreamInfo:
-    width           : int = 0
-    height          : int = 0
-    size            : int = 0
-    bitrate         : int = 0
-    num_frames      : int = 0
-    fps             : float = 0
-    gop_size        : int = 0
-    color_primaries : str = ""
-    color_space     : str = ""
-    subsampling     : str = ""
-    bit_depth       : int = 0
-    psnr            : float = 0
-    ssim            : float = 0
-    vmaf            : float = 0
-
-
-def fill_stream_info(mediainfo, stream, info: StreamInfo):
-    success, output = run_executable([mediainfo, "-f", stream])
-
-    if success:
-        # cut off general info
-        match = re.search(r"Video\s*\r\n", output)
-        output = output[match.start():]
-
-        # extract data
-        match = re.search(r"Width.*\: (\d+)", output)
-        if match is not None:
-            info.width = int(match.group(1))
-
-        match = re.search(r"Height.*\: (\d+)", output)
-        if match is not None:
-            info.height = int(match.group(1))
-
-        match = re.search(r"Stream size.*\: (\d+)", output)
-        if match is not None:
-            info.size = int(match.group(1))
-
-        match = re.search(r"Bit rate.*\: (\d+)", output)
-        if match is not None:
-            info.bitrate = int(match.group(1))
-
-        match = re.search(r"Frame count.*\: (\d+)", output)
-        if match is not None:
-            info.num_frames = int(match.group(1))
-
-        match = re.search(r"Frame rate.*\: ([\d,\.]+)", output)
-        if match is not None:
-            info.fps = float(match.group(1))
-
-        match = re.search(r"Format settings, GOP.*N=(\d+)", output)
-        if match is not None:
-            info.gop_size = int(match.group(1))
-
-        match = re.search(r"colour_primaries_Original.*\: ([\.,\w]+)", output)
-        if match is not None:
-            info.color_primaries = match.group(1)
-
-        match = re.search(r"Color space.*\: (\w+)", output)
-        if match is not None:
-            info.color_space = match.group(1)
-
-        match = re.search(r"Chroma subsampling.*\: ([\d,\:]+)", output)
-        if match is not None:
-            info.subsampling = match.group(1)
-
-        match = re.search(r"Bit depth.*\: (\d+)", output)
-        if match is not None:
-            info.bit_depth = int(match.group(1))
-    else:
-        print("fill_stream_info failed")
-        print(output)
-
-
-def fill_stream_quality(ffmpeg, stream, ref_stream, info: StreamInfo):
-    # ffmpeg_vmaf -i output.mp4 -i input.mp4 -filter_complex "ssim;[0:v][1:v]psnr;[0:v][1:v]libvmaf" -f null -
-    success, output = run_executable(
-        [
-            ffmpeg, "-i", stream, "-i", ref_stream, "-filter_complex",
-            "ssim;[0:v][1:v]psnr;[0:v][1:v]libvmaf", "-f", "null", "-"
-        ]
-    )
-
-    if success:
-        match = re.search(r"PSNR.*average\:([\.,\d]+)", output)
-        if match is not None:
-            info.psnr = float(match.group(1))
-
-        match = re.search(r"SSIM.*All\:([\.,\d]+)", output)
-        if match is not None:
-            info.ssim = float(match.group(1))
-
-        match = re.search(r"VMAF score\: ([\.,\d]+)", output)
-        if match is not None:
-            info.vmaf = float(match.group(1))
-    else:
-        print("fill_stream_quality failed")
-        print(output)
-
-# ffmpeg.exe -y -i input.mp4 -usage 0 -profile:v 77 -quality 1 -rc cbr -b:v 125000 -g 30 -max_b_frames 3 -bf 3 -coder cabac -c:v h264_amf output.mp4
-# ffmpeg.exe -y -i input.mp4 -usage 0 -profile:v 77 -quality 1 -rc cbr -b:v 125000 -minrate 50k -maxrate 1M -g 30 -max_b_frames 3 -bf 3 -coder cabac -c:v h264_amf output.mp4
-
-
-def prepare_keys(case: dict, input_stream: str, output_stream: str) -> str:
-    keys: str = case["ffmpeg_parameters"]
-    keys = keys.replace("<input_stream>", input_stream)
-    keys = keys.replace("<output_stream>", output_stream)
-    return keys
-
-# Keep this function consistent with jobs_test_xilinx\jobs\Tests\Smoke\README.txt
-def compare_to_refs(stream_info: StreamInfo, ref_values, input_stream_info: StreamInfo) -> bool:
-    default_type = ref_values["default_type"] if "default_type" in ref_values else "skip"
-    test_result = True
-
-    for value_name in stream_info.__dict__:
-        stream_value = stream_info.__dict__[value_name]
-        if value_name in ref_values:
-            ref_value = ref_values[value_name]
-
-            if ref_value["type"] == "equal":
-                if stream_value != ref_value["value"]: test_result = False
-            elif ref_value["type"] == "range":
-                range = ref_value["value"]
-                if (stream_value < range[0]) or (len(range) == 2 and stream_value > range[1]): test_result = False
-            elif ref_value["type"] == "input":
-                if value_name not in input_stream_info.__dict__ or stream_value != input_stream_info.__dict__[value_name]: test_result = False
-            elif ref_value["type"] == "skip":
-                continue
-        else:
-            if default_type == "input":
-                if value_name not in input_stream_info.__dict__ or stream_value != input_stream_info.__dict__[value_name]: test_result = False
-            elif default_type == "skip":
-                continue
-
-    return test_result
-
 def execute_tests(args, current_conf):
     rc = 0
-    test_cases_path = os.path.join(os.path.abspath(args.output), "test_cases.json")
+    test_cases_path = os.path.join(os.path.abspath(args.output),
+                                   "test_cases.json")
     with open(test_cases_path, "r") as json_file:
         cases = json.load(json_file)
 
-    logs_path = os.path.abspath(os.path.join(args.output, "tool_logs"))
-    ffmpeg_path = os.path.abspath(os.path.join(args.tool_path, "ffmpeg.exe"))  # noqa
-    ffmpeg_vmaf_path = os.path.abspath(os.path.join(args.tool_path, "ffmpeg_vmaf.exe"))  # noqa
-    mediainfo_path = os.path.abspath(os.path.join(args.tool_path, "MediaInfo.exe"))  # noqa
-    previous_case = None
+    # use relative path?
+    # Namespace(
+    # output='C:\\Users\\Pavel\\Dev\\jobs_test_xilinx\\Work\\Results\\Xilinx\\Smoke',
+    # tool_path='..\\Xilinx',
+    # retries=1,
+    # test_group='Smoke',
+    # test_cases='None')
+    logs_path = os.path.join(args.output, "tool_logs")
+    # ffmpeg_path = os.path.abspath(os.path.join(args.tool_path, "ffmpeg.exe"))  # noqa
+    ffmpeg_path = os.path.join(args.tool_path, "ffmpeg.exe")  # noqa
+    ffmpeg_vmaf_path = os.path.join(args.tool_path, "ffmpeg_vmaf.exe")  # noqa
+    mediainfo_path = os.path.join(args.tool_path, "MediaInfo.exe")  # noqa
 
     for case in [x for x in cases if not is_case_skipped(x, current_conf)]:
-        output_path = os.path.abspath(os.path.join(args.output, "Color", case["case"]))
+        # use relative path?
+        output_path = os.path.join(args.output, "Color")
         if not os.path.exists(output_path):
             os.makedirs(output_path)
 
-        input_stream = os.path.abspath(os.path.join(args.tool_path, "input.mp4"))
-        output_stream = os.path.join(output_path, f"{case['case']}.mp4")
+        # use relative path?
+        input_stream = os.path.join(args.tool_path, "input.mp4")
+        output_stream = os.path.relpath(os.path.join(output_path, f"{case['case']}.mp4"))  # noqa: E501
         main_logger.debug(f"input stream: {input_stream}")
         main_logger.debug(f"output stream: {output_stream}")
-        reference_stream = input_stream
 
         case_start_time = time.time()
         current_try = 0
 
         max_tries = args.retries
-        # ask Ilia about logic
-        # if previous_case and set(CHAIN_OF_CASES_KEYS) & set(previous_case.keys()):
-        #     max_tries = 1
 
         while current_try < max_tries:
             main_logger.info(
@@ -213,65 +69,83 @@ def execute_tests(args, current_conf):
                 case["script_info"].append(keys_description)
                 main_logger.debug(keys_description)
 
-                command = prepared_keys.split()
-                # ffmpeg.exe -y -i input.mp4 -c:v h264_amf output.mp4
-                command.insert(0, ffmpeg_path)
-                # иметь процесс в отдельной переменной -- хорошая идея,
-                # тк иногда у нас в прогонах для зайлинкса застревали всякие декодеры
+                command = [ffmpeg_path,] + prepared_keys.split()
 
                 # main logic
-                log = os.path.join(logs_path, f"{case['case']}.log")
-                with open(log, "w+") as file:
+                ffmpeg_log = os.path.join(logs_path, f"{case['case']}.log")
+                with open(ffmpeg_log, "w+") as file:
                     # TODO: set timeout for process
-                    Popen(command, stderr=file.fileno(), stdout=file.fileno()).wait()
+                    Popen(command, stderr=file.fileno(), stdout=file.fileno()).wait()  # noqa: E501
                 execution_time = time.time() - case_start_time
 
                 # read log
-                with open(log, "r") as file:
+                with open(ffmpeg_log, "r") as file:
                     log_content = file.read()
+                    # rewrite as html like in streaming tests
 
                 # check the log on errors
                 if "error" in log_content.lower():
-                    raise Exception(f"FFmpeg failed to process command: {prepared_keys}")
+                    raise Exception(f"FFmpeg failed to process command: {prepared_keys}")  # noqa: E501
 
                 # results processing
-                info = StreamInfo()
-                input_info = StreamInfo()
+                output_stream_params = deepcopy(STREAM_INFO)
+                input_stream_params = deepcopy(STREAM_INFO)
 
-                fill_stream_info(mediainfo_path, input_stream, input_info)
-                fill_stream_info(mediainfo_path, output_stream, info)
-                fill_stream_quality(ffmpeg_vmaf_path, output_stream, input_stream, info)
+                fill_stream_info(mediainfo_path, input_stream,
+                                 input_stream_params)
+                main_logger.debug(f"Input stream data: {input_stream_params}")
+                fill_stream_info(mediainfo_path, output_stream,
+                                 output_stream_params)
+                fill_stream_quality(ffmpeg_vmaf_path, output_stream,
+                                    input_stream, output_stream_params)
 
-                main_logger.debug(str(info.__dict__))
-                # print(str(info.__dict__))
+                case["input_stream_params"] = input_stream_params
+                case["output_stream_params"] = output_stream_params
 
-                test_result = compare_to_refs(info, case["ref_values"], input_info)
-                test_case_status = "passed" if test_result else "failed"
+                compare_to_refs(output_stream_params, case,
+                                input_stream_params, error_messages)
 
-                save_results(args, case, cases, execution_time=execution_time, test_case_status=test_case_status, error_messages=error_messages)
+                save_logs(args, case, ffmpeg_log)
+                test_case_status = "passed"
+                if error_messages:
+                    test_case_status = "failed"
+
+                save_results(args, case, cases,
+                             execution_time=execution_time,
+                             test_case_status=test_case_status,
+                             error_messages=error_messages)
                 break
             except Exception as e:
                 execution_time = time.time() - case_start_time
+
+                save_logs(args, case, ffmpeg_log)
+
                 test_case_status = "failed"
                 if case["status"] == "observed":
                     test_case_status = case["status"]
 
-                save_results(args, case, cases, execution_time=execution_time, test_case_status=test_case_status, error_messages=error_messages)
+                save_results(args, case, cases,
+                             execution_time=execution_time,
+                             test_case_status=test_case_status,
+                             error_messages=error_messages)
 
-                main_logger.error("Failed to execute test case (try #{}): {}".format(current_try, str(e)))
-                main_logger.error("Traceback: {}".format(traceback.format_exc()))
+                main_logger.error(f"Failed to execute test case (try #{current_try}): {str(e)}")  # noqa: E501
+                main_logger.error(f"Traceback: {traceback.format_exc()}")
             finally:
                 current_try += 1
                 main_logger.info("End of test case")
         else:
-            main_logger.error("Failed to execute case '{}' at all".format(case["case"]))
+            case_name = case["case"]
+            main_logger.error(f"Failed to execute case '{case_name}' at all")
             rc = -1
             execution_time = time.time() - case_start_time
             test_case_status = "failed"
             if case["status"] == "observed":
                 test_case_status = case["status"]
-            save_results(args, case, cases, execution_time=execution_time, test_case_status=test_case_status, error_messages=error_messages)
-            previous_case = case
+            save_results(args, case, cases,
+                         execution_time=execution_time,
+                         test_case_status=test_case_status,
+                         error_messages=error_messages)
 
     return rc
 
@@ -284,15 +158,10 @@ def copy_test_cases(args):
                 args.test_group, 'test_cases.json'
             )
         )
-        test_cases_copy = os.path.realpath(
-            os.path.join(os.path.abspath(args.output), 'test_cases.json')
-        )
+        test_cases_copy = os.path.realpath(os.path.join(os.path.abspath(args.output), 'test_cases.json'))  # noqa: E501
         main_logger.debug(f"test_cases_copy path: {test_cases_copy}")
 
         copyfile(test_cases_path, test_cases_copy)
-
-        # check if it is needed
-        # cases = json.load(open(test_cases_copy))
 
         with open(test_cases_copy, "r") as json_file:
             cases = json.load(json_file)
@@ -301,9 +170,7 @@ def copy_test_cases(args):
             with open(args.test_cases) as file:
                 test_cases = json.load(file)['groups'][args.test_group]
                 if test_cases:
-                    necessary_cases = [
-                        item for item in cases if item['case'] in test_cases
-                    ]
+                    necessary_cases = [item for item in cases if item['case'] in test_cases]  # noqa: E501
                     cases = necessary_cases
 
             output_cases = os.path.join(args.output, 'test_cases.json')
@@ -341,15 +208,17 @@ def prepare_empty_reports(args, current_conf):
             elif case["status"] == 'inprogress_observed':
                 case['status'] = 'observed'
 
-            test_case_report = RENDER_REPORT_BASE.copy()
+            test_case_report = {}
+            test_case_report['render_time'] = 0.0
+            test_case_report["number_of_tries"] = 0
+            test_case_report["message"] = []
+            test_case_report['render_device'] = get_gpu()
+
             test_case_report['test_case'] = case['case']
-            # test_case_report['render_device'] = get_gpu()
             test_case_report['script_info'] = case['script_info']
             test_case_report['test_group'] = args.test_group
             test_case_report['tool'] = 'Xilinx'
-            test_case_report['date_time'] = datetime.now().strftime(
-                '%m/%d/%Y %H:%M:%S'
-            )
+            test_case_report['date_time'] = datetime.now().strftime('%m/%d/%Y %H:%M:%S')  # noqa: E501
 
             if case['status'] == 'skipped':
                 test_case_report['test_status'] = 'skipped'
@@ -368,26 +237,30 @@ def prepare_empty_reports(args, current_conf):
         json.dump(cases, f, indent=4)
 
 
-def save_results(args, case, cases, execution_time=0.0, test_case_status="", error_messages=[]):
+def save_results(args, case, cases, execution_time=0.0, test_case_status="",
+                 error_messages=[]):
 
-    case_report_path = os.path.join(args.output, case["case"] + CASE_REPORT_SUFFIX)
+    case_report_path = os.path.join(args.output, case["case"] + CASE_REPORT_SUFFIX)  # noqa: E501
     with open(case_report_path, "r") as file:
         test_case_report = json.loads(file.read())[0]
 
     test_case_report["execution_time"] = execution_time
-    test_case_report["log"] = os.path.join("tool_logs", case["case"])
+    test_case_report["log"] = os.path.join("tool_logs", case["case"] + ".html")
 
-    test_case_report["testing_start"] = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
+    test_case_report["testing_start"] = datetime.now().strftime("%m/%d/%Y %H:%M:%S")  # noqa: E501
     test_case_report["number_of_tries"] += 1
 
-    test_case_report["message"] = test_case_report["message"] + list(error_messages)
+    test_case_report["message"] = (test_case_report["message"] + list(error_messages))  # noqa: E501
 
     test_case_report["ffmpeg_parameters"] = case["prepared_keys"]
+    test_case_report["input_stream_params"] = case["input_stream_params"]
+    test_case_report["output_stream_params"] = case["output_stream_params"]
+    test_case_report["test_status"] = test_case_status
 
     if test_case_report["test_status"] in ["passed", "observed", "error"]:
         test_case_report["group_timeout_exceeded"] = False
 
-    video_path = os.path.join("Color", case["case"] + "win_client.mp4")
+    video_path = os.path.join("Color", f'{case["case"]}.mp4')
     if os.path.exists(os.path.join(args.output, video_path)):
         test_case_report[VIDEO_KEY] = video_path
 
@@ -406,6 +279,13 @@ def save_results(args, case, cases, execution_time=0.0, test_case_status="", err
         json.dump(cases, file, indent=4)
 
 
+def prepare_keys(case: dict, input_stream: str, output_stream: str) -> str:
+    keys: str = case["ffmpeg_parameters"]
+    keys = keys.replace("<input_stream>", input_stream)
+    keys = keys.replace("<output_stream>", output_stream)
+    return keys
+
+
 def run_tests(args):
     main_logger.info('run_tests starts working...')
     main_logger.info(f'tests run with following args: {args}')
@@ -419,17 +299,15 @@ def run_tests(args):
 
         render_device = get_gpu()
         system_pl = platform.system()
-        current_conf = set(system_pl) if not render_device else {system_pl, render_device}
-        main_logger.info("Detected GPUs: {}".format(render_device))
-        main_logger.info("PC conf: {}".format(current_conf))
+        current_conf = set(system_pl) if not render_device else {system_pl, render_device}  # noqa: E501
+        main_logger.info(f"Detected GPUs: {render_device}")
+        main_logger.info(f"PC conf: {current_conf}")
         main_logger.info("Creating predefined errors json...")
 
         copy_test_cases(args)
         prepare_empty_reports(args, current_conf)
         exit(execute_tests(args, current_conf))
     except Exception as e:
-        main_logger.error(
-            "Failed during script execution. Exception: {}".format(str(e))
-        )
-        main_logger.error("Traceback: {}".format(traceback.format_exc()))
+        main_logger.error(f"Failed during script execution. Exception: {str(e)}")  # noqa: E501
+        main_logger.error(f"Traceback: {traceback.format_exc()}")
         exit(-1)

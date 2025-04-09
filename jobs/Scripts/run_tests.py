@@ -21,31 +21,20 @@ from jobs_launcher.core.system_info import get_gpu
 
 def execute_tests(args, current_conf):
     rc = 0
-    test_cases_path = os.path.join(os.path.abspath(args.output),
-                                   "test_cases.json")
+    test_cases_path = os.path.join(os.path.abspath(args.output), "test_cases.json")  # noqa: E501
     with open(test_cases_path, "r") as json_file:
         cases = json.load(json_file)
 
-    # use relative path?
-    # Namespace(
-    # output='C:\\Users\\Pavel\\Dev\\jobs_test_xilinx\\Work\\Results\\Xilinx\\Smoke',
-    # tool_path='..\\Xilinx',
-    # retries=1,
-    # test_group='Smoke',
-    # test_cases='None')
     logs_path = os.path.join(args.output, "tool_logs")
-    # ffmpeg_path = os.path.abspath(os.path.join(args.tool_path, "ffmpeg.exe"))  # noqa
-    ffmpeg_path = os.path.join(args.tool_path, "ffmpeg.exe")  # noqa
-    ffmpeg_vmaf_path = os.path.join(args.tool_path, "ffmpeg_vmaf.exe")  # noqa
-    mediainfo_path = os.path.join(args.tool_path, "MediaInfo.exe")  # noqa
+    ffmpeg_path = os.path.join(args.tool_path, "ffmpeg.exe")
+    ffmpeg_vmaf_path = os.path.join(args.tool_path, "ffmpeg_vmaf.exe")
+    mediainfo_path = os.path.join(args.tool_path, "MediaInfo.exe")
 
     for case in [x for x in cases if not is_case_skipped(x, current_conf)]:
-        # use relative path?
         output_path = os.path.join(args.output, "Color")
         if not os.path.exists(output_path):
             os.makedirs(output_path)
 
-        # use relative path?
         input_stream = os.path.join(args.tool_path, "input.mp4")
         output_stream = os.path.relpath(os.path.join(output_path, f"{case['case']}.mp4"))  # noqa: E501
         main_logger.debug(f"input stream: {input_stream}")

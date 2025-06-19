@@ -4,6 +4,7 @@ from typing import Dict, Set, Any
 
 from jobs_launcher.core.config import main_logger
 
+
 def run_executable(command):
     main_logger.debug(f"Run command {command}")
     success = False
@@ -22,13 +23,13 @@ def run_executable(command):
 
 STREAM_INFO = {
     "width": 0,
-    "height" : 0,
+    "height": 0,
     "size": 0,
     "bitrate": 0,
     "num_frames": 0,
     "fps": 0,
     "gop_size": 0,
-    "color_primaries" : "",
+    "color_primaries": "",
     "color_space": "",
     "subsampling": "",
     "bit_depth": 0,
@@ -43,7 +44,8 @@ def fill_stream_info(mediainfo, stream, info: Dict[str, Any]):
 
     if success:
         # cut off general info
-        match = re.search(r"Video\s*\r\n", output)
+        match = re.search(r"Video\s*(?:\r\n|\n)", output)
+        # match = re.search(r"Video\s*\r\n", output)
         output = output[match.start():]
 
         # extract data
@@ -151,3 +153,11 @@ def compare_to_refs(stream_info: Dict, case, input_stream_info: Dict, error_mess
                     error_messages.add(f"")
             elif default_type == "skip":
                 continue
+
+
+def compare_with_ma35(simple_tool_res: Dict, ma35_res: Dict,
+                      error_messages: Set):
+    for parameter, value in simple_tool_res.items():
+        if ma35_res[parameter] != value:
+            message = f"{parameter} from simple tool has value {value} not equal to value for ma35 tool: {ma35_res[parameter]}"  # noqa: E501
+            error_messages.add(message)

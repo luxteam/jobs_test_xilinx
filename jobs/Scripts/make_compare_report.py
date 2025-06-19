@@ -24,4 +24,5 @@ if __name__ == '__main__':
             json_content['message'].append('Test group timeout exceeded')
 
         reports.append(json_content)
-    with open(os.path.join(work_dir, 'report_compare.json'), 'w') as f: json.dump(reports, f, indent=4)
+    with open(os.path.join(work_dir, 'report_compare.json'), 'w') as f:
+        json.dump(reports, f, indent=4)

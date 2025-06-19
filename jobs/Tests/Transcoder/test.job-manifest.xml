@@ -11,4 +11,8 @@
         <argument>--retries "{retries}"</argument>
     </execute>
 
+    <execute command='python "{ResourcesDir}/make_compare_report.py"'>
+        <argument>--work_dir "{OutputDir}"</argument>
+    </execute>
+
 </job-manifest>

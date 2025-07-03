@@ -1,128 +1,164 @@
 [
     {
-        "case": "Test #1 T_H264_SD_ProfileMain_FR60_BitrateLow", 
-        "status": "active", 
-        "script_info": "Testing encoder with parameters: ['--size', '720x480', '-b', '1M', '--profile', '2', '--fps', '60', '-c', '3', '-o', 'output.h264']", 
-        "simple_parameters": "--size 720x480 -b 1M --profile 2 --fps 60 -c 3 -o <output_stream>", 
+        "case": "ENC_MAIN_001",
+        "status": "active",
+        "script_info": [
+            "T_H264_SD_ProfileMain_FR60_BitrateLow"
+        ],
+        "simple_parameters": "--size 720x480 -b 1M --profile 2 --fps 60 -c 3 -o <output_stream>",
         "xma_parameters": "-w 720 -h 480 -b:v 1M -profile 1 -fps 60 -c:v h264_ama -o <output_stream>"
-    }, 
+    },
     {
-        "case": "Test #2 T_HEVC_SD_ProfileMain10_FR60_BitrateLow", 
-        "status": "active", 
-        "script_info": "Testing encoder with parameters: ['--size', '720x480', '-b', '1M', '--profile', '2', '--fps', '60', '-c', '4', '-o', 'output.h265']", 
-        "simple_parameters": "--size 720x480 -b 1M --profile 2 --fps 60 -c 4 -o <output_stream>", 
+        "case": "ENC_MAIN_002",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_ProfileMain10_FR60_BitrateLow"
+        ],
+        "simple_parameters": "--size 720x480 -b 1M --profile 2 --fps 60 -c 4 -o <output_stream>",
         "xma_parameters": "-w 720 -h 480 -b:v 1M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream>"
-    }, 
+    },
     {
-        "case": "Test #3 T_H264_SD_ProfileMain_FR60_BitrateMedium", 
-        "status": "active", 
-        "script_info": "Testing encoder with parameters: ['--size', '720x480', '-b', '5M', '--profile', '2', '--fps', '60', '-c', '3', '-o', 'output.h264']", 
-        "simple_parameters": "--size 720x480 -b 5M --profile 2 --fps 60 -c 3 -o <output_stream>", 
+        "case": "ENC_MAIN_003",
+        "status": "active",
+        "script_info": [
+            "T_H264_SD_ProfileMain_FR60_BitrateMedium"
+        ],
+        "simple_parameters": "--size 720x480 -b 5M --profile 2 --fps 60 -c 3 -o <output_stream>",
         "xma_parameters": "-w 720 -h 480 -b:v 5M -profile 1 -fps 60 -c:v h264_ama -o <output_stream>"
-    }, 
+    },
     {
-        "case": "Test #4 T_HEVC_SD_ProfileMain10_FR60_BitrateMedium", 
-        "status": "active", 
-        "script_info": "Testing encoder with parameters: ['--size', '720x480', '-b', '5M', '--profile', '2', '--fps', '60', '-c', '4', '-o', 'output.h265']", 
-        "simple_parameters": "--size 720x480 -b 5M --profile 2 --fps 60 -c 4 -o <output_stream>", 
+        "case": "ENC_MAIN_004",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_ProfileMain10_FR60_BitrateMedium"
+        ],
+        "simple_parameters": "--size 720x480 -b 5M --profile 2 --fps 60 -c 4 -o <output_stream>",
         "xma_parameters": "-w 720 -h 480 -b:v 5M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream>"
-    }, 
+    },
     {
-        "case": "Test #5 T_H264_SD_ProfileMain_FR60_BitrateHigh", 
-        "status": "active", 
-        "script_info": "Testing encoder with parameters: ['--size', '720x480', '-b', '30M', '--profile', '2', '--fps', '60', '-c', '3', '-o', 'output.h264']", 
-        "simple_parameters": "--size 720x480 -b 30M --profile 2 --fps 60 -c 3 -o <output_stream>", 
+        "case": "ENC_MAIN_005",
+        "status": "active",
+        "script_info": [
+            "T_H264_SD_ProfileMain_FR60_BitrateHigh"
+        ],
+        "simple_parameters": "--size 720x480 -b 30M --profile 2 --fps 60 -c 3 -o <output_stream>",
         "xma_parameters": "-w 720 -h 480 -b:v 30M -profile 1 -fps 60 -c:v h264_ama -o <output_stream>"
-    }, 
+    },
     {
-        "case": "Test #6 T_HEVC_SD_ProfileMain10_FR60_BitrateHigh", 
-        "status": "active", 
-        "script_info": "Testing encoder with parameters: ['--size', '720x480', '-b', '30M', '--profile', '2', '--fps', '60', '-c', '4', '-o', 'output.h265']", 
-        "simple_parameters": "--size 720x480 -b 30M --profile 2 --fps 60 -c 4 -o <output_stream>", 
+        "case": "ENC_MAIN_006",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_ProfileMain10_FR60_BitrateHigh"
+        ],
+        "simple_parameters": "--size 720x480 -b 30M --profile 2 --fps 60 -c 4 -o <output_stream>",
         "xma_parameters": "-w 720 -h 480 -b:v 30M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream>"
-    }, 
+    },
     {
-        "case": "Test #7 T_H264_ProfileMain_FR60_FHD_BitrateLow", 
-        "status": "active", 
-        "script_info": "Testing encoder with parameters: ['--size', '1920x1080', '-b', '1M', '--profile', '2', '--fps', '60', '-c', '3', '-o', 'output.h264']", 
-        "simple_parameters": "--size 1920x1080 -b 1M --profile 2 --fps 60 -c 3 -o <output_stream>", 
+        "case": "ENC_MAIN_007",
+        "status": "active",
+        "script_info": [
+            "T_H264_ProfileMain_FR60_FHD_BitrateLow"
+        ],
+        "simple_parameters": "--size 1920x1080 -b 1M --profile 2 --fps 60 -c 3 -o <output_stream>",
         "xma_parameters": "-w 1920 -h 1080 -b:v 1M -profile 1 -fps 60 -c:v h264_ama -o <output_stream>"
-    }, 
+    },
     {
-        "case": "Test #8 T_HEVC_ProfileMain10_FR60_FHD_BitrateLow", 
-        "status": "active", 
-        "script_info": "Testing encoder with parameters: ['--size', '1920x1080', '-b', '1M', '--profile', '2', '--fps', '60', '-c', '4', '-o', 'output.h265']", 
-        "simple_parameters": "--size 1920x1080 -b 1M --profile 2 --fps 60 -c 4 -o <output_stream>", 
+        "case": "ENC_MAIN_008",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_ProfileMain10_FR60_FHD_BitrateLow"
+        ],
+        "simple_parameters": "--size 1920x1080 -b 1M --profile 2 --fps 60 -c 4 -o <output_stream>",
         "xma_parameters": "-w 1920 -h 1080 -b:v 1M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream>"
-    }, 
+    },
     {
-        "case": "Test #9 T_H264_ProfileMain_FR60_FHD_BitrateMedium", 
-        "status": "active", 
-        "script_info": "Testing encoder with parameters: ['--size', '1920x1080', '-b', '5M', '--profile', '2', '--fps', '60', '-c', '3', '-o', 'output.h264']", 
-        "simple_parameters": "--size 1920x1080 -b 5M --profile 2 --fps 60 -c 3 -o <output_stream>", 
+        "case": "ENC_MAIN_009",
+        "status": "active",
+        "script_info": [
+            "T_H264_ProfileMain_FR60_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "--size 1920x1080 -b 5M --profile 2 --fps 60 -c 3 -o <output_stream>",
         "xma_parameters": "-w 1920 -h 1080 -b:v 5M -profile 1 -fps 60 -c:v h264_ama -o <output_stream>"
-    }, 
+    },
     {
-        "case": "Test #10 T_HEVC_ProfileMain10_FR60_FHD_BitrateMedium", 
-        "status": "active", 
-        "script_info": "Testing encoder with parameters: ['--size', '1920x1080', '-b', '5M', '--profile', '2', '--fps', '60', '-c', '4', '-o', 'output.h265']", 
-        "simple_parameters": "--size 1920x1080 -b 5M --profile 2 --fps 60 -c 4 -o <output_stream>", 
+        "case": "ENC_MAIN_010",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_ProfileMain10_FR60_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "--size 1920x1080 -b 5M --profile 2 --fps 60 -c 4 -o <output_stream>",
         "xma_parameters": "-w 1920 -h 1080 -b:v 5M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream>"
-    }, 
+    },
     {
-        "case": "Test #11 T_H264_ProfileMain_FR60_FHD_BitrateHigh", 
-        "status": "active", 
-        "script_info": "Testing encoder with parameters: ['--size', '1920x1080', '-b', '30M', '--profile', '2', '--fps', '60', '-c', '3', '-o', 'output.h264']", 
-        "simple_parameters": "--size 1920x1080 -b 30M --profile 2 --fps 60 -c 3 -o <output_stream>", 
+        "case": "ENC_MAIN_011",
+        "status": "active",
+        "script_info": [
+            "T_H264_ProfileMain_FR60_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "--size 1920x1080 -b 30M --profile 2 --fps 60 -c 3 -o <output_stream>",
         "xma_parameters": "-w 1920 -h 1080 -b:v 30M -profile 1 -fps 60 -c:v h264_ama -o <output_stream>"
-    }, 
+    },
     {
-        "case": "Test #12 T_HEVC_ProfileMain10_FR60_FHD_BitrateHigh", 
-        "status": "active", 
-        "script_info": "Testing encoder with parameters: ['--size', '1920x1080', '-b', '30M', '--profile', '2', '--fps', '60', '-c', '4', '-o', 'output.h265']", 
-        "simple_parameters": "--size 1920x1080 -b 30M --profile 2 --fps 60 -c 4 -o <output_stream>", 
+        "case": "ENC_MAIN_012",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_ProfileMain10_FR60_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "--size 1920x1080 -b 30M --profile 2 --fps 60 -c 4 -o <output_stream>",
         "xma_parameters": "-w 1920 -h 1080 -b:v 30M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream>"
-    }, 
+    },
     {
-        "case": "Test #13 T_H264_ProfileMain_FR60_BitrateLow_4K", 
-        "status": "active", 
-        "script_info": "Testing encoder with parameters: ['--size', '3840x2160', '-b', '1M', '--profile', '2', '--fps', '60', '-c', '3', '-o', 'output.h264']", 
-        "simple_parameters": "--size 3840x2160 -b 1M --profile 2 --fps 60 -c 3 -o <output_stream>", 
+        "case": "ENC_MAIN_013",
+        "status": "active",
+        "script_info": [
+            "T_H264_ProfileMain_FR60_BitrateLow_4K"
+        ],
+        "simple_parameters": "--size 3840x2160 -b 1M --profile 2 --fps 60 -c 3 -o <output_stream>",
         "xma_parameters": "-w 3840 -h 2160 -b:v 1M -profile 1 -fps 60 -c:v h264_ama -o <output_stream>"
-    }, 
+    },
     {
-        "case": "Test #14 T_HEVC_ProfileMain10_FR60_BitrateLow_4K", 
-        "status": "active", 
-        "script_info": "Testing encoder with parameters: ['--size', '3840x2160', '-b', '1M', '--profile', '2', '--fps', '60', '-c', '4', '-o', 'output.h265']", 
-        "simple_parameters": "--size 3840x2160 -b 1M --profile 2 --fps 60 -c 4 -o <output_stream>", 
+        "case": "ENC_MAIN_014",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_ProfileMain10_FR60_BitrateLow_4K"
+        ],
+        "simple_parameters": "--size 3840x2160 -b 1M --profile 2 --fps 60 -c 4 -o <output_stream>",
         "xma_parameters": "-w 3840 -h 2160 -b:v 1M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream>"
-    }, 
+    },
     {
-        "case": "Test #15 T_H264_ProfileMain_FR60_BitrateMedium_4K", 
-        "status": "active", 
-        "script_info": "Testing encoder with parameters: ['--size', '3840x2160', '-b', '5M', '--profile', '2', '--fps', '60', '-c', '3', '-o', 'output.h264']", 
-        "simple_parameters": "--size 3840x2160 -b 5M --profile 2 --fps 60 -c 3 -o <output_stream>", 
+        "case": "ENC_MAIN_015",
+        "status": "active",
+        "script_info": [
+            "T_H264_ProfileMain_FR60_BitrateMedium_4K"
+        ],
+        "simple_parameters": "--size 3840x2160 -b 5M --profile 2 --fps 60 -c 3 -o <output_stream>",
         "xma_parameters": "-w 3840 -h 2160 -b:v 5M -profile 1 -fps 60 -c:v h264_ama -o <output_stream>"
-    }, 
+    },
     {
-        "case": "Test #16 T_HEVC_ProfileMain10_FR60_BitrateMedium_4K", 
-        "status": "active", 
-        "script_info": "Testing encoder with parameters: ['--size', '3840x2160', '-b', '5M', '--profile', '2', '--fps', '60', '-c', '4', '-o', 'output.h265']", 
-        "simple_parameters": "--size 3840x2160 -b 5M --profile 2 --fps 60 -c 4 -o <output_stream>", 
+        "case": "ENC_MAIN_016",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_ProfileMain10_FR60_BitrateMedium_4K"
+        ],
+        "simple_parameters": "--size 3840x2160 -b 5M --profile 2 --fps 60 -c 4 -o <output_stream>",
         "xma_parameters": "-w 3840 -h 2160 -b:v 5M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream>"
-    }, 
+    },
     {
-        "case": "Test #17 T_H264_ProfileMain_FR60_BitrateHigh_4K", 
-        "status": "active", 
-        "script_info": "Testing encoder with parameters: ['--size', '3840x2160', '-b', '30M', '--profile', '2', '--fps', '60', '-c', '3', '-o', 'output.h264']", 
-        "simple_parameters": "--size 3840x2160 -b 30M --profile 2 --fps 60 -c 3 -o <output_stream>", 
+        "case": "ENC_MAIN_017",
+        "status": "active",
+        "script_info": [
+            "T_H264_ProfileMain_FR60_BitrateHigh_4K"
+        ],
+        "simple_parameters": "--size 3840x2160 -b 30M --profile 2 --fps 60 -c 3 -o <output_stream>",
         "xma_parameters": "-w 3840 -h 2160 -b:v 30M -profile 1 -fps 60 -c:v h264_ama -o <output_stream>"
-    }, 
+    },
     {
-        "case": "Test #18 T_HEVC_ProfileMain10_FR60_BitrateHigh_4K", 
-        "status": "active", 
-        "script_info": "Testing encoder with parameters: ['--size', '3840x2160', '-b', '30M', '--profile', '2', '--fps', '60', '-c', '4', '-o', 'output.h265']", 
-        "simple_parameters": "--size 3840x2160 -b 30M --profile 2 --fps 60 -c 4 -o <output_stream>", 
+        "case": "ENC_MAIN_018",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_ProfileMain10_FR60_BitrateHigh_4K"
+        ],
+        "simple_parameters": "--size 3840x2160 -b 30M --profile 2 --fps 60 -c 4 -o <output_stream>",
         "xma_parameters": "-w 3840 -h 2160 -b:v 30M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream>"
     }
 ]

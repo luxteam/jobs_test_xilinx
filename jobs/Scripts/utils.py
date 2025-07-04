@@ -21,6 +21,8 @@ def save_logs(args, case, log):
     try:
         if 'ma35' in log.lower():
             log_destination_path = os.path.join(args.output, "tool_logs", case["case"] + "_ma35.html")  # noqa: E501
+        elif 'preparation' in log.lower():
+            log_destination_path = os.path.join(args.output, "tool_logs", case["case"] + "_input_preparation.html")  # noqa: E501
         else:
             log_destination_path = os.path.join(args.output, "tool_logs", case["case"] + "_simple.html")  # noqa: E501
 
@@ -62,8 +64,12 @@ def save_results(args, case, cases, execution_time=0.0, test_case_status="", err
         test_case_report = json.loads(file.read())[0]
 
     test_case_report["execution_time"] = execution_time
+
     test_case_report["ma35_log"] = os.path.join("tool_logs", case["case"] + "_ma35.html")  # noqa: E501
     test_case_report["simple_log"] = os.path.join("tool_logs", case["case"] + "_simple.html")  # noqa: E501
+
+    if "Decoder" in args.test_group:
+        test_case_report["preparation_log"] = os.path.join("tool_logs", case["case"] + "_input_preparation.html")  # noqa: E501
 
     test_case_report["testing_start"] = datetime.now().strftime("%m/%d/%Y %H:%M:%S")  # noqa: E501
     test_case_report["number_of_tries"] += 1

@@ -1,144 +1,144 @@
 [
     {
-        "case": "Test #1 T_H264_SD_ProfileBaseline_FR60_BitrateLow", 
+        "case": "DEC_MAIN_001", 
         "status": "active", 
-        "script_info": "Testing decoder with parameters: ['-i', 'prepared.h264', '-o', 'output.yuv']", 
+        "script_info": ["T_H264_SD_ProfileBaseline_FR60_BitrateLow"], 
         "simple_parameters": "-i <input_stream> -o <output_stream>", 
         "xma_parameters": "-c:v h264_ama -i <input_stream> -o <output_stream>", 
         "prepare": "--size 720x480 -b 1M --profile 1 --fps 60 -c 3 -o <output_stream>"
     }, 
     {
-        "case": "Test #2 T_HEVC_SD_ProfileMain_FR60_BitrateLow", 
+        "case": "DEC_MAIN_002", 
         "status": "active", 
-        "script_info": "Testing decoder with parameters: ['-i', 'prepared.h265', '-o', 'output.yuv']", 
+        "script_info": ["T_HEVC_SD_ProfileMain_FR60_BitrateLow"], 
         "simple_parameters": "-i <input_stream> -o <output_stream>", 
         "xma_parameters": "-c:v hevc_ama -i <input_stream> -o <output_stream>", 
         "prepare": "--size 720x480 -b 1M --profile 1 --fps 60 -c 4 -o <output_stream>"
     }, 
     {
-        "case": "Test #3 T_AV1_SD_ProfileMain_FR60_BitrateLow", 
-        "status": "active", 
-        "script_info": "Testing decoder with parameters: ['-i', 'prepared.av1', '-o', 'output.yuv']", 
+        "case": "DEC_MAIN_003", 
+        "status": "skipped", 
+        "script_info": ["T_AV1_SD_ProfileMain_FR60_BitrateLow"], 
         "simple_parameters": "-i <input_stream> -o <output_stream>", 
         "xma_parameters": "-c:v av1_ama -i <input_stream> -o <output_stream>", 
         "prepare": "--size 720x480 -b 1M --profile 1 --fps 60 -c 5 -o <output_stream>"
     }, 
     {
-        "case": "Test #4 T_H264_SD_ProfileBaseline_FR60_BitrateMedium", 
+        "case": "DEC_MAIN_004", 
         "status": "active", 
-        "script_info": "Testing decoder with parameters: ['-i', 'prepared.h264', '-o', 'output.yuv']", 
+        "script_info": ["T_H264_SD_ProfileBaseline_FR60_BitrateMedium"], 
         "simple_parameters": "-i <input_stream> -o <output_stream>", 
         "xma_parameters": "-c:v h264_ama -i <input_stream> -o <output_stream>", 
         "prepare": "--size 720x480 -b 5M --profile 1 --fps 60 -c 3 -o <output_stream>"
     }, 
     {
-        "case": "Test #5 T_HEVC_SD_ProfileMain_FR60_BitrateMedium", 
+        "case": "DEC_MAIN_005", 
         "status": "active", 
-        "script_info": "Testing decoder with parameters: ['-i', 'prepared.h265', '-o', 'output.yuv']", 
+        "script_info": ["T_HEVC_SD_ProfileMain_FR60_BitrateMedium"], 
         "simple_parameters": "-i <input_stream> -o <output_stream>", 
         "xma_parameters": "-c:v hevc_ama -i <input_stream> -o <output_stream>", 
         "prepare": "--size 720x480 -b 5M --profile 1 --fps 60 -c 4 -o <output_stream>"
     }, 
     {
-        "case": "Test #6 T_AV1_SD_ProfileMain_FR60_BitrateMedium", 
-        "status": "active", 
-        "script_info": "Testing decoder with parameters: ['-i', 'prepared.av1', '-o', 'output.yuv']", 
+        "case": "DEC_MAIN_006", 
+        "status": "skipped", 
+        "script_info": ["T_AV1_SD_ProfileMain_FR60_BitrateMedium"], 
         "simple_parameters": "-i <input_stream> -o <output_stream>", 
         "xma_parameters": "-c:v av1_ama -i <input_stream> -o <output_stream>", 
         "prepare": "--size 720x480 -b 5M --profile 1 --fps 60 -c 5 -o <output_stream>"
     }, 
     {
-        "case": "Test #7 T_H264_ProfileBaseline_FR60_FHD_BitrateLow", 
+        "case": "DEC_MAIN_007", 
         "status": "active", 
-        "script_info": "Testing decoder with parameters: ['-i', 'prepared.h264', '-o', 'output.yuv']", 
+        "script_info": ["T_H264_ProfileBaseline_FR60_FHD_BitrateLow"], 
         "simple_parameters": "-i <input_stream> -o <output_stream>", 
         "xma_parameters": "-c:v h264_ama -i <input_stream> -o <output_stream>", 
         "prepare": "--size 1920x1080 -b 1M --profile 1 --fps 60 -c 3 -o <output_stream>"
     }, 
     {
-        "case": "Test #8 T_HEVC_ProfileMain_FR60_FHD_BitrateLow", 
+        "case": "DEC_MAIN_008", 
         "status": "active", 
-        "script_info": "Testing decoder with parameters: ['-i', 'prepared.h265', '-o', 'output.yuv']", 
+        "script_info": ["T_HEVC_ProfileMain_FR60_FHD_BitrateLow"], 
         "simple_parameters": "-i <input_stream> -o <output_stream>", 
         "xma_parameters": "-c:v hevc_ama -i <input_stream> -o <output_stream>", 
         "prepare": "--size 1920x1080 -b 1M --profile 1 --fps 60 -c 4 -o <output_stream>"
     }, 
     {
-        "case": "Test #9 T_AV1_ProfileMain_FR60_FHD_BitrateLow", 
-        "status": "active", 
-        "script_info": "Testing decoder with parameters: ['-i', 'prepared.av1', '-o', 'output.yuv']", 
+        "case": "DEC_MAIN_009", 
+        "status": "skipped", 
+        "script_info": ["T_AV1_ProfileMain_FR60_FHD_BitrateLow"], 
         "simple_parameters": "-i <input_stream> -o <output_stream>", 
         "xma_parameters": "-c:v av1_ama -i <input_stream> -o <output_stream>", 
         "prepare": "--size 1920x1080 -b 1M --profile 1 --fps 60 -c 5 -o <output_stream>"
     }, 
     {
-        "case": "Test #10 T_H264_ProfileBaseline_FR60_FHD_BitrateMedium", 
+        "case": "DEC_MAIN_010", 
         "status": "active", 
-        "script_info": "Testing decoder with parameters: ['-i', 'prepared.h264', '-o', 'output.yuv']", 
+        "script_info": ["T_H264_ProfileBaseline_FR60_FHD_BitrateMedium"], 
         "simple_parameters": "-i <input_stream> -o <output_stream>", 
         "xma_parameters": "-c:v h264_ama -i <input_stream> -o <output_stream>", 
         "prepare": "--size 1920x1080 -b 5M --profile 1 --fps 60 -c 3 -o <output_stream>"
     }, 
     {
-        "case": "Test #11 T_HEVC_ProfileMain_FR60_FHD_BitrateMedium", 
+        "case": "DEC_MAIN_011", 
         "status": "active", 
-        "script_info": "Testing decoder with parameters: ['-i', 'prepared.h265', '-o', 'output.yuv']", 
+        "script_info": ["T_HEVC_ProfileMain_FR60_FHD_BitrateMedium"], 
         "simple_parameters": "-i <input_stream> -o <output_stream>", 
         "xma_parameters": "-c:v hevc_ama -i <input_stream> -o <output_stream>", 
         "prepare": "--size 1920x1080 -b 5M --profile 1 --fps 60 -c 4 -o <output_stream>"
     }, 
     {
-        "case": "Test #12 T_AV1_ProfileMain_FR60_FHD_BitrateMedium", 
-        "status": "active", 
-        "script_info": "Testing decoder with parameters: ['-i', 'prepared.av1', '-o', 'output.yuv']", 
+        "case": "DEC_MAIN_012", 
+        "status": "skipped", 
+        "script_info": ["T_AV1_ProfileMain_FR60_FHD_BitrateMedium"], 
         "simple_parameters": "-i <input_stream> -o <output_stream>", 
         "xma_parameters": "-c:v av1_ama -i <input_stream> -o <output_stream>", 
         "prepare": "--size 1920x1080 -b 5M --profile 1 --fps 60 -c 5 -o <output_stream>"
     }, 
     {
-        "case": "Test #13 T_H264_ProfileBaseline_FR60_BitrateLow_4K", 
+        "case": "DEC_MAIN_013", 
         "status": "active", 
-        "script_info": "Testing decoder with parameters: ['-i', 'prepared.h264', '-o', 'output.yuv']", 
+        "script_info": ["T_H264_ProfileBaseline_FR60_BitrateLow_4K"], 
         "simple_parameters": "-i <input_stream> -o <output_stream>", 
         "xma_parameters": "-c:v h264_ama -i <input_stream> -o <output_stream>", 
         "prepare": "--size 3840x2160 -b 1M --profile 1 --fps 60 -c 3 -o <output_stream>"
     }, 
     {
-        "case": "Test #14 T_HEVC_ProfileMain_FR60_BitrateLow_4K", 
+        "case": "DEC_MAIN_014", 
         "status": "active", 
-        "script_info": "Testing decoder with parameters: ['-i', 'prepared.h265', '-o', 'output.yuv']", 
+        "script_info": ["T_HEVC_ProfileMain_FR60_BitrateLow_4K"], 
         "simple_parameters": "-i <input_stream> -o <output_stream>", 
         "xma_parameters": "-c:v hevc_ama -i <input_stream> -o <output_stream>", 
         "prepare": "--size 3840x2160 -b 1M --profile 1 --fps 60 -c 4 -o <output_stream>"
     }, 
     {
-        "case": "Test #15 T_AV1_ProfileMain_FR60_BitrateLow_4K", 
-        "status": "active", 
-        "script_info": "Testing decoder with parameters: ['-i', 'prepared.av1', '-o', 'output.yuv']", 
+        "case": "DEC_MAIN_015", 
+        "status": "skipped", 
+        "script_info": ["T_AV1_ProfileMain_FR60_BitrateLow_4K"], 
         "simple_parameters": "-i <input_stream> -o <output_stream>", 
         "xma_parameters": "-c:v av1_ama -i <input_stream> -o <output_stream>", 
         "prepare": "--size 3840x2160 -b 1M --profile 1 --fps 60 -c 5 -o <output_stream>"
     }, 
     {
-        "case": "Test #16 T_H264_ProfileBaseline_FR60_BitrateMedium_4K", 
+        "case": "DEC_MAIN_016", 
         "status": "active", 
-        "script_info": "Testing decoder with parameters: ['-i', 'prepared.h264', '-o', 'output.yuv']", 
+        "script_info": ["T_H264_ProfileBaseline_FR60_BitrateMedium_4K"], 
         "simple_parameters": "-i <input_stream> -o <output_stream>", 
         "xma_parameters": "-c:v h264_ama -i <input_stream> -o <output_stream>", 
         "prepare": "--size 3840x2160 -b 5M --profile 1 --fps 60 -c 3 -o <output_stream>"
     }, 
     {
-        "case": "Test #17 T_HEVC_ProfileMain_FR60_BitrateMedium_4K", 
+        "case": "DEC_MAIN_017", 
         "status": "active", 
-        "script_info": "Testing decoder with parameters: ['-i', 'prepared.h265', '-o', 'output.yuv']", 
+        "script_info": ["T_HEVC_ProfileMain_FR60_BitrateMedium_4K"], 
         "simple_parameters": "-i <input_stream> -o <output_stream>", 
         "xma_parameters": "-c:v hevc_ama -i <input_stream> -o <output_stream>", 
         "prepare": "--size 3840x2160 -b 5M --profile 1 --fps 60 -c 4 -o <output_stream>"
     }, 
     {
-        "case": "Test #18 T_AV1_ProfileMain_FR60_BitrateMedium_4K", 
-        "status": "active", 
-        "script_info": "Testing decoder with parameters: ['-i', 'prepared.av1', '-o', 'output.yuv']", 
+        "case": "DEC_MAIN_0018", 
+        "status": "skipped", 
+        "script_info": ["T_AV1_ProfileMain_FR60_BitrateMedium_4K"], 
         "simple_parameters": "-i <input_stream> -o <output_stream>", 
         "xma_parameters": "-c:v av1_ama -i <input_stream> -o <output_stream>", 
         "prepare": "--size 3840x2160 -b 5M --profile 1 --fps 60 -c 5 -o <output_stream>"

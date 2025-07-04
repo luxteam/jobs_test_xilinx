@@ -3,11 +3,11 @@ import os
 import platform
 import time
 import traceback
-from copy import deepcopy
-from process_results import fill_stream_info, compare_with_ma35, STREAM_INFO
+from process_results import get_ffprobe_info, compare_ffprobe_output
 from utils import (is_case_skipped, save_logs, save_results,
                    copy_test_cases, prepare_empty_reports)
 from encoder import prepare_encoder_parameters, run_tool
+from decoder import prepare_decoder_parameters, prepare_decoder_input
 
 from jobs_launcher.core.config import main_logger
 from jobs_launcher.core.system_info import get_gpu
@@ -35,6 +35,17 @@ def execute_tests(args, current_conf):
             simple_tool_path = os.path.join(
                 '/opt/amd/ama/amf_Release/bin', 'SimpleEncoderAMA'
             )
+        elif "Decoder" in args.test_group:
+            xma_tool_path = os.path.join(
+                args.tool_path, 'xma', 'bin', 'ma35_decoder_app'
+            )
+            # clarify if we can install our binaries to a specific directory
+            simple_tool_path = os.path.join(
+                '/opt/amd/ama/amf_Release/bin', 'SimpleDecoderAMA'
+            )
+            encoder_path = os.path.join(
+                '/opt/amd/ama/amf_Release/bin', 'SimpleEncoderAMA'
+            )
 
         output_path = os.path.join(args.output, "Color")
         if not os.path.exists(output_path):
@@ -57,11 +68,24 @@ def execute_tests(args, current_conf):
                     logs_path, f"{case['case']}_simple.log"
                 )
                 ma35_log = os.path.join(logs_path, f"{case['case']}_ma35.log")
+                input_preparation_log = os.path.join(logs_path, f"{case['case']}_input_preparation.log")  # noqa: E501
 
                 if "Encoder" in args.test_group:
                     prepared_keys, output_stream = prepare_encoder_parameters(
                         args, case, output_path=output_path,
                         simple_encoder=True
+                    )
+                elif "Decoder" in args.test_group:
+                    # prepare output file and keys
+                    prepared_keys, input_stream, output_stream = prepare_decoder_parameters(  # noqa: E501
+                        args, case, output_path=output_path,
+                        simple_decoder=True
+                    )
+
+                    # prepare input file for decoder
+                    prepare_decoder_input(
+                        case, logs_path, encoder_path, input_stream,
+                        input_preparation_log
                     )
 
                 case["script_info"].append(
@@ -80,32 +104,32 @@ def execute_tests(args, current_conf):
                         args, case, output_path=output_path,
                         simple_encoder=False
                     )
+                elif "Decoder" in args.test_group:
+                    prepared_keys, input_stream, reference_stream = prepare_decoder_parameters(  # noqa: E501
+                        args, case, output_path=output_path,
+                        simple_decoder=False
+                    )
 
                 run_tool(xma_tool_path, prepared_keys, ma35_log)
 
-                output_stream_params = deepcopy(STREAM_INFO)
-                reference_stream_params = deepcopy(STREAM_INFO)
-
-                fill_stream_info(
-                    mediainfo, output_stream, output_stream_params
+                output_stream_params = get_ffprobe_info(case, output_stream)
+                reference_stream_params = get_ffprobe_info(
+                    case, reference_stream
                 )
-
-                fill_stream_info(
-                    mediainfo, reference_stream, reference_stream_params
-                )
-                # fill_stream_quality(ffmpeg_vmaf_path, output_stream,
-                #                     input_stream, output_stream_params)
 
                 case["ref_stream_params"] = reference_stream_params
                 case["output_stream_params"] = output_stream_params
 
-                compare_with_ma35(
+                compare_ffprobe_output(
                     output_stream_params, reference_stream_params,
                     error_messages
                 )
 
                 save_logs(args, case, ma35_log)
                 save_logs(args, case, simple_log)
+
+                if os.path.exists(input_preparation_log):
+                    save_logs(args, case, input_preparation_log)
 
                 test_case_status = "passed"
                 if error_messages:
@@ -121,6 +145,9 @@ def execute_tests(args, current_conf):
 
                 save_logs(args, case, ma35_log)
                 save_logs(args, case, simple_log)
+
+                if os.path.exists(input_preparation_log):
+                    save_logs(args, case, input_preparation_log)
 
                 test_case_status = "failed"
                 if case["status"] == "observed":

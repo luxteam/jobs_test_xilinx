@@ -50,6 +50,7 @@ def create_ma35_encoder_input(simple_parameters: str, output_stream: str):
         os.remove(ma35_input)
 
     encoder_command = [simple_encoder_path, '--dump-input', '-i', ma35_input] + simple_parameters.split()  # noqa: E501
+    # TODO: change to run_tool
     Popen(encoder_command, stdout=DEVNULL, stderr=DEVNULL).wait()
 
     # clean

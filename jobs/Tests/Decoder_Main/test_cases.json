@@ -1,146 +1,122 @@
 [
     {
-        "case": "DEC_MAIN_001", 
-        "status": "active", 
-        "script_info": ["T_H264_SD_ProfileBaseline_FR60_BitrateLow"], 
-        "simple_parameters": "-i <input_stream> -o <output_stream>", 
-        "xma_parameters": "-c:v h264_ama -i <input_stream> -o <output_stream>", 
-        "prepare": "--size 720x480 -b 1M --profile 1 --fps 60 -c 3 -o <output_stream>"
-    }, 
+        "case": "DEC_MAIN_001",
+        "status": "active",
+        "script_info": [
+            "T_H264_SD_ProfileBaseline_FR60_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> -o <output_stream> --multi-thread",
+        "xma_parameters": "-c:v h264_ama -i <input_stream> -o <output_stream> -pix_fmt yuv420p",
+        "prepare": "--size 720x480 -b 1M --profile 1 --fps 60 -c 3 -o <output_stream> --quality 1 --bf 3 --profile-level 52"
+    },
     {
-        "case": "DEC_MAIN_002", 
-        "status": "active", 
-        "script_info": ["T_HEVC_SD_ProfileMain_FR60_BitrateLow"], 
-        "simple_parameters": "-i <input_stream> -o <output_stream>", 
-        "xma_parameters": "-c:v hevc_ama -i <input_stream> -o <output_stream>", 
-        "prepare": "--size 720x480 -b 1M --profile 1 --fps 60 -c 4 -o <output_stream>"
-    }, 
+        "case": "DEC_MAIN_002",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_ProfileMain_FR60_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> -o <output_stream> --multi-thread",
+        "xma_parameters": "-c:v hevc_ama -i <input_stream> -o <output_stream> -pix_fmt yuv420p",
+        "prepare": "--size 720x480 -b 1M --profile 1 --fps 60 -c 4 -o <output_stream> --quality 1 --bf 3 --profile-level 52"
+    },
     {
-        "case": "DEC_MAIN_003", 
-        "status": "skipped", 
-        "script_info": ["T_AV1_SD_ProfileMain_FR60_BitrateLow"], 
-        "simple_parameters": "-i <input_stream> -o <output_stream>", 
-        "xma_parameters": "-c:v av1_ama -i <input_stream> -o <output_stream>", 
-        "prepare": "--size 720x480 -b 1M --profile 1 --fps 60 -c 5 -o <output_stream>"
-    }, 
+        "case": "DEC_MAIN_003",
+        "status": "active",
+        "script_info": [
+            "T_H264_SD_ProfileBaseline_FR60_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> -o <output_stream> --multi-thread",
+        "xma_parameters": "-c:v h264_ama -i <input_stream> -o <output_stream> -pix_fmt yuv420p",
+        "prepare": "--size 720x480 -b 5M --profile 1 --fps 60 -c 3 -o <output_stream> --quality 1 --bf 3 --profile-level 52"
+    },
     {
-        "case": "DEC_MAIN_004", 
-        "status": "active", 
-        "script_info": ["T_H264_SD_ProfileBaseline_FR60_BitrateMedium"], 
-        "simple_parameters": "-i <input_stream> -o <output_stream>", 
-        "xma_parameters": "-c:v h264_ama -i <input_stream> -o <output_stream>", 
-        "prepare": "--size 720x480 -b 5M --profile 1 --fps 60 -c 3 -o <output_stream>"
-    }, 
+        "case": "DEC_MAIN_004",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_ProfileMain_FR60_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> -o <output_stream> --multi-thread",
+        "xma_parameters": "-c:v hevc_ama -i <input_stream> -o <output_stream> -pix_fmt yuv420p",
+        "prepare": "--size 720x480 -b 5M --profile 1 --fps 60 -c 4 -o <output_stream> --quality 1 --bf 3 --profile-level 52"
+    },
     {
-        "case": "DEC_MAIN_005", 
-        "status": "active", 
-        "script_info": ["T_HEVC_SD_ProfileMain_FR60_BitrateMedium"], 
-        "simple_parameters": "-i <input_stream> -o <output_stream>", 
-        "xma_parameters": "-c:v hevc_ama -i <input_stream> -o <output_stream>", 
-        "prepare": "--size 720x480 -b 5M --profile 1 --fps 60 -c 4 -o <output_stream>"
-    }, 
+        "case": "DEC_MAIN_005",
+        "status": "active",
+        "script_info": [
+            "T_H264_ProfileBaseline_FR60_FHD_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> -o <output_stream> --multi-thread",
+        "xma_parameters": "-c:v h264_ama -i <input_stream> -o <output_stream> -pix_fmt yuv420p",
+        "prepare": "--size 1920x1080 -b 1M --profile 1 --fps 60 -c 3 -o <output_stream> --quality 1 --bf 3 --profile-level 52"
+    },
     {
-        "case": "DEC_MAIN_006", 
-        "status": "skipped", 
-        "script_info": ["T_AV1_SD_ProfileMain_FR60_BitrateMedium"], 
-        "simple_parameters": "-i <input_stream> -o <output_stream>", 
-        "xma_parameters": "-c:v av1_ama -i <input_stream> -o <output_stream>", 
-        "prepare": "--size 720x480 -b 5M --profile 1 --fps 60 -c 5 -o <output_stream>"
-    }, 
+        "case": "DEC_MAIN_006",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_ProfileMain_FR60_FHD_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> -o <output_stream> --multi-thread",
+        "xma_parameters": "-c:v hevc_ama -i <input_stream> -o <output_stream> -pix_fmt yuv420p",
+        "prepare": "--size 1920x1080 -b 1M --profile 1 --fps 60 -c 4 -o <output_stream> --quality 1 --bf 3 --profile-level 52"
+    },
     {
-        "case": "DEC_MAIN_007", 
-        "status": "active", 
-        "script_info": ["T_H264_ProfileBaseline_FR60_FHD_BitrateLow"], 
-        "simple_parameters": "-i <input_stream> -o <output_stream>", 
-        "xma_parameters": "-c:v h264_ama -i <input_stream> -o <output_stream>", 
-        "prepare": "--size 1920x1080 -b 1M --profile 1 --fps 60 -c 3 -o <output_stream>"
-    }, 
+        "case": "DEC_MAIN_007",
+        "status": "active",
+        "script_info": [
+            "T_H264_ProfileBaseline_FR60_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> -o <output_stream> --multi-thread",
+        "xma_parameters": "-c:v h264_ama -i <input_stream> -o <output_stream> -pix_fmt yuv420p",
+        "prepare": "--size 1920x1080 -b 5M --profile 1 --fps 60 -c 3 -o <output_stream> --quality 1 --bf 3 --profile-level 52"
+    },
     {
-        "case": "DEC_MAIN_008", 
-        "status": "active", 
-        "script_info": ["T_HEVC_ProfileMain_FR60_FHD_BitrateLow"], 
-        "simple_parameters": "-i <input_stream> -o <output_stream>", 
-        "xma_parameters": "-c:v hevc_ama -i <input_stream> -o <output_stream>", 
-        "prepare": "--size 1920x1080 -b 1M --profile 1 --fps 60 -c 4 -o <output_stream>"
-    }, 
+        "case": "DEC_MAIN_008",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_ProfileMain_FR60_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> -o <output_stream> --multi-thread",
+        "xma_parameters": "-c:v hevc_ama -i <input_stream> -o <output_stream> -pix_fmt yuv420p",
+        "prepare": "--size 1920x1080 -b 5M --profile 1 --fps 60 -c 4 -o <output_stream> --quality 1 --bf 3 --profile-level 52"
+    },
     {
-        "case": "DEC_MAIN_009", 
-        "status": "skipped", 
-        "script_info": ["T_AV1_ProfileMain_FR60_FHD_BitrateLow"], 
-        "simple_parameters": "-i <input_stream> -o <output_stream>", 
-        "xma_parameters": "-c:v av1_ama -i <input_stream> -o <output_stream>", 
-        "prepare": "--size 1920x1080 -b 1M --profile 1 --fps 60 -c 5 -o <output_stream>"
-    }, 
+        "case": "DEC_MAIN_009",
+        "status": "active",
+        "script_info": [
+            "T_H264_ProfileBaseline_FR60_BitrateLow_4K"
+        ],
+        "simple_parameters": "-i <input_stream> -o <output_stream> --multi-thread",
+        "xma_parameters": "-c:v h264_ama -i <input_stream> -o <output_stream> -pix_fmt yuv420p",
+        "prepare": "--size 3840x2160 -b 1M --profile 1 --fps 60 -c 3 -o <output_stream> --quality 1 --bf 3 --profile-level 52"
+    },
     {
-        "case": "DEC_MAIN_010", 
-        "status": "active", 
-        "script_info": ["T_H264_ProfileBaseline_FR60_FHD_BitrateMedium"], 
-        "simple_parameters": "-i <input_stream> -o <output_stream>", 
-        "xma_parameters": "-c:v h264_ama -i <input_stream> -o <output_stream>", 
-        "prepare": "--size 1920x1080 -b 5M --profile 1 --fps 60 -c 3 -o <output_stream>"
-    }, 
+        "case": "DEC_MAIN_010",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_ProfileMain_FR60_BitrateLow_4K"
+        ],
+        "simple_parameters": "-i <input_stream> -o <output_stream> --multi-thread",
+        "xma_parameters": "-c:v hevc_ama -i <input_stream> -o <output_stream> -pix_fmt yuv420p",
+        "prepare": "--size 3840x2160 -b 1M --profile 1 --fps 60 -c 4 -o <output_stream> --quality 1 --bf 3 --profile-level 52"
+    },
     {
-        "case": "DEC_MAIN_011", 
-        "status": "active", 
-        "script_info": ["T_HEVC_ProfileMain_FR60_FHD_BitrateMedium"], 
-        "simple_parameters": "-i <input_stream> -o <output_stream>", 
-        "xma_parameters": "-c:v hevc_ama -i <input_stream> -o <output_stream>", 
-        "prepare": "--size 1920x1080 -b 5M --profile 1 --fps 60 -c 4 -o <output_stream>"
-    }, 
+        "case": "DEC_MAIN_011",
+        "status": "active",
+        "script_info": [
+            "T_H264_ProfileBaseline_FR60_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> -o <output_stream> --multi-thread",
+        "xma_parameters": "-c:v h264_ama -i <input_stream> -o <output_stream> -pix_fmt yuv420p",
+        "prepare": "--size 3840x2160 -b 5M --profile 1 --fps 60 -c 3 -o <output_stream> --quality 1 --bf 3 --profile-level 52"
+    },
     {
-        "case": "DEC_MAIN_012", 
-        "status": "skipped", 
-        "script_info": ["T_AV1_ProfileMain_FR60_FHD_BitrateMedium"], 
-        "simple_parameters": "-i <input_stream> -o <output_stream>", 
-        "xma_parameters": "-c:v av1_ama -i <input_stream> -o <output_stream>", 
-        "prepare": "--size 1920x1080 -b 5M --profile 1 --fps 60 -c 5 -o <output_stream>"
-    }, 
-    {
-        "case": "DEC_MAIN_013", 
-        "status": "active", 
-        "script_info": ["T_H264_ProfileBaseline_FR60_BitrateLow_4K"], 
-        "simple_parameters": "-i <input_stream> -o <output_stream>", 
-        "xma_parameters": "-c:v h264_ama -i <input_stream> -o <output_stream>", 
-        "prepare": "--size 3840x2160 -b 1M --profile 1 --fps 60 -c 3 -o <output_stream>"
-    }, 
-    {
-        "case": "DEC_MAIN_014", 
-        "status": "active", 
-        "script_info": ["T_HEVC_ProfileMain_FR60_BitrateLow_4K"], 
-        "simple_parameters": "-i <input_stream> -o <output_stream>", 
-        "xma_parameters": "-c:v hevc_ama -i <input_stream> -o <output_stream>", 
-        "prepare": "--size 3840x2160 -b 1M --profile 1 --fps 60 -c 4 -o <output_stream>"
-    }, 
-    {
-        "case": "DEC_MAIN_015", 
-        "status": "skipped", 
-        "script_info": ["T_AV1_ProfileMain_FR60_BitrateLow_4K"], 
-        "simple_parameters": "-i <input_stream> -o <output_stream>", 
-        "xma_parameters": "-c:v av1_ama -i <input_stream> -o <output_stream>", 
-        "prepare": "--size 3840x2160 -b 1M --profile 1 --fps 60 -c 5 -o <output_stream>"
-    }, 
-    {
-        "case": "DEC_MAIN_016", 
-        "status": "active", 
-        "script_info": ["T_H264_ProfileBaseline_FR60_BitrateMedium_4K"], 
-        "simple_parameters": "-i <input_stream> -o <output_stream>", 
-        "xma_parameters": "-c:v h264_ama -i <input_stream> -o <output_stream>", 
-        "prepare": "--size 3840x2160 -b 5M --profile 1 --fps 60 -c 3 -o <output_stream>"
-    }, 
-    {
-        "case": "DEC_MAIN_017", 
-        "status": "active", 
-        "script_info": ["T_HEVC_ProfileMain_FR60_BitrateMedium_4K"], 
-        "simple_parameters": "-i <input_stream> -o <output_stream>", 
-        "xma_parameters": "-c:v hevc_ama -i <input_stream> -o <output_stream>", 
-        "prepare": "--size 3840x2160 -b 5M --profile 1 --fps 60 -c 4 -o <output_stream>"
-    }, 
-    {
-        "case": "DEC_MAIN_0018", 
-        "status": "skipped", 
-        "script_info": ["T_AV1_ProfileMain_FR60_BitrateMedium_4K"], 
-        "simple_parameters": "-i <input_stream> -o <output_stream>", 
-        "xma_parameters": "-c:v av1_ama -i <input_stream> -o <output_stream>", 
-        "prepare": "--size 3840x2160 -b 5M --profile 1 --fps 60 -c 5 -o <output_stream>"
+        "case": "DEC_MAIN_012",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_ProfileMain_FR60_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> -o <output_stream> --multi-thread",
+        "xma_parameters": "-c:v hevc_ama -i <input_stream> -o <output_stream> -pix_fmt yuv420p",
+        "prepare": "--size 3840x2160 -b 5M --profile 1 --fps 60 -c 4 -o <output_stream> --quality 1 --bf 3 --profile-level 52"
     }
 ]

@@ -3,11 +3,14 @@ import os
 import platform
 import time
 import traceback
-from process_results import get_ffprobe_info, compare_ffprobe_output
-from utils import (is_case_skipped, save_logs, save_results,
-                   copy_test_cases, prepare_empty_reports)
+
+from decoder import prepare_decoder_input, prepare_decoder_parameters
 from encoder import prepare_encoder_parameters, run_tool
-from decoder import prepare_decoder_parameters, prepare_decoder_input
+from process_results import get_ffprobe_info, hash_and_comapre
+from scaler import prepare_scaler_parameters
+from transcoder import prepare_transcoder_input, prepare_transcoder_parameters
+from utils import (copy_test_cases, is_case_skipped, prepare_empty_reports,
+                   save_logs, save_results)
 
 from jobs_launcher.core.config import main_logger
 from jobs_launcher.core.system_info import get_gpu
@@ -20,31 +23,50 @@ def execute_tests(args, current_conf):
         cases = json.load(json_file)
 
     logs_path = os.path.join(args.output, "tool_logs")
-    if platform.system() == 'Windows':
-        mediainfo = os.path.join(args.tool_path, "MediaInfo.exe")
-    else:
-        mediainfo = 'mediainfo'
+    # keep for ffmpeg testing
+    # if platform.system() == 'Windows':
+    #     mediainfo = os.path.join(args.tool_path, "MediaInfo.exe")
+    # else:
+    #     mediainfo = 'mediainfo'
 
     for case in [x for x in cases if not is_case_skipped(x, current_conf)]:
         # select tools to execute
+        binaries_common_path = '/opt/amd/ama/'
         if "Encoder" in args.test_group:
             xma_tool_path = os.path.join(
-                args.tool_path, 'xma', 'bin', 'ma35_encoder_app'
+                binaries_common_path, 'ma35', 'bin', 'ma35_encoder_app'
             )
             # clarify if we can install our binaries to a specific directory
             simple_tool_path = os.path.join(
-                '/opt/amd/ama/amf_Release/bin', 'SimpleEncoderAMA'
+                binaries_common_path, 'amf_Release', 'bin', 'SimpleEncoderAMA'
             )
         elif "Decoder" in args.test_group:
             xma_tool_path = os.path.join(
-                args.tool_path, 'xma', 'bin', 'ma35_decoder_app'
+                binaries_common_path, 'ma35', 'bin', 'ma35_decoder_app'
             )
-            # clarify if we can install our binaries to a specific directory
             simple_tool_path = os.path.join(
-                '/opt/amd/ama/amf_Release/bin', 'SimpleDecoderAMA'
+                binaries_common_path, 'amf_Release', 'bin', 'SimpleDecoderAMA'
             )
             encoder_path = os.path.join(
-                '/opt/amd/ama/amf_Release/bin', 'SimpleEncoderAMA'
+                binaries_common_path, 'amf_Release', 'bin', 'SimpleEncoderAMA'
+            )
+        elif "Scaler" in args.test_group:
+            xma_tool_path = os.path.join(
+                binaries_common_path, 'ma35', 'bin', 'ma35_scaler_app'
+            )
+            simple_tool_path = os.path.join(
+                binaries_common_path, 'amf_Release', 'bin', 'SimpleScalerAMA'
+            )
+        elif "Transcoder" in args.test_group:
+            xma_tool_path = os.path.join(
+                binaries_common_path, 'ma35', 'bin', 'ma35_transcoder_app'
+            )
+            simple_tool_path = os.path.join(
+                binaries_common_path, 'amf_Release', 'bin',
+                'SimpleTranscoderAMA'
+            )
+            encoder_path = os.path.join(
+                binaries_common_path, 'amf_Release', 'bin', 'SimpleEncoderAMA'
             )
 
         output_path = os.path.join(args.output, "Color")
@@ -72,68 +94,125 @@ def execute_tests(args, current_conf):
 
                 if "Encoder" in args.test_group:
                     prepared_keys, output_stream = prepare_encoder_parameters(
-                        args, case, output_path=output_path,
+                        case, output_path=output_path,
                         simple_encoder=True
+                    )
+                    ma35_prepared_keys, reference_stream = prepare_encoder_parameters(  # noqa: E501
+                        case, output_path=output_path,
+                        simple_encoder=False
                     )
                 elif "Decoder" in args.test_group:
                     # prepare output file and keys
                     prepared_keys, input_stream, output_stream = prepare_decoder_parameters(  # noqa: E501
-                        args, case, output_path=output_path,
+                        case, output_path=output_path,
                         simple_decoder=True
+                    )
+                    ma35_prepared_keys, input_stream, reference_stream = prepare_decoder_parameters(  # noqa: E501
+                        case, output_path=output_path,
+                        simple_decoder=False
                     )
 
                     # prepare input file for decoder
                     prepare_decoder_input(
-                        case, logs_path, encoder_path, input_stream,
+                        case, encoder_path, input_stream,
+                        input_preparation_log
+                    )
+                elif "Scaler" in args.test_group:
+                    prepared_keys, input_stream, output_stream = prepare_scaler_parameters(  # noqa: E501
+                        case, output_path=output_path,
+                        simple_scaler=True
+                    )
+                    ma35_prepared_keys, input_stream, reference_stream = prepare_scaler_parameters(  # noqa: E501
+                        case, output_path=output_path,
+                        simple_scaler=False
+                    )
+                elif "Transcoder" in args.test_group:
+                    prepared_keys, input_stream, output_stream = prepare_transcoder_parameters(  # noqa: E501
+                        case, output_path=output_path,
+                        simple_transcoder=True
+                    )
+                    ma35_prepared_keys, input_stream, reference_stream = prepare_transcoder_parameters(  # noqa: E501
+                        case, output_path=output_path,
+                        simple_transcoder=False
+                    )
+                    # prepare input file for transcoder
+                    prepare_transcoder_input(
+                        case, encoder_path, input_stream,
                         input_preparation_log
                     )
 
                 case["script_info"].append(
                     f"Simple parameters: {prepared_keys}"
                 )
+                case["script_info"].append(
+                    f"MA35 parameters: {ma35_prepared_keys}"
+                )
 
                 # main logic
                 run_tool(simple_tool_path, prepared_keys, simple_log)
+                run_tool(xma_tool_path, ma35_prepared_keys, ma35_log)
 
                 execution_time = time.time() - case_start_time
 
                 # results processing
-                # get reference file
-                if "Encoder" in args.test_group:
-                    prepared_keys, reference_stream = prepare_encoder_parameters(  # noqa: E501
-                        args, case, output_path=output_path,
-                        simple_encoder=False
-                    )
-                elif "Decoder" in args.test_group:
-                    prepared_keys, input_stream, reference_stream = prepare_decoder_parameters(  # noqa: E501
-                        args, case, output_path=output_path,
-                        simple_decoder=False
-                    )
+                if "Scaler" not in args.test_group:
+                    compare_result = hash_and_comapre(output_stream, reference_stream)  # noqa: E501
 
-                run_tool(xma_tool_path, prepared_keys, ma35_log)
+                    if compare_result == 'identical':
+                        test_case_status = "passed"
+                    else:
+                        test_case_status = "failed"
 
-                output_stream_params = get_ffprobe_info(case, output_stream)
-                reference_stream_params = get_ffprobe_info(
-                    case, reference_stream
-                )
+                    if test_case_status != 'passed':
+                        output_stream_params = get_ffprobe_info(case, output_stream)  # noqa: E501
+                        reference_stream_params = get_ffprobe_info(
+                            case, reference_stream
+                        )
+                else:
+                    output_stream_params = []
+                    reference_stream_params = []
 
-                case["ref_stream_params"] = reference_stream_params
-                case["output_stream_params"] = output_stream_params
+                    output_dir = os.path.split(output_stream)[0]
+                    output_filename = os.path.split(output_stream)[1]
+                    output_files = os.listdir(output_dir)
+                    ma35_res = []
+                    simple_res = []
 
-                compare_ffprobe_output(
-                    output_stream_params, reference_stream_params,
-                    error_messages
-                )
+                    for name in output_files:
+                        if '_ma35' in name and f'{output_filename}_' in name:
+                            ma35_res.append(name)
+                        if '_ma35' not in name and f'{output_filename}_' in name:  # noqa: E501
+                            simple_res.append(name)
+
+                    ma35_res.sort()
+                    simple_res.sort()
+
+                    for index, value in enumerate(simple_res):
+                        output_stream = os.path.join(output_dir, value)
+                        reference_stream = os.path.join(output_dir, ma35_res[index])  # noqa: E501
+
+                        compare_result = hash_and_comapre(output_stream, reference_stream)  # noqa: E501
+
+                        if compare_result != 'identical':
+                            output_info = get_ffprobe_info(case, output_stream)
+                            reference_info = get_ffprobe_info(case, reference_stream)  # noqa: E501
+
+                            output_stream_params.append(output_info)
+                            reference_stream_params.append(reference_info)  # noqa: E501
+
+                    if output_stream_params == []:
+                        test_case_status = "passed"
+                    else:
+                        test_case_status = "failed"
+
+                    case["ref_stream_params"] = reference_stream_params
+                    case["output_stream_params"] = output_stream_params
 
                 save_logs(args, case, ma35_log)
                 save_logs(args, case, simple_log)
 
                 if os.path.exists(input_preparation_log):
                     save_logs(args, case, input_preparation_log)
-
-                test_case_status = "passed"
-                if error_messages:
-                    test_case_status = "failed"
 
                 save_results(args, case, cases,
                              execution_time=execution_time,

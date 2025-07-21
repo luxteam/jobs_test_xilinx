@@ -1,23 +1,29 @@
 [
     {
-        "case": "ENC_SM_001", 
-        "status": "active", 
-        "script_info": ["T_H264_ProfileBaseline_FR60_FHD_BitrateMedium"],
-        "simple_parameters": "--size 1920x1080 -b 5M --profile 1 --fps 60 -c 3 -o <output_stream>", 
-        "xma_parameters": "-w 1920 -h 1080 -i <input_stream> -b:v 5M -profile 0 -fps 60 -c:v h264_ama -o <output_stream>"
-    }, 
+        "case": "ENC_SM_001",
+        "status": "active",
+        "script_info": [
+            "T_H264_ProfileBaseline_FR60_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "--size 1920x1080 -b 5M --profile 1 --fps 60 -c 3 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 1920 -h 1080 -b:v 5M -profile 0 -fps 60 -c:v h264_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
+    },
     {
-        "case": "ENC_SM_002", 
-        "status": "active", 
-        "script_info": ["T_HEVC_ProfileMain_FR60_FHD_BitrateMedium"], 
-        "simple_parameters": "--size 1920x1080 -b 5M --profile 1 --fps 60 -c 4 -o <output_stream>", 
-        "xma_parameters": "-w 1920 -h 1080 -i <input_stream> -b:v 5M -profile 100 -fps 60 -c:v hevc_ama -o <output_stream>"
-    }, 
+        "case": "ENC_SM_002",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_ProfileMain_FR60_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "--size 1920x1080 -b 5M --profile 1 --fps 60 -c 4 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 1920 -h 1080 -b:v 5M -profile 100 -fps 60 -c:v hevc_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
+    },
     {
-        "case": "ENC_SM_003", 
-        "status": "skipped", 
-        "script_info": ["T_AV1_ProfileMain_FR60_FHD_BitrateMedium"], 
-        "simple_parameters": "--size 1920x1080 -b 5M --profile 1 --fps 60 -c 5 -o <output_stream>", 
-        "xma_parameters": "-w 1920 -h 1080 -i <input_stream> -b:v 5M -profile 200 -fps 60 -c:v av1_ama -o <output_stream>"
+        "case": "ENC_SM_003",
+        "status": "active",
+        "script_info": [
+            "T_AV1_ProfileMain_FR60_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "--size 1920x1080 -b 5M --profile 1 --fps 60 -c 5 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 1920 -h 1080 -b:v 5M -profile 200 -fps 60 -c:v av1_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
     }
 ]

@@ -1,23 +1,27 @@
+import json
 import os
 import traceback
-import json
+from argparse import Namespace
 from datetime import datetime
 from shutil import copyfile
+from typing import Any, Dict, List, Set, Tuple, Union
 
+from jobs_launcher.common.scripts.script_info_by_platform import \
+    get_script_info  # noqa: E501
 from jobs_launcher.common.scripts.status_by_platform import get_status
-from jobs_launcher.common.scripts.script_info_by_platform import get_script_info  # noqa: E501
-from jobs_launcher.core.config import CASE_REPORT_SUFFIX, VIDEO_KEY, main_logger  # noqa: E501
+from jobs_launcher.core.config import (CASE_REPORT_SUFFIX,  # noqa: E501
+                                       VIDEO_KEY, main_logger)
 from jobs_launcher.core.system_info import get_gpu
 
 
-def is_case_skipped(case, render_platform):
+def is_case_skipped(case: Dict[str, Any], render_platform):
     if case['status'] == 'skipped':
         return True
 
     return sum([render_platform & set(x) == set(x) for x in case.get('skip_on', '')])  # noqa: E501
 
 
-def save_logs(args, case, log):
+def save_logs(args: Namespace, case: Dict[str, Any], log: str):
     try:
         if 'ma35' in log.lower():
             log_destination_path = os.path.join(args.output, "tool_logs", case["case"] + "_ma35.html")  # noqa: E501
@@ -42,23 +46,90 @@ def save_logs(args, case, log):
         main_logger.error(f"Traceback: {traceback.format_exc()}")
 
 
-def select_extension(ma35_params: str) -> str:
-    ma35_params = ma35_params.lower()
-    if 'h264' in ma35_params:
-        return 'h264'
-    elif 'h265' in ma35_params or 'hevc' in ma35_params:
-        return 'h265'
-    elif 'av1' in ma35_params or 'vp9' in ma35_params:
-        return 'ivf'
+def select_extension(case: Dict[str, Any]) -> Union[str, Tuple[str, str]]:
+    """Select appropriate file extension(s) based on video codec parameters.
+
+    This function analyzes the script_info from a test case and determines the
+    appropriate file extension based on the video codec mentioned.
+    For transcoding cases (TRC), it returns both source and target extensions.
+
+    Args:
+        case (Dict[str, Any]): Dictionary containing test case information
+            with required keys:
+            - 'script_info': List with at least one string element containing
+            codec info
+            - 'case': String identifier, may contain 'TRC' for transcoding
+            cases
+
+    Returns:
+        Union[str, Tuple[str, str]]: For non-TRC cases: Single extension
+            string, for TRC cases: Tuple of (from_extension, to_extension)
+    """
+
+    def _select_extension(params: str) -> str:
+        params = params.lower()
+        if 'h264' in params:
+            return 'h264'
+        elif 'h265' in params or 'hevc' in params:
+            return 'h265'
+        elif 'av1' in params or 'vp9' in params:
+            return 'ivf'
+
+    script_info = case['script_info'][0].lower()
+
+    if 'TRC' in case['case']:
+        script_info = script_info.split('__')
+        from_ext = _select_extension(script_info[0])
+        to_ext = _select_extension(script_info[1])
+
+        return from_ext, to_ext
+
+    else:
+        return _select_extension(script_info)
 
 
-def prepare_keys(keys: str, input_stream: str, output_stream: str) -> str:
+def prepare_keys(keys: str, input_stream: str, output_stream: str,
+                 iterate: bool = False, extension: str = '') -> str:
+    """Prepare command keys by replacing placeholder tokens with actual paths.
+
+    This function processes a template string containing placeholders and
+    replaces them with actual file paths. For iterative cases, it can
+    generate multiple numbered output files.
+
+    Args:
+        keys (str): Template string containing placeholders
+            '\<input_stream\>'and '\<output_stream\>' to be replaced
+        input_stream (str): File path to replace '\<input_stream\>' placeholder
+        output_stream (str): Base file path to replace '\<output_stream\>'
+            placeholder(s)
+        iterate (bool, optional): If True, generates numbered output files for
+            multiple'\<output_stream\>' placeholders. If False, replaces all
+            with the same output_stream path. Defaults to False.
+        extension (str, optional): File extension to append when iterate=True
+            (without dot). Defaults to ''.
+
+    Returns:
+        str: Processed string with placeholders replaced by actual paths
+    """
     keys = keys.replace("<input_stream>", input_stream)
-    keys = keys.replace("<output_stream>", output_stream)
+
+    if iterate:
+        count = keys.count('<output_stream>')
+        for i in range(1, count+1):
+            keys = keys.replace(
+                "<output_stream>", f"{output_stream}_{i}.{extension}", 1
+            )
+    else:
+        keys = keys.replace("<output_stream>", output_stream)
+
     return keys
 
 
-def save_results(args, case, cases, execution_time=0.0, test_case_status="", error_messages=[]):  # noqa: E501
+def save_results(
+    args: Namespace, case: Dict[str, Any], cases: List[Dict[str, Any]],
+    execution_time: float = 0.0, test_case_status: str = "",
+    error_messages: Union[List[str], Set[str], Tuple[str]] = []
+) -> None:
     case_report_path = os.path.join(args.output, case["case"] + CASE_REPORT_SUFFIX)  # noqa: E501
     with open(case_report_path, "r") as file:
         test_case_report = json.loads(file.read())[0]
@@ -78,8 +149,9 @@ def save_results(args, case, cases, execution_time=0.0, test_case_status="", err
 
     test_case_report["simple_parameters"] = case["prepared_keys_simple"]
     test_case_report["xma_parameters"] = case["prepared_keys_xma"]
-    test_case_report["ref_stream_params"] = case["ref_stream_params"]
-    test_case_report["output_stream_params"] = case["output_stream_params"]
+
+    test_case_report["ref_stream_params"] = case.get("ref_stream_params", {})
+    test_case_report["output_stream_params"] = case.get("output_stream_params", {})  # noqa: E501
     test_case_report["test_status"] = test_case_status
 
     if test_case_report["test_status"] in ["passed", "observed", "error"]:
@@ -104,7 +176,7 @@ def save_results(args, case, cases, execution_time=0.0, test_case_status="", err
         json.dump(cases, file, indent=4)
 
 
-def prepare_empty_reports(args, current_conf):
+def prepare_empty_reports(args: Namespace, current_conf):
     main_logger.info('Create empty report files')
 
     test_cases = os.path.join(os.path.abspath(args.output), "test_cases.json")
@@ -157,7 +229,7 @@ def prepare_empty_reports(args, current_conf):
         json.dump(cases, f, indent=4)
 
 
-def copy_test_cases(args):
+def copy_test_cases(args: Namespace):
     try:
         test_cases_path = os.path.realpath(
             os.path.join(
@@ -165,7 +237,9 @@ def copy_test_cases(args):
                 args.test_group, 'test_cases.json'
             )
         )
-        test_cases_copy = os.path.realpath(os.path.join(os.path.abspath(args.output), 'test_cases.json'))  # noqa: E501
+        test_cases_copy = os.path.realpath(
+            os.path.join(os.path.abspath(args.output), 'test_cases.json')
+        )
         main_logger.debug(f"test_cases_copy path: {test_cases_copy}")
 
         copyfile(test_cases_path, test_cases_copy)

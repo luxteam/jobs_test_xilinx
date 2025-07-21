@@ -1,164 +1,164 @@
 [
     {
-        "case": "ENC_MAIN_001",
+        "case": "ENC_001",
         "status": "active",
         "script_info": [
             "T_H264_SD_ProfileMain_FR60_BitrateLow"
         ],
-        "simple_parameters": "--size 720x480 -b 1M --profile 2 --fps 60 -c 3 -o <output_stream>",
-        "xma_parameters": "-w 720 -h 480 -b:v 1M -profile 1 -fps 60 -c:v h264_ama -o <output_stream>"
+        "simple_parameters": "--size 720x480 -b 1M --profile 2 --fps 60 -c 3 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 720 -h 480 -b:v 1M -profile 1 -fps 60 -c:v h264_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
     },
     {
-        "case": "ENC_MAIN_002",
+        "case": "ENC_002",
         "status": "active",
         "script_info": [
             "T_HEVC_SD_ProfileMain10_FR60_BitrateLow"
         ],
-        "simple_parameters": "--size 720x480 -b 1M --profile 2 --fps 60 -c 4 -o <output_stream>",
-        "xma_parameters": "-w 720 -h 480 -b:v 1M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream>"
+        "simple_parameters": "--size 720x480 -b 1M --profile 2 --fps 60 -c 4 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 720 -h 480 -b:v 1M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
     },
     {
-        "case": "ENC_MAIN_003",
+        "case": "ENC_003",
         "status": "active",
         "script_info": [
             "T_H264_SD_ProfileMain_FR60_BitrateMedium"
         ],
-        "simple_parameters": "--size 720x480 -b 5M --profile 2 --fps 60 -c 3 -o <output_stream>",
-        "xma_parameters": "-w 720 -h 480 -b:v 5M -profile 1 -fps 60 -c:v h264_ama -o <output_stream>"
+        "simple_parameters": "--size 720x480 -b 5M --profile 2 --fps 60 -c 3 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 720 -h 480 -b:v 5M -profile 1 -fps 60 -c:v h264_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
     },
     {
-        "case": "ENC_MAIN_004",
+        "case": "ENC_004",
         "status": "active",
         "script_info": [
             "T_HEVC_SD_ProfileMain10_FR60_BitrateMedium"
         ],
-        "simple_parameters": "--size 720x480 -b 5M --profile 2 --fps 60 -c 4 -o <output_stream>",
-        "xma_parameters": "-w 720 -h 480 -b:v 5M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream>"
+        "simple_parameters": "--size 720x480 -b 5M --profile 2 --fps 60 -c 4 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 720 -h 480 -b:v 5M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
     },
     {
-        "case": "ENC_MAIN_005",
+        "case": "ENC_005",
         "status": "active",
         "script_info": [
             "T_H264_SD_ProfileMain_FR60_BitrateHigh"
         ],
-        "simple_parameters": "--size 720x480 -b 30M --profile 2 --fps 60 -c 3 -o <output_stream>",
-        "xma_parameters": "-w 720 -h 480 -b:v 30M -profile 1 -fps 60 -c:v h264_ama -o <output_stream>"
+        "simple_parameters": "--size 720x480 -b 30M --profile 2 --fps 60 -c 3 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 720 -h 480 -b:v 30M -profile 1 -fps 60 -c:v h264_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
     },
     {
-        "case": "ENC_MAIN_006",
+        "case": "ENC_006",
         "status": "active",
         "script_info": [
             "T_HEVC_SD_ProfileMain10_FR60_BitrateHigh"
         ],
-        "simple_parameters": "--size 720x480 -b 30M --profile 2 --fps 60 -c 4 -o <output_stream>",
-        "xma_parameters": "-w 720 -h 480 -b:v 30M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream>"
+        "simple_parameters": "--size 720x480 -b 30M --profile 2 --fps 60 -c 4 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 720 -h 480 -b:v 30M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
     },
     {
-        "case": "ENC_MAIN_007",
+        "case": "ENC_007",
         "status": "active",
         "script_info": [
             "T_H264_ProfileMain_FR60_FHD_BitrateLow"
         ],
-        "simple_parameters": "--size 1920x1080 -b 1M --profile 2 --fps 60 -c 3 -o <output_stream>",
-        "xma_parameters": "-w 1920 -h 1080 -b:v 1M -profile 1 -fps 60 -c:v h264_ama -o <output_stream>"
+        "simple_parameters": "--size 1920x1080 -b 1M --profile 2 --fps 60 -c 3 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 1920 -h 1080 -b:v 1M -profile 1 -fps 60 -c:v h264_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
     },
     {
-        "case": "ENC_MAIN_008",
+        "case": "ENC_008",
         "status": "active",
         "script_info": [
             "T_HEVC_ProfileMain10_FR60_FHD_BitrateLow"
         ],
-        "simple_parameters": "--size 1920x1080 -b 1M --profile 2 --fps 60 -c 4 -o <output_stream>",
-        "xma_parameters": "-w 1920 -h 1080 -b:v 1M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream>"
+        "simple_parameters": "--size 1920x1080 -b 1M --profile 2 --fps 60 -c 4 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 1920 -h 1080 -b:v 1M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
     },
     {
-        "case": "ENC_MAIN_009",
+        "case": "ENC_009",
         "status": "active",
         "script_info": [
             "T_H264_ProfileMain_FR60_FHD_BitrateMedium"
         ],
-        "simple_parameters": "--size 1920x1080 -b 5M --profile 2 --fps 60 -c 3 -o <output_stream>",
-        "xma_parameters": "-w 1920 -h 1080 -b:v 5M -profile 1 -fps 60 -c:v h264_ama -o <output_stream>"
+        "simple_parameters": "--size 1920x1080 -b 5M --profile 2 --fps 60 -c 3 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 1920 -h 1080 -b:v 5M -profile 1 -fps 60 -c:v h264_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
     },
     {
-        "case": "ENC_MAIN_010",
+        "case": "ENC_010",
         "status": "active",
         "script_info": [
             "T_HEVC_ProfileMain10_FR60_FHD_BitrateMedium"
         ],
-        "simple_parameters": "--size 1920x1080 -b 5M --profile 2 --fps 60 -c 4 -o <output_stream>",
-        "xma_parameters": "-w 1920 -h 1080 -b:v 5M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream>"
+        "simple_parameters": "--size 1920x1080 -b 5M --profile 2 --fps 60 -c 4 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 1920 -h 1080 -b:v 5M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
     },
     {
-        "case": "ENC_MAIN_011",
+        "case": "ENC_011",
         "status": "active",
         "script_info": [
             "T_H264_ProfileMain_FR60_FHD_BitrateHigh"
         ],
-        "simple_parameters": "--size 1920x1080 -b 30M --profile 2 --fps 60 -c 3 -o <output_stream>",
-        "xma_parameters": "-w 1920 -h 1080 -b:v 30M -profile 1 -fps 60 -c:v h264_ama -o <output_stream>"
+        "simple_parameters": "--size 1920x1080 -b 30M --profile 2 --fps 60 -c 3 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 1920 -h 1080 -b:v 30M -profile 1 -fps 60 -c:v h264_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
     },
     {
-        "case": "ENC_MAIN_012",
+        "case": "ENC_012",
         "status": "active",
         "script_info": [
             "T_HEVC_ProfileMain10_FR60_FHD_BitrateHigh"
         ],
-        "simple_parameters": "--size 1920x1080 -b 30M --profile 2 --fps 60 -c 4 -o <output_stream>",
-        "xma_parameters": "-w 1920 -h 1080 -b:v 30M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream>"
+        "simple_parameters": "--size 1920x1080 -b 30M --profile 2 --fps 60 -c 4 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 1920 -h 1080 -b:v 30M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
     },
     {
-        "case": "ENC_MAIN_013",
+        "case": "ENC_013",
         "status": "active",
         "script_info": [
             "T_H264_ProfileMain_FR60_BitrateLow_4K"
         ],
-        "simple_parameters": "--size 3840x2160 -b 1M --profile 2 --fps 60 -c 3 -o <output_stream>",
-        "xma_parameters": "-w 3840 -h 2160 -b:v 1M -profile 1 -fps 60 -c:v h264_ama -o <output_stream>"
+        "simple_parameters": "--size 3840x2160 -b 1M --profile 2 --fps 60 -c 3 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 3840 -h 2160 -b:v 1M -profile 1 -fps 60 -c:v h264_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
     },
     {
-        "case": "ENC_MAIN_014",
+        "case": "ENC_014",
         "status": "active",
         "script_info": [
             "T_HEVC_ProfileMain10_FR60_BitrateLow_4K"
         ],
-        "simple_parameters": "--size 3840x2160 -b 1M --profile 2 --fps 60 -c 4 -o <output_stream>",
-        "xma_parameters": "-w 3840 -h 2160 -b:v 1M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream>"
+        "simple_parameters": "--size 3840x2160 -b 1M --profile 2 --fps 60 -c 4 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 3840 -h 2160 -b:v 1M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
     },
     {
-        "case": "ENC_MAIN_015",
+        "case": "ENC_015",
         "status": "active",
         "script_info": [
             "T_H264_ProfileMain_FR60_BitrateMedium_4K"
         ],
-        "simple_parameters": "--size 3840x2160 -b 5M --profile 2 --fps 60 -c 3 -o <output_stream>",
-        "xma_parameters": "-w 3840 -h 2160 -b:v 5M -profile 1 -fps 60 -c:v h264_ama -o <output_stream>"
+        "simple_parameters": "--size 3840x2160 -b 5M --profile 2 --fps 60 -c 3 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 3840 -h 2160 -b:v 5M -profile 1 -fps 60 -c:v h264_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
     },
     {
-        "case": "ENC_MAIN_016",
+        "case": "ENC_016",
         "status": "active",
         "script_info": [
             "T_HEVC_ProfileMain10_FR60_BitrateMedium_4K"
         ],
-        "simple_parameters": "--size 3840x2160 -b 5M --profile 2 --fps 60 -c 4 -o <output_stream>",
-        "xma_parameters": "-w 3840 -h 2160 -b:v 5M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream>"
+        "simple_parameters": "--size 3840x2160 -b 5M --profile 2 --fps 60 -c 4 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 3840 -h 2160 -b:v 5M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
     },
     {
-        "case": "ENC_MAIN_017",
+        "case": "ENC_017",
         "status": "active",
         "script_info": [
             "T_H264_ProfileMain_FR60_BitrateHigh_4K"
         ],
-        "simple_parameters": "--size 3840x2160 -b 30M --profile 2 --fps 60 -c 3 -o <output_stream>",
-        "xma_parameters": "-w 3840 -h 2160 -b:v 30M -profile 1 -fps 60 -c:v h264_ama -o <output_stream>"
+        "simple_parameters": "--size 3840x2160 -b 30M --profile 2 --fps 60 -c 3 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 3840 -h 2160 -b:v 30M -profile 1 -fps 60 -c:v h264_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
     },
     {
-        "case": "ENC_MAIN_018",
+        "case": "ENC_018",
         "status": "active",
         "script_info": [
             "T_HEVC_ProfileMain10_FR60_BitrateHigh_4K"
         ],
-        "simple_parameters": "--size 3840x2160 -b 30M --profile 2 --fps 60 -c 4 -o <output_stream>",
-        "xma_parameters": "-w 3840 -h 2160 -b:v 30M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream>"
+        "simple_parameters": "--size 3840x2160 -b 30M --profile 2 --fps 60 -c 4 -o <output_stream> --dump-input -i <input_stream> --quality 1 --bf 3 --profile-level 52",
+        "xma_parameters": "-w 3840 -h 2160 -b:v 30M -profile 101 -fps 60 -c:v hevc_ama -o <output_stream> -i <input_stream> -level 52 -g 240 -qp_mode 0 -cabr off -bf 3 -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1"
     }
 ]

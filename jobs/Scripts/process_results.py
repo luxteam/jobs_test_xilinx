@@ -1,7 +1,10 @@
-import re
 import json
-from subprocess import check_output, STDOUT, CalledProcessError
-from typing import Dict, Set, Any
+import os
+import re
+from subprocess import STDOUT, CalledProcessError, check_output
+from typing import Any, Dict, Set
+
+from scaler import get_video_size
 
 from jobs_launcher.core.config import main_logger
 
@@ -41,7 +44,7 @@ STREAM_INFO = {
 }
 
 
-# for ffmpeg comparison
+# keep for ffmpeg comparison
 
 def fill_stream_info(mediainfo, stream, info: Dict[str, Any]):
     success, output = run_executable([mediainfo, "-f", stream])
@@ -130,7 +133,7 @@ def fill_stream_quality(ffmpeg, stream, ref_stream, info: Dict):
 # ffmpeg.exe -y -i input.mp4 -usage 0 -profile:v 77 -quality 1 -rc cbr -b:v 125000 -minrate 50k -maxrate 1M -g 30 -max_b_frames 3 -bf 3 -coder cabac -c:v h264_amf output.mp4
 
 
-# for ffmpeg comparison
+# keep for ffmpeg comparison implementation
 # Keep this function consistent with jobs_test_xilinx\jobs\Tests\Smoke\README.txt
 def compare_to_refs(stream_info: Dict, case, input_stream_info: Dict,
                     error_messages: Set) -> bool:
@@ -162,8 +165,7 @@ def compare_to_refs(stream_info: Dict, case, input_stream_info: Dict,
 
 
 def get_ffprobe_info(case: Dict[str, Any], stream: str):
-
-    if 'ENC' in case['case']:
+    if 'ENC' in case['case'] or 'TRC' in case['case']:
         command = [
             'ffprobe', '-v', 'quiet', '-print_format', 'json', '-show_streams',
             '-show_format', '-count_frames', stream
@@ -176,8 +178,25 @@ def get_ffprobe_info(case: Dict[str, Any], stream: str):
             video_size = keys_list[keys_list.index('--size')+1]
         framerate = keys_list[keys_list.index('--fps')+1]
         command = [
-            'ffprobe', '-v', 'quiet', '-print_format', 'json', '-show_streams', '-show_format', '-count_frames',
-            '-f', 'rawvideo', '-video_size', video_size, '-framerate', framerate, stream
+            'ffprobe', '-v', 'quiet', '-print_format', 'json', '-show_streams', '-show_format', '-count_frames',  # noqa: E501
+            '-f', 'rawvideo', '-video_size', video_size,
+            '-framerate', framerate, stream
+        ]
+    elif 'SCL' in case['case']:
+        # get actual filename
+        filename = os.path.split(stream)[-1]
+
+        # SCL_001_1.yuv or SCL_001_ma35_1.yuv -> 1
+        video_index = int(filename.split('_')[-1].split('.')[0])
+        video_size = get_video_size(case['simple_parameters'], video_index)
+
+        command = [
+            'ffprobe', '-v', 'quiet', '-print_format', 'json', '-show_streams', '-show_format', '-count_frames',  # noqa: E501
+            '-f', 'rawvideo',
+            # ffprobe doesn't work without video_size
+            '-video_size', video_size,
+            # '-framerate', framerate,
+            stream
         ]
 
     success, output = run_executable(command)
@@ -189,42 +208,12 @@ def get_ffprobe_info(case: Dict[str, Any], stream: str):
         return {}
 
 
-def compare_ffprobe_output(simple_tool_res: Dict, ma35_res: Dict,
-                           error_messages: Set):
-
-    simple_stream = simple_tool_res.get('streams')
-    if simple_stream:
-        simple_stream = simple_stream[0]
+def hash_and_comapre(video_1, video_2):
+    # command = ['diff', '-sq', video_1, video_2]
+    command = ['sha1sum', video_1, video_2]
+    _, output = run_executable(command)
+    output = output.split()
+    if output[0] == output[2]:
+        return 'identical'
     else:
-        error_messages.add('Could not get stream info for simple tool provided stream')
-        return
-
-    simple_format = simple_tool_res.get('format')
-
-    ma35_stream = ma35_res.get('streams')
-    if ma35_stream:
-        ma35_stream = ma35_stream[0]
-    else:
-        error_messages.add('Could not get stream info for ma35 tool provided stream')
-        return
-
-    ma35_format = ma35_res.get('format')
-
-    for key, value in simple_stream.items():
-        ma35_value = ma35_stream.get(key)
-        if (ma35_value is None) or (ma35_value != value):
-            message = f"Stream parameter '{key}' for ma35 tool isn't equal simple tool's value: {ma35_value} != {value}"
-            error_messages.add(message)
-
-    # commented unil we decide we want to compare format info
-    # if ma35_format and simple_format:
-    #     for key, value in simple_format.items():
-    #         if key == 'filename':
-    #             continue
-    #         ma35_value = ma35_format.get(key)
-    #         if (ma35_value is None) or (ma35_value != value):
-    #             message = f"Format parameter '{key}' for ma35 tool isn't equal simple tool's value: {ma35_value} != {value}"
-    #             error_messages.add(message)
-    # else:
-    #     error_messages.add('Could not get stream info for ma35 tool provided stream')
-    #     return
+        return 'different'

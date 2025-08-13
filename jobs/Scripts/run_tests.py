@@ -4,6 +4,7 @@ import platform
 import time
 import traceback
 
+from simple_tools import Encoder, Decoder
 from decoder import prepare_decoder_input, prepare_decoder_parameters
 from encoder import prepare_encoder_parameters, run_tool
 from process_results import get_ffprobe_info, hash_and_comapre
@@ -33,14 +34,33 @@ def execute_tests(args, current_conf):
         # select tools to execute
         binaries_common_path = '/opt/amd/ama/'
         if "Encoder" in args.test_group:
-            xma_tool_path = os.path.join(
-                binaries_common_path, 'ma35', 'bin', 'ma35_encoder_app'
+            simple_tool = Encoder(
+                log_path=os.path.join(
+                    logs_path, f"{case['case']}_simple.log"
+                ),
+                simple_tool=True
             )
-            # clarify if we can install our binaries to a specific directory
-            simple_tool_path = os.path.join(
-                binaries_common_path, 'amf_Release', 'bin', 'SimpleEncoderAMA'
+            xma_tool = Encoder(
+                log_path=os.path.join(logs_path, f"{case['case']}_ma35.log"),
+                simple_tool=False
             )
         elif "Decoder" in args.test_group:
+            simple_tool = Decoder(
+                log_path=os.path.join(
+                    logs_path, f"{case['case']}_simple.log"
+                ),
+                simple_tool=True,
+                input_preparation_log=os.path.join(
+                    logs_path, f"{case['case']}_input_preparation.log"
+                )
+            )
+            xma_tool = Decoder(
+                log_path=os.path.join(logs_path, f"{case['case']}_ma35.log"),
+                simple_tool=False,
+                input_preparation_log=os.path.join(
+                    logs_path, f"{case['case']}_input_preparation.log"
+                )
+            )
             xma_tool_path = os.path.join(
                 binaries_common_path, 'ma35', 'bin', 'ma35_decoder_app'
             )
@@ -92,8 +112,21 @@ def execute_tests(args, current_conf):
                 ma35_log = os.path.join(logs_path, f"{case['case']}_ma35.log")
                 input_preparation_log = os.path.join(logs_path, f"{case['case']}_input_preparation.log")  # noqa: E501
 
+                prepared_keys, input_stream, output_stream = simple_tool.prepare_parameters(
+                    case, output_path=output_path
+                )
+                ma35_prepared_keys, reference_stream = xma_tool.prepare_parameters(
+                    case, output_path=output_path
+                )
+
+                if "Transcoder" in args.test_group or "Decoder" in args.test_group:
+                    simple_tool.prepare_input(case=case, output_stream=output_stream)
+
+                simple_tool.run_tool(prepared_keys)
+                xma_tool.run_tool(ma35_prepared_keys)
+
                 if "Encoder" in args.test_group:
-                    prepared_keys, output_stream = prepare_encoder_parameters(
+                    prepared_keys, input_stream, output_stream = prepare_encoder_parameters(  # noqa: E501
                         case, output_path=output_path,
                         simple_encoder=True
                     )
@@ -163,8 +196,7 @@ def execute_tests(args, current_conf):
                         # remove artifacts if the test has passed
                         remove_artifact(output_stream)
                         remove_artifact(reference_stream)
-                        if "Encoder" not in args.test_group:
-                            remove_artifact(input_stream)
+                        remove_artifact(input_stream)
                     else:
                         test_case_status = "failed"
 
@@ -202,8 +234,7 @@ def execute_tests(args, current_conf):
                             # remove artifacts if the test has passed
                             remove_artifact(output_stream)
                             remove_artifact(reference_stream)
-                            if "Encoder" not in args.test_group:
-                                remove_artifact(input_stream)
+                            remove_artifact(input_stream)
                         else:
                             output_info = get_ffprobe_info(case, output_stream)
                             reference_info = get_ffprobe_info(case, reference_stream)  # noqa: E501

@@ -40,4 +40,4 @@ def prepare_encoder_parameters(
         )
         case["prepared_keys_xma"] = prepared_keys
 
-    return prepared_keys, output_stream
+    return prepared_keys, input_stream, output_stream

@@ -10,7 +10,7 @@ from process_results import get_ffprobe_info, hash_and_comapre
 from scaler import prepare_scaler_parameters
 from transcoder import prepare_transcoder_input, prepare_transcoder_parameters
 from utils import (copy_test_cases, is_case_skipped, prepare_empty_reports,
-                   save_logs, save_results)
+                   save_logs, save_results, remove_artifact)
 
 from jobs_launcher.core.config import main_logger
 from jobs_launcher.core.system_info import get_gpu
@@ -160,6 +160,10 @@ def execute_tests(args, current_conf):
 
                     if compare_result == 'identical':
                         test_case_status = "passed"
+                        # remove artifacts if the test has passed
+                        remove_artifact(output_stream)
+                        remove_artifact(reference_stream)
+                        remove_artifact(input_stream)
                     else:
                         test_case_status = "failed"
 
@@ -193,7 +197,12 @@ def execute_tests(args, current_conf):
 
                         compare_result = hash_and_comapre(output_stream, reference_stream)  # noqa: E501
 
-                        if compare_result != 'identical':
+                        if compare_result == 'identical':
+                            # remove artifacts if the test has passed
+                            remove_artifact(output_stream)
+                            remove_artifact(reference_stream)
+                            remove_artifact(input_stream)
+                        else:
                             output_info = get_ffprobe_info(case, output_stream)
                             reference_info = get_ffprobe_info(case, reference_stream)  # noqa: E501
 

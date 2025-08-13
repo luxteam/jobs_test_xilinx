@@ -263,3 +263,12 @@ def copy_test_cases(args: Namespace):
         main_logger.error('Can\'t load test_cases.json')
         main_logger.error(str(e))
         exit(-1)
+
+
+def remove_artifact(artifact_path: str):
+    try:
+        if os.path.exists(artifact_path):
+            os.remove(artifact_path)
+    except FileNotFoundError:
+        main_logger.info(f"Couldn't find file {artifact_path}")
+        pass

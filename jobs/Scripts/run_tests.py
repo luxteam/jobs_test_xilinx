@@ -163,7 +163,8 @@ def execute_tests(args, current_conf):
                         # remove artifacts if the test has passed
                         remove_artifact(output_stream)
                         remove_artifact(reference_stream)
-                        remove_artifact(input_stream)
+                        if "Encoder" not in args.test_group:
+                            remove_artifact(input_stream)
                     else:
                         test_case_status = "failed"
 
@@ -201,7 +202,8 @@ def execute_tests(args, current_conf):
                             # remove artifacts if the test has passed
                             remove_artifact(output_stream)
                             remove_artifact(reference_stream)
-                            remove_artifact(input_stream)
+                            if "Encoder" not in args.test_group:
+                                remove_artifact(input_stream)
                         else:
                             output_info = get_ffprobe_info(case, output_stream)
                             reference_info = get_ffprobe_info(case, reference_stream)  # noqa: E501

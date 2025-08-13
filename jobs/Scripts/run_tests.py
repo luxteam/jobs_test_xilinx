@@ -93,7 +93,7 @@ def execute_tests(args, current_conf):
                 input_preparation_log = os.path.join(logs_path, f"{case['case']}_input_preparation.log")  # noqa: E501
 
                 if "Encoder" in args.test_group:
-                    prepared_keys, output_stream = prepare_encoder_parameters(
+                    prepared_keys, input_stream, output_stream = prepare_encoder_parameters(
                         case, output_path=output_path,
                         simple_encoder=True
                     )
@@ -163,8 +163,7 @@ def execute_tests(args, current_conf):
                         # remove artifacts if the test has passed
                         remove_artifact(output_stream)
                         remove_artifact(reference_stream)
-                        if "Encoder" not in args.test_group:
-                            remove_artifact(input_stream)
+                        remove_artifact(input_stream)
                     else:
                         test_case_status = "failed"
 

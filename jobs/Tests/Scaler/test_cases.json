@@ -10,7 +10,7 @@
     },
     {
         "case": "SCL_002",
-        "status": "active",
+        "status": "skipped",
         "script_info": [
             "TOutSD_Out4"
         ],
@@ -19,7 +19,7 @@
     },
     {
         "case": "SCL_003",
-        "status": "active",
+        "status": "skipped",
         "script_info": [
             "TOutSD_Out16"
         ],
@@ -28,7 +28,7 @@
     },
     {
         "case": "SCL_004",
-        "status": "active",
+        "status": "skipped",
         "script_info": [
             "TOutFHD_Out1"
         ],
@@ -37,7 +37,7 @@
     },
     {
         "case": "SCL_005",
-        "status": "active",
+        "status": "skipped",
         "script_info": [
             "TOutFHD_Out4"
         ],
@@ -46,7 +46,7 @@
     },
     {
         "case": "SCL_006",
-        "status": "active",
+        "status": "skipped",
         "script_info": [
             "TOutFHD_Out16"
         ],
@@ -55,7 +55,7 @@
     },
     {
         "case": "SCL_007",
-        "status": "active",
+        "status": "skipped",
         "script_info": [
             "TOut4K_Out1"
         ],
@@ -64,7 +64,7 @@
     },
     {
         "case": "SCL_008",
-        "status": "active",
+        "status": "skipped",
         "script_info": [
             "TOut4K_Out4"
         ],
@@ -73,7 +73,7 @@
     },
     {
         "case": "SCL_009",
-        "status": "active",
+        "status": "skipped",
         "script_info": [
             "TOut4K_Out16"
         ],

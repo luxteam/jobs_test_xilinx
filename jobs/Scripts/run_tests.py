@@ -155,6 +155,9 @@ def execute_tests(args, current_conf):
                 execution_time = time.time() - case_start_time
 
                 # results processing
+                reference_stream_params = {}
+                output_stream_params = {}
+
                 if "Scaler" not in args.test_group:
                     compare_result = hash_and_comapre(output_stream, reference_stream)  # noqa: E501
 
@@ -215,8 +218,8 @@ def execute_tests(args, current_conf):
                     else:
                         test_case_status = "failed"
 
-                    case["ref_stream_params"] = reference_stream_params
-                    case["output_stream_params"] = output_stream_params
+                case["ref_stream_params"] = reference_stream_params
+                case["output_stream_params"] = output_stream_params
 
                 save_logs(args, case, ma35_log)
                 save_logs(args, case, simple_log)

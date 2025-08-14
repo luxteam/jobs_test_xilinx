@@ -97,7 +97,7 @@ def execute_tests(args, current_conf):
                         case, output_path=output_path,
                         simple_encoder=True
                     )
-                    ma35_prepared_keys, reference_stream = prepare_encoder_parameters(  # noqa: E501
+                    ma35_prepared_keys, input_stream, reference_stream = prepare_encoder_parameters(  # noqa: E501
                         case, output_path=output_path,
                         simple_encoder=False
                     )

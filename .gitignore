@@ -74,3 +74,4 @@ dmypy.json
 Xilinx*/
 *.log
 Work/
+summaryTestResults/

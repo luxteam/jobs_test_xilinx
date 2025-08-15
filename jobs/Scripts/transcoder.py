@@ -1,0 +1,43 @@
+import os
+from typing import Any, Dict, Tuple
+
+from encoder import run_tool
+from utils import prepare_keys, select_extension
+
+
+def prepare_transcoder_parameters(
+    case: Dict[str, Any], *, output_path: str = '',
+    simple_transcoder: bool = False
+) -> Tuple[str, str, str]:
+
+    input_extension, output_extension = select_extension(case)
+    input_stream = os.path.relpath(
+        os.path.join(output_path, f"{case['case']}_inp.{input_extension}")
+    )
+
+    if simple_transcoder:
+        output_stream = os.path.relpath(
+            os.path.join(output_path, f"{case['case']}.{output_extension}")
+        )
+        prepared_keys = prepare_keys(
+            case['simple_parameters'], input_stream, output_stream
+        )
+        case['prepared_keys_simple'] = prepared_keys
+    else:
+        output_stream = os.path.relpath(
+            os.path.join(output_path, f"{case['case']}_ma35.{output_extension}")  # noqa: E501
+        )
+        prepared_keys = prepare_keys(
+            case['xma_parameters'], input_stream, output_stream
+        )
+        case["prepared_keys_xma"] = prepared_keys
+
+    return prepared_keys, input_stream, output_stream
+
+
+def prepare_transcoder_input(
+    case: Dict[str, Any], encoder: str, output_stream: str, log: str
+) -> None:
+    encoder_keys = prepare_keys(case['prepare'], '', output_stream)
+
+    run_tool(encoder, encoder_keys, log)

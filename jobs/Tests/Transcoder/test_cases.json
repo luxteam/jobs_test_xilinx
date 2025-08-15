@@ -1,0 +1,2162 @@
+[
+    {
+        "case": "TRC_001",
+        "status": "active",
+        "script_info": [
+            "T_H264_SD_FR60_BitrateLow__H264_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_002",
+        "status": "active",
+        "script_info": [
+            "T_H264_SD_FR60_BitrateMedium__H264_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_003",
+        "status": "active",
+        "script_info": [
+            "T_H264_SD_FR60_BitrateHigh__H264_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_004",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateLow__H264_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_005",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateMedium__H264_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_006",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateHigh__H264_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_007",
+        "status": "active",
+        "script_info": [
+            "T_H264_FHD_BitrateMedium__AV1_SD_FR60_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_008",
+        "status": "active",
+        "script_info": [
+            "T_H264_FHD_BitrateMedium__AV1_SD_FR60_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_009",
+        "status": "active",
+        "script_info": [
+            "T_H264_FHD_BitrateMedium__AV1_SD_FR60_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_010",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_FHD_BitrateLow__H264_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_011",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_FHD_BitrateMedium__H264_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_012",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_FHD_BitrateHigh__H264_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_013",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateLow__H264_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_014",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateMedium__H264_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_015",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateHigh__H264_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_016",
+        "status": "active",
+        "script_info": [
+            "T_H264_FHD_BitrateMedium__AV1_FR60_FHD_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_017",
+        "status": "active",
+        "script_info": [
+            "T_H264_FHD_BitrateMedium__AV1_FR60_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_018",
+        "status": "active",
+        "script_info": [
+            "T_H264_FHD_BitrateMedium__AV1_FR60_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_019",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_BitrateLow_4K__H264_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_020",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_BitrateMedium_4K__H264_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_021",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_BitrateHigh_4K__H264_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_022",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateLow_4K__H264_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_023",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateMedium_4K__H264_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_024",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateHigh_4K__H264_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_025",
+        "status": "active",
+        "script_info": [
+            "T_H264_FHD_BitrateMedium__AV1_FR60_BitrateLow_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_026",
+        "status": "active",
+        "script_info": [
+            "T_H264_FHD_BitrateMedium__AV1_FR60_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_027",
+        "status": "active",
+        "script_info": [
+            "T_H264_FHD_BitrateMedium__AV1_FR60_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_028",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateMedium__H264_SD_FR60_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_029",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateMedium__H264_SD_FR60_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_030",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateMedium__H264_SD_FR60_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_031",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateLow__HEVC_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_032",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateMedium__HEVC_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_033",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateHigh__HEVC_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_034",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateMedium__AV1_SD_FR60_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_035",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateMedium__AV1_SD_FR60_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_036",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateMedium__AV1_SD_FR60_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_037",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateMedium__H264_FR60_FHD_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_038",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateMedium__H264_FR60_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_039",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateMedium__H264_FR60_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_040",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateLow__HEVC_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_041",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateMedium__HEVC_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_042",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateHigh__HEVC_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_043",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateMedium__AV1_FR60_FHD_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_044",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateMedium__AV1_FR60_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_045",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateMedium__AV1_FR60_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_046",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateMedium__H264_FR60_BitrateLow_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_047",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateMedium__H264_FR60_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_048",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateMedium__H264_FR60_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_049",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateLow_4K__HEVC_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_050",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateMedium_4K__HEVC_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_051",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateHigh_4K__HEVC_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_052",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateMedium__AV1_FR60_BitrateLow_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_053",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateMedium__AV1_FR60_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_054",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateMedium__AV1_FR60_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_055",
+        "status": "active",
+        "script_info": [
+            "T_H264_SD_FR60_BitrateLow__H264_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_056",
+        "status": "active",
+        "script_info": [
+            "T_H264_SD_FR60_BitrateMedium__H264_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_057",
+        "status": "active",
+        "script_info": [
+            "T_H264_SD_FR60_BitrateHigh__H264_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_058",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateLow__H264_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_059",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateMedium__H264_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_060",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateHigh__H264_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_061",
+        "status": "active",
+        "script_info": [
+            "T_H264_FHD_BitrateHigh__AV1_SD_FR60_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_062",
+        "status": "active",
+        "script_info": [
+            "T_H264_FHD_BitrateHigh__AV1_SD_FR60_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_063",
+        "status": "active",
+        "script_info": [
+            "T_H264_FHD_BitrateHigh__AV1_SD_FR60_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_064",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_FHD_BitrateLow__H264_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_065",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_FHD_BitrateMedium__H264_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_066",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_FHD_BitrateHigh__H264_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_067",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateLow__H264_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_068",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateMedium__H264_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_069",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateHigh__H264_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_070",
+        "status": "active",
+        "script_info": [
+            "T_H264_FHD_BitrateHigh__AV1_FR60_FHD_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_071",
+        "status": "active",
+        "script_info": [
+            "T_H264_FHD_BitrateHigh__AV1_FR60_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_072",
+        "status": "active",
+        "script_info": [
+            "T_H264_FHD_BitrateHigh__AV1_FR60_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_073",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_BitrateLow_4K__H264_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_074",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_BitrateMedium_4K__H264_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_075",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_BitrateHigh_4K__H264_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_076",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateLow_4K__H264_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_077",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateMedium_4K__H264_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_078",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateHigh_4K__H264_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_079",
+        "status": "active",
+        "script_info": [
+            "T_H264_FHD_BitrateHigh__AV1_FR60_BitrateLow_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_080",
+        "status": "active",
+        "script_info": [
+            "T_H264_FHD_BitrateHigh__AV1_FR60_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_081",
+        "status": "active",
+        "script_info": [
+            "T_H264_FHD_BitrateHigh__AV1_FR60_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_082",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateHigh__H264_SD_FR60_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_083",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateHigh__H264_SD_FR60_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_084",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateHigh__H264_SD_FR60_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_085",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateLow__HEVC_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_086",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateMedium__HEVC_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_087",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateHigh__HEVC_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_088",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateHigh__AV1_SD_FR60_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_089",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateHigh__AV1_SD_FR60_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_090",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateHigh__AV1_SD_FR60_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_091",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateHigh__H264_FR60_FHD_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_092",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateHigh__H264_FR60_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_093",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateHigh__H264_FR60_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_094",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateLow__HEVC_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_095",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateMedium__HEVC_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_096",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateHigh__HEVC_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_097",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateHigh__AV1_FR60_FHD_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_098",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateHigh__AV1_FR60_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_099",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateHigh__AV1_FR60_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_100",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateHigh__H264_FR60_BitrateLow_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_101",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateHigh__H264_FR60_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_102",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateHigh__H264_FR60_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_103",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateLow_4K__HEVC_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_104",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateMedium_4K__HEVC_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_105",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateHigh_4K__HEVC_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_106",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateHigh__AV1_FR60_BitrateLow_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_107",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateHigh__AV1_FR60_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_108",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FHD_BitrateHigh__AV1_FR60_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 1920x1080 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_109",
+        "status": "active",
+        "script_info": [
+            "T_H264_SD_FR60_BitrateLow__H264_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_110",
+        "status": "active",
+        "script_info": [
+            "T_H264_SD_FR60_BitrateMedium__H264_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_111",
+        "status": "active",
+        "script_info": [
+            "T_H264_SD_FR60_BitrateHigh__H264_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_112",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateLow__H264_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_113",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateMedium__H264_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_114",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateHigh__H264_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_115",
+        "status": "active",
+        "script_info": [
+            "T_H264_BitrateMedium_4K__AV1_SD_FR60_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_116",
+        "status": "active",
+        "script_info": [
+            "T_H264_BitrateMedium_4K__AV1_SD_FR60_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_117",
+        "status": "active",
+        "script_info": [
+            "T_H264_BitrateMedium_4K__AV1_SD_FR60_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_118",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_FHD_BitrateLow__H264_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_119",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_FHD_BitrateMedium__H264_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_120",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_FHD_BitrateHigh__H264_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_121",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateLow__H264_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_122",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateMedium__H264_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_123",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateHigh__H264_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_124",
+        "status": "active",
+        "script_info": [
+            "T_H264_BitrateMedium_4K__AV1_FR60_FHD_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_125",
+        "status": "active",
+        "script_info": [
+            "T_H264_BitrateMedium_4K__AV1_FR60_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_126",
+        "status": "active",
+        "script_info": [
+            "T_H264_BitrateMedium_4K__AV1_FR60_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_127",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_BitrateLow_4K__H264_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_128",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_BitrateMedium_4K__H264_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_129",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_BitrateHigh_4K__H264_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_130",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateLow_4K__H264_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_131",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateMedium_4K__H264_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_132",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateHigh_4K__H264_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_133",
+        "status": "active",
+        "script_info": [
+            "T_H264_BitrateMedium_4K__AV1_FR60_BitrateLow_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_134",
+        "status": "active",
+        "script_info": [
+            "T_H264_BitrateMedium_4K__AV1_FR60_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_135",
+        "status": "active",
+        "script_info": [
+            "T_H264_BitrateMedium_4K__AV1_FR60_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_136",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateMedium_4K__H264_SD_FR60_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_137",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateMedium_4K__H264_SD_FR60_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_138",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateMedium_4K__H264_SD_FR60_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_139",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateLow__HEVC_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_140",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateMedium__HEVC_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_141",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateHigh__HEVC_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_142",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateMedium_4K__AV1_SD_FR60_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_143",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateMedium_4K__AV1_SD_FR60_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_144",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateMedium_4K__AV1_SD_FR60_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_145",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateMedium_4K__H264_FR60_FHD_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_146",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateMedium_4K__H264_FR60_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_147",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateMedium_4K__H264_FR60_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_148",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateLow__HEVC_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_149",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateMedium__HEVC_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_150",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateHigh__HEVC_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_151",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateMedium_4K__AV1_FR60_FHD_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_152",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateMedium_4K__AV1_FR60_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_153",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateMedium_4K__AV1_FR60_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_154",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateMedium_4K__H264_FR60_BitrateLow_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_155",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateMedium_4K__H264_FR60_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_156",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateMedium_4K__H264_FR60_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_157",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateLow_4K__HEVC_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_158",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateMedium_4K__HEVC_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_159",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateHigh_4K__HEVC_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_160",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateMedium_4K__AV1_FR60_BitrateLow_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_161",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateMedium_4K__AV1_FR60_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_162",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateMedium_4K__AV1_FR60_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 5M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_163",
+        "status": "active",
+        "script_info": [
+            "T_H264_SD_FR60_BitrateLow__H264_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_164",
+        "status": "active",
+        "script_info": [
+            "T_H264_SD_FR60_BitrateMedium__H264_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_165",
+        "status": "active",
+        "script_info": [
+            "T_H264_SD_FR60_BitrateHigh__H264_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_166",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateLow__H264_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_167",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateMedium__H264_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_168",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateHigh__H264_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_169",
+        "status": "active",
+        "script_info": [
+            "T_H264_BitrateHigh_4K__AV1_SD_FR60_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_170",
+        "status": "active",
+        "script_info": [
+            "T_H264_BitrateHigh_4K__AV1_SD_FR60_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_171",
+        "status": "active",
+        "script_info": [
+            "T_H264_BitrateHigh_4K__AV1_SD_FR60_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_172",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_FHD_BitrateLow__H264_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_173",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_FHD_BitrateMedium__H264_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_174",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_FHD_BitrateHigh__H264_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_175",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateLow__H264_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_176",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateMedium__H264_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_177",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateHigh__H264_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_178",
+        "status": "active",
+        "script_info": [
+            "T_H264_BitrateHigh_4K__AV1_FR60_FHD_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_179",
+        "status": "active",
+        "script_info": [
+            "T_H264_BitrateHigh_4K__AV1_FR60_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_180",
+        "status": "active",
+        "script_info": [
+            "T_H264_BitrateHigh_4K__AV1_FR60_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_181",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_BitrateLow_4K__H264_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_182",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_BitrateMedium_4K__H264_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_183",
+        "status": "active",
+        "script_info": [
+            "T_H264_FR60_BitrateHigh_4K__H264_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_184",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateLow_4K__H264_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_185",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateMedium_4K__H264_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_186",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateHigh_4K__H264_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_187",
+        "status": "active",
+        "script_info": [
+            "T_H264_BitrateHigh_4K__AV1_FR60_BitrateLow_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_188",
+        "status": "active",
+        "script_info": [
+            "T_H264_BitrateHigh_4K__AV1_FR60_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_189",
+        "status": "active",
+        "script_info": [
+            "T_H264_BitrateHigh_4K__AV1_FR60_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v h264_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 3 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_190",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateHigh_4K__H264_SD_FR60_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_191",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateHigh_4K__H264_SD_FR60_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_192",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateHigh_4K__H264_SD_FR60_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_193",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateLow__HEVC_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_194",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateMedium__HEVC_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_195",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_SD_FR60_BitrateHigh__HEVC_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_196",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateHigh_4K__AV1_SD_FR60_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_197",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateHigh_4K__AV1_SD_FR60_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_198",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateHigh_4K__AV1_SD_FR60_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 720x480 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 720 -out_1_height 480 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_199",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateHigh_4K__H264_FR60_FHD_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_200",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateHigh_4K__H264_FR60_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_201",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateHigh_4K__H264_FR60_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_202",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateLow__HEVC_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_203",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateMedium__HEVC_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_204",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_FHD_BitrateHigh__HEVC_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_205",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateHigh_4K__AV1_FR60_FHD_BitrateLow"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_206",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateHigh_4K__AV1_FR60_FHD_BitrateMedium"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_207",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateHigh_4K__AV1_FR60_FHD_BitrateHigh"
+        ],
+        "simple_parameters": "-i <input_stream> --size 1920x1080 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 1920 -out_1_height 1080 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_208",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateHigh_4K__H264_FR60_BitrateLow_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_209",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateHigh_4K__H264_FR60_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_210",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateHigh_4K__H264_FR60_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 0 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v h264_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_211",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateLow_4K__HEVC_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_212",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateMedium_4K__HEVC_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_213",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_FR60_BitrateHigh_4K__HEVC_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 1 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v hevc_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_214",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateHigh_4K__AV1_FR60_BitrateLow_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 1M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 1M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_215",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateHigh_4K__AV1_FR60_BitrateMedium_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 5M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 5M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    },
+    {
+        "case": "TRC_216",
+        "status": "active",
+        "script_info": [
+            "T_HEVC_BitrateHigh_4K__AV1_FR60_BitrateHigh_4K"
+        ],
+        "simple_parameters": "-i <input_stream> --size 3840x2160 -c 2 -b 30M --rc-mode 2 --profile-level 52 --bf 3 --quality 1 --framerate 60 --tier 0 -o <output_stream> --multi-thread",
+        "xma_parameters": "-streams 1 -c:v hevc_ama -i <input_stream> -scaler_ma -num-output 1 -out_1_width 3840 -out_1_height 2160 -c:v av1_ama -b:v 30M -control_rate 2 -fps 60 -level 52 -bf 3 -g 240 -qp_mode 0 -cabr off -preset medium -dynamic_gop 0 -tune_metrics vq -no_bll -1 -tier 0 -o <output_stream>",
+        "prepare": "--size 3840x2160 -b 30M -c 4 -o <output_stream> --fps 60 --quality 1 --bf 3 --profile-level 52"
+    }
+]

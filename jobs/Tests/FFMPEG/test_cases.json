@@ -1,0 +1,404 @@
+[
+  {
+    "case": "Usage_1",
+    "status": "active",
+    "ffmpeg_parameters": "-y -i <input_stream> -usage 1 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ],
+    "ref_values": {
+      "default_type": "input",
+      "size": {
+        "type": "range",
+        "value": [500000, 501000]
+      },
+      "bitrate": {
+        "type": "range",
+        "value": [115000, 125000]
+      },
+      "num_frames": {
+        "type": "equal",
+        "value": 997
+      },
+      "fps": {
+        "type": "range",
+        "value": [29, 31]
+      },
+      "gop_size": {
+        "type": "skip"
+      },
+      "color_primaries": {
+        "type": "equal",
+        "value": "BT.709"
+      },
+      "psnr": {
+        "type": "range",
+        "value": [70, 73]
+      },
+      "ssim": {
+        "type": "range",
+        "value": [0.99]
+      },
+      "vmaf": {
+        "type": "range",
+        "value": [97]
+      }
+    }
+  },
+  {
+    "case": "Usage_2",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -usage 2 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Usage_3",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -usage 3 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Usage_4",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -usage 0 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Profile_1",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> c -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Profile_2",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -profile:v 77 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Profile_3",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -profile:v 100 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Quality_1",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -quality 1 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Quality_2",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -quality 2 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Quality_3",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -quality 0 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "RateControl_1",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -rc cqp -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "RateControl_2",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -rc cbr -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "RateControl_3",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -rc vbr_peak -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "RateControl_4",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -rc vbr_latency -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "RateControl_5",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -rc qvbr -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "RateControl_6",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -rc hqvbr -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "RateControl_7",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -rc hqcbr -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Bitrate_1",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -b:v 10000 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Bitrate_2",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -b:v 100000 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Bitrate_3",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -b:v 125000 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Bitrate_4",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -b:v 5000000 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Bitrate_5",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -b:v 50000000 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Bitrate_6",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -b:v 100000000 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Minrate_1",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -minrate 10000 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Minrate_2",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -minrate 100000 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Minrate_3",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -minrate 125000 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Minrate_4",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -minrate 5000000 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Minrate_5",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -minrate 50000000 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Minrate_6",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -minrate 100000000 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Maxrate_1",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -maxrate 10000 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Maxrate_2",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -maxrate 100000 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Maxrate_3",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -maxrate 125000 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Maxrate_4",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -maxrate 5000000 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Maxrate_5",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -maxrate 50000000 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Maxrate_6",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -maxrate 100000000 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "GroupOfPictures_1",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -g 1 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "GroupOfPictures_2",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -g 30 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "GroupOfPictures_3",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -g 250 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "GroupOfPictures_4",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -g 1000 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "BFrames_1",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -max_b_frames 1 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "BFrames_2",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -max_b_frames 2 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "BFrames_3",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -max_b_frames 3 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "BFrames_4",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -max_b_frames 0 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "BFrames_5",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -max_b_frames -1 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "BPattern_1",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -bf 1 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "BPattern_2",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -bf 2 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "BPattern_3",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -bf 3 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "BPattern_4",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -bf 0 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "BPattern_5",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -bf -1 -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Coder_1",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -coder auto -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Coder_2",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -coder cavlc -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  },
+  {
+    "case": "Coder_3",
+    "status": "skipped",
+    "ffmpeg_parameters": "-y -i <input_stream> -coder cabac -c:v h264_amf <output_stream>",
+    "script_info": [
+    ]
+  }
+]

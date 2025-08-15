@@ -3,7 +3,6 @@
 
     <variable name="Root" value="{CWD}"/>
     <variable name="ResourcesDir" value = "{CWD}/Scripts"/>
-    <variable name="ScenesDir" value="{ResPath}"/>
     <variable name="CommonDir" value="{CWD}/../jobs_launcher/common"/>
 
 </package-manifest>

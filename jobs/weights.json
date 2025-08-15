@@ -1,0 +1,32 @@
+{
+    "weights": [
+        {
+            "suite_name": "Decoder_Main",
+            "value": 12
+        },
+        {
+            "suite_name": "Encoder_Full",
+            "value": 540
+        },
+        {
+            "suite_name": "Encoder_Main",
+            "value": 18
+        },
+        {
+            "suite_name": "Encoder_Smoke",
+            "value": 3
+        },
+        {
+            "suite_name": "Scaler",
+            "value": 9
+        },
+        {
+            "suite_name": "Transcoder",
+            "value": 216
+        },
+        {
+            "suite_name": "Transcoder_Main",
+            "value": 36
+        }
+    ]
+}

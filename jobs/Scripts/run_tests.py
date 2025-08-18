@@ -32,41 +32,46 @@ def execute_tests(args, current_conf):
     for case in [x for x in cases if not is_case_skipped(x, current_conf)]:
         # select tools to execute
         binaries_common_path = '/opt/amd/ama/'
+        if args.tool_config == 'release':
+            simple_tool_bins_root = 'amf_Release'
+        else:
+            simple_tool_bins_root = 'amf_Debug'
+
         if "Encoder" in args.test_group:
             xma_tool_path = os.path.join(
                 binaries_common_path, 'ma35', 'bin', 'ma35_encoder_app'
             )
             # clarify if we can install our binaries to a specific directory
             simple_tool_path = os.path.join(
-                binaries_common_path, 'amf_Release', 'bin', 'SimpleEncoderAMA'
+                binaries_common_path, simple_tool_bins_root, 'bin', 'SimpleEncoderAMA'
             )
         elif "Decoder" in args.test_group:
             xma_tool_path = os.path.join(
                 binaries_common_path, 'ma35', 'bin', 'ma35_decoder_app'
             )
             simple_tool_path = os.path.join(
-                binaries_common_path, 'amf_Release', 'bin', 'SimpleDecoderAMA'
+                binaries_common_path, simple_tool_bins_root, 'bin', 'SimpleDecoderAMA'
             )
             encoder_path = os.path.join(
-                binaries_common_path, 'amf_Release', 'bin', 'SimpleEncoderAMA'
+                binaries_common_path, simple_tool_bins_root, 'bin', 'SimpleEncoderAMA'
             )
         elif "Scaler" in args.test_group:
             xma_tool_path = os.path.join(
                 binaries_common_path, 'ma35', 'bin', 'ma35_scaler_app'
             )
             simple_tool_path = os.path.join(
-                binaries_common_path, 'amf_Release', 'bin', 'SimpleScalerAMA'
+                binaries_common_path, simple_tool_bins_root, 'bin', 'SimpleScalerAMA'
             )
         elif "Transcoder" in args.test_group:
             xma_tool_path = os.path.join(
                 binaries_common_path, 'ma35', 'bin', 'ma35_transcoder_app'
             )
             simple_tool_path = os.path.join(
-                binaries_common_path, 'amf_Release', 'bin',
+                binaries_common_path, simple_tool_bins_root, 'bin',
                 'SimpleTranscoderAMA'
             )
             encoder_path = os.path.join(
-                binaries_common_path, 'amf_Release', 'bin', 'SimpleEncoderAMA'
+                binaries_common_path, simple_tool_bins_root, 'bin', 'SimpleEncoderAMA'
             )
 
         output_path = os.path.join(args.output, "Color")

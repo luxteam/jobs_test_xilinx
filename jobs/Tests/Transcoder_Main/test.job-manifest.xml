@@ -9,6 +9,7 @@
         <argument>--test_group "Transcoder_Main"</argument>
         <argument>--test_cases "{TestCases}"</argument>
         <argument>--retries "{retries}"</argument>
+        <argument>--toolConfig "{toolConfig}"</argument>
     </execute>
 
     <execute command='python "{ResourcesDir}/make_compare_report.py"'>

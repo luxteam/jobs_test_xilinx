@@ -9,6 +9,8 @@
         <argument>--test_group "Encoder_Smoke"</argument>
         <argument>--test_cases "{TestCases}"</argument>
         <argument>--retries "{retries}"</argument>
+        <argument>--toolConfig "{retries}"</argument>
+        <argument>--toolConfig "{toolConfig}"</argument>
     </execute>
 
     <execute command='python "{ResourcesDir}/make_compare_report.py"'>

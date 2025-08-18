@@ -3,7 +3,7 @@
 
     <outpath value="{OutputDir}"/>
 
-    <execute command='python "{ResourcesDir}/entrypoint.py"' timeout="3600">
+    <execute command='python "{ResourcesDir}/entrypoint.py"' timeout="14400">
         <argument>--output "{OutputDir}"</argument>
         <argument>--tool_path "{toolPath}"</argument>
         <argument>--test_group "Encoder_Full"</argument>

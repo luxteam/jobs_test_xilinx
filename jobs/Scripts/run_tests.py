@@ -163,18 +163,18 @@ def execute_tests(args, current_conf):
 
                     if compare_result == 'identical':
                         test_case_status = "passed"
-                        # remove artifacts if the test has passed
-                        remove_artifact(output_stream)
-                        remove_artifact(reference_stream)
-                        remove_artifact(input_stream)
                     else:
                         test_case_status = "failed"
-
-                    if test_case_status != 'passed':
                         output_stream_params = get_ffprobe_info(case, output_stream)  # noqa: E501
                         reference_stream_params = get_ffprobe_info(
                             case, reference_stream
                         )
+
+                    # remove artifacts as they may be too heavy
+                    remove_artifact(output_stream)
+                    remove_artifact(reference_stream)
+                    remove_artifact(input_stream)
+
                 else:
                     output_stream_params = []
                     reference_stream_params = []
@@ -200,18 +200,17 @@ def execute_tests(args, current_conf):
 
                         compare_result = hash_and_comapre(output_stream, reference_stream)  # noqa: E501
 
-                        if compare_result == 'identical':
-                            # remove artifacts if the test has passed
-                            remove_artifact(output_stream)
-                            remove_artifact(reference_stream)
-                            if "Encoder" not in args.test_group:
-                                remove_artifact(input_stream)
-                        else:
+                        if compare_result != 'identical':
                             output_info = get_ffprobe_info(case, output_stream)
                             reference_info = get_ffprobe_info(case, reference_stream)  # noqa: E501
 
                             output_stream_params.append(output_info)
                             reference_stream_params.append(reference_info)  # noqa: E501
+
+                        # remove artifacts as they may be too heavy
+                        remove_artifact(output_stream)
+                        remove_artifact(reference_stream)
+                        remove_artifact(input_stream)
 
                     if output_stream_params == []:
                         test_case_status = "passed"

@@ -9,7 +9,11 @@ def run_tool(tool: str, params: str, log: str):
     command = [tool] + params.split()
 
     with open(log, 'w+') as file:
-        Popen(command, stderr=file.fileno(), stdout=file.fileno()).wait()  # noqa: E501
+        process = Popen(command, stderr=file.fileno(), stdout=file.fileno())
+        exit_code = process.wait()  # noqa: E501
+        # check simple tools and ama tools for non-zero exit codes
+        if command[0] not in ('ffmpeg', 'ffprobe') and exit_code != 0:
+            raise Exception(f"Command finished with non-zero exit code: {command}")
 
 
 def prepare_encoder_parameters(

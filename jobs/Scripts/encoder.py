@@ -2,18 +2,23 @@ import os
 from subprocess import Popen
 from typing import Any, Dict, Tuple
 
+from exceptions import ToolFailedException
 from utils import prepare_keys, select_extension
+from jobs_launcher.core.config import main_logger
 
 
 def run_tool(tool: str, params: str, log: str):
     command = [tool] + params.split()
+    tool_name = tool.split('/')[-1]
 
     with open(log, 'w+') as file:
         process = Popen(command, stderr=file.fileno(), stdout=file.fileno())
         exit_code = process.wait()  # noqa: E501
         # check simple tools and ama tools for non-zero exit codes
-        if tool.split('/')[-1] not in ('ffmpeg', 'ffprobe') and exit_code != 0:
-            raise Exception(f"Command finished with non-zero exit code: {command}")
+        if tool_name not in ('ffmpeg', 'ffprobe') and exit_code != 0:
+            message = f"{tool_name} returned non-zero exit code processing prams '{params}'"  # noqa: E501
+            main_logger.error(message)
+            raise ToolFailedException(message)
 
 
 def prepare_encoder_parameters(

@@ -165,7 +165,8 @@ def compare_to_refs(stream_info: Dict, case, input_stream_info: Dict,
 
 
 def get_ffprobe_info(case: Dict[str, Any], stream: str):
-    if 'ENC' in case['case'] or 'TRC' in case['case']:
+    # if 'ENC' in case['case'] or 'TRC' in case['case']:
+    if case["case"].split('_')[0] in ('ENC', 'TRC', 'FFMPEG'):
         command = [
             'ffprobe', '-v', 'quiet', '-print_format', 'json', '-show_streams',
             '-show_format', '-count_frames', stream

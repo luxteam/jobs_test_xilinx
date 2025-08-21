@@ -34,7 +34,7 @@ def execute_tests(args, current_conf):
     for case in [x for x in cases if not is_case_skipped(x, current_conf)]:
         # select tools to execute
         binaries_common_path = '/opt/amd/ama/'
-        if args.tools == "SimpleTools":
+        if args.tools == "SimpleSamples":
             if "Encoder" in args.test_group:
                 xma_tool_path = os.path.join(
                     binaries_common_path, 'ma35', 'bin', 'ma35_encoder_app'
@@ -94,7 +94,7 @@ def execute_tests(args, current_conf):
             error_messages = set()
 
             try:
-                if args.tools == "SimpleTools":
+                if args.tools == "SimpleSamples":
                     # prepare parameters/keys for simple tool and xma
                     simple_log = os.path.join(
                         logs_path, f"{case['case']}_simple.log"
@@ -279,7 +279,7 @@ def execute_tests(args, current_conf):
                     case["output_stream_params"] = output_stream_params
 
                     # measure preformance
-                    measure_ffmpeg_performance(amf_log, ma35_log)
+                    measure_ffmpeg_performance(amf_log, ma35_log, error_messages=error_messages)
 
                     save_logs(args, case, ma35_log)
                     save_logs(args, case, amf_log)

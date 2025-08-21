@@ -47,7 +47,9 @@ def prepare_ffmpeg_parameters(
     return prepared_keys, input_stream, output_stream
 
 
-def measure_ffmpeg_performance(amf_log: str, xma_log: str):
+def measure_ffmpeg_performance(
+    amf_log: str, xma_log: str, *, error_messages: set
+):
     with open(amf_log, 'r') as file:
         amf_log_content = file.read()
 
@@ -57,3 +59,7 @@ def measure_ffmpeg_performance(amf_log: str, xma_log: str):
     # find fps in each log and compare values
     amf_avg_fps = int(amf_log_content.split('fps=')[1].split(' ')[0])
     xma_avg_fps = int(xma_log_content.split('fps=')[1].split(' ')[0])
+
+    if amf_avg_fps < (xma_avg_fps + (xma_avg_fps * 3 / 100)) or amf_avg_fps > (xma_avg_fps + (xma_avg_fps * 3 / 100)):
+        message = f"AMF_FFMPEG's performace (fps={amf_avg_fps}) difference with VPI_FFMPG's performance (fps={xma_avg_fps}) is more than 3%"
+        error_messages.add(message)

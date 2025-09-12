@@ -238,12 +238,13 @@ def execute_tests(args, current_conf):
                     amf_log = os.path.join(
                         logs_path, f"{case['case']}_amf.log"
                     )
+                    simple_log = amf_log
                     ma35_log = os.path.join(logs_path, f"{case['case']}_ma35.log")
 
                     prepared_keys, input_stream, output_stream = prepare_ffmpeg_parameters(
                         case, input_path=args.tool_path, output_path=output_path, amf_ffmpeg=True
                     )
-                    xma_prepared_keys, input_stream, output_stream = prepare_ffmpeg_parameters(
+                    xma_prepared_keys, reference_stream, output_stream = prepare_ffmpeg_parameters(
                         case, input_path=args.tool_path, output_path=output_path, amf_ffmpeg=False
                     )
 
@@ -251,7 +252,7 @@ def execute_tests(args, current_conf):
                         f"Simple parameters: {prepared_keys}"
                     )
                     case["script_info"].append(
-                        f"MA35 parameters: {ma35_prepared_keys}"
+                        f"MA35 parameters: {xma_prepared_keys}"
                     )
 
                     # main logic

@@ -2,6 +2,7 @@ import os
 from typing import Any, Dict, Tuple
 
 from utils import prepare_keys
+from jobs_launcher.core.config import main_logger
 
 
 def select_input_file(case: Dict[str, Any]):
@@ -40,7 +41,7 @@ def prepare_ffmpeg_parameters(
             os.path.join(output_path, f"{case['case']}_xma.mp4")
         )
         prepared_keys = prepare_keys(
-            case["simple_parameters"], input_stream, output_stream
+            case["xma_parameters"], input_stream, output_stream
         )
         case["prepared_keys_xma"] = prepared_keys
 
@@ -57,8 +58,16 @@ def measure_ffmpeg_performance(
         xma_log_content = file.read()
 
     # find fps in each log and compare values
-    amf_avg_fps = int(amf_log_content.split('fps=')[1].split(' ')[0])
-    xma_avg_fps = int(xma_log_content.split('fps=')[1].split(' ')[0])
+    try:
+        amf_avg_fps = float(amf_log_content.split('fps=')[1].split(' ')[0])
+    except IndexError:
+        main_logger.error(f"Couldn't find 'fps=' information from {amf_log}, set value to 0")
+        amf_avg_fps = 0
+    try:
+        xma_avg_fps = int(xma_log_content.split('fps=')[1].split(' ')[0])
+    except IndexError:
+        main_logger.error(f"Couldn't find 'fps=' information from {xma_log}, set value to 0")
+        xma_avg_fps = 0
 
     if amf_avg_fps < (xma_avg_fps + (xma_avg_fps * 3 / 100)) or amf_avg_fps > (xma_avg_fps + (xma_avg_fps * 3 / 100)):
         message = f"AMF_FFMPEG's performace (fps={amf_avg_fps}) difference with VPI_FFMPG's performance (fps={xma_avg_fps}) is more than 3%"

@@ -11,4 +11,4 @@ python3.9 ../jobs_launcher/executeTests.py \
     --tests_root ../jobs \
     --work_root ../Work/Results \
     --work_dir Xilinx \
-    --cmd_variables ResPath "." toolPath "../Xilinx" retries 1 tools $TOOLS
+    --cmd_variables ResPath "." toolPath "../Xilinx" retries 2 tools $TOOLS

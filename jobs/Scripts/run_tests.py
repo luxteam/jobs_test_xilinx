@@ -244,7 +244,8 @@ def execute_tests(args, current_conf):
                     prepared_keys, input_stream, output_stream = prepare_ffmpeg_parameters(
                         case, input_path=args.tool_path, output_path=output_path, amf_ffmpeg=True
                     )
-                    xma_prepared_keys, reference_stream, output_stream = prepare_ffmpeg_parameters(
+                    # we don't change input stream
+                    xma_prepared_keys, _, reference_stream = prepare_ffmpeg_parameters(
                         case, input_path=args.tool_path, output_path=output_path, amf_ffmpeg=False
                     )
 

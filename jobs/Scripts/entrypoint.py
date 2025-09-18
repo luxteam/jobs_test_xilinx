@@ -19,6 +19,7 @@ def createArgsParser():
     parser.add_argument("--retries", required=False, default=2, type=int)
     parser.add_argument("--test_group", required=True)
     parser.add_argument("--test_cases", required=True)
+    parser.add_argument("--tools", required=True)
 
     return parser
 

@@ -160,6 +160,9 @@ def save_results(
     video_path = os.path.join("Color", f'{case["case"]}.mp4')
     if os.path.exists(os.path.join(args.output, video_path)):
         test_case_report[VIDEO_KEY] = video_path
+    video_path = os.path.join("Color", f'{case["case"]}_xma.mp4')
+    if os.path.exists(os.path.join(args.output, video_path)):
+        test_case_report[f"ref_{VIDEO_KEY}"] = video_path
 
     test_case_report["script_info"] = case["script_info"]
 

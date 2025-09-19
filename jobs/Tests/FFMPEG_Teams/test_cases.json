@@ -1,0 +1,11 @@
+[
+    {
+        "case": "FFMPEG_TMS_001",
+        "status": "active",
+        "script_info": [
+            "Teams use case"
+        ],
+        "simple_parameters": "-y -hide_banner -benchmark -init_hw_device amf:,use_ama=1 -y -hwaccel amf -hwaccel_output_format amf -extra_hw_frames 100 -c:v h264_amf -i <input_stream> -c:v h264_amf -i <input_stream> -c:v h264_amf -i <input_stream> -c:v h264_amf -i <input_stream> -c:v h264_amf -i <input_stream> -c:v h264_amf -i <input_stream> -c:v h264_amf -i <input_stream> -c:v h264_amf -i <input_stream> -c:v h264_amf -i <input_stream> -filter_complex '[0]hwdownload[00];[1]hwdownload[11];[2]hwdownload[22];[3]hwdownload[33];[4]hwdownload[44];[5]hwdownload[55];[6]hwdownload[66];[7]hwdownload[77];[8]hwdownload[88];[00][11][22]hstack=inputs=3[top];[33][44][55]hstack=inputs=3[middle];[66][77][88]hstack=inputs=3[bottom];[top][middle][bottom]vstack=inputs=3,hwupload' -c:v h264_amf -preset balanced -b:v 5M -f mp4 <output_stream>",
+        "xma_parameters": "-y -hide_banner -benchmark -hwaccel ama -c:v h264_ama -out_fmt yuv420p -i <input_stream> -c:v h264_ama -out_fmt yuv420p -i <input_stream> -c:v h264_ama -out_fmt yuv420p -i <input_stream> -c:v h264_ama -out_fmt yuv420p -i <input_stream> -c:v h264_ama -out_fmt yuv420p -i <input_stream> -c:v h264_ama -out_fmt yuv420p -i <input_stream> -c:v h264_ama -out_fmt yuv420p -i <input_stream> -c:v h264_ama -out_fmt yuv420p -i <input_stream> -c:v h264_ama -out_fmt yuv420p -i <input_stream> -filter_complex '[0]hwdownload_ama[00];[1]hwdownload_ama[11];[2]hwdownload_ama[22];[3]hwdownload_ama[33];[4]hwdownload_ama[44];[5]hwdownload_ama[55];[6]hwdownload_ama[66];[7]hwdownload_ama[77];[8]hwdownload_ama[88];[00][11][22]hstack=inputs=3[top];[33][44][55]hstack=inputs=3[middle];[66][77][88]hstack=inputs=3[bottom];[top][middle][bottom]vstack=inputs=3,hwupload_ama' -c:v h264_ama -preset medium -b:v 5M -f mp4 <output_stream>"
+    }
+]

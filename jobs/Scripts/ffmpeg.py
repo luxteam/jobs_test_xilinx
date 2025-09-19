@@ -7,13 +7,15 @@ from jobs_launcher.core.config import main_logger
 
 def select_input_file(case: Dict[str, Any]):
     # map videos to ffmpeg usecases
-    # inputs_map = {
-    #     "teams": "bbb_360p30.mp4"
-    # }
-    # test_usecase = case['case'].split('_')[0]
-    # for ffmpeg_usecase, input_file in inputs_map.items():
-    #     if test_usecase == ffmpeg_usecase:
-    #         return input_file
+    inputs_map = {
+        "tms": "bbb_360p30.mp4",
+        "trs": "journey-to-space-h264.mp4",
+        # "mlt": "bbb_360p30.mp4"
+    }
+    test_usecase = case['case'].split('_')[1].lower()
+    for ffmpeg_usecase, input_file in inputs_map.items():
+        if test_usecase == ffmpeg_usecase:
+            return input_file
 
     return 'bbb_360p30.mp4'
 

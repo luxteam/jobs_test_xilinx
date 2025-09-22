@@ -6,9 +6,10 @@
     <execute command='python "{ResourcesDir}/entrypoint.py"' timeout="3600">
         <argument>--output "{OutputDir}"</argument>
         <argument>--tool_path "{toolPath}"</argument>
-        <argument>--test_group "Smoke"</argument>
+        <argument>--test_group "FFMPEG_Teams"</argument>
         <argument>--test_cases "{TestCases}"</argument>
         <argument>--retries "{retries}"</argument>
+        <argument>--tools "{tools}"</argument>
     </execute>
 
     <execute command='python "{ResourcesDir}/make_compare_report.py"'>

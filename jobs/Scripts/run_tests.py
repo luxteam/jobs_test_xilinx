@@ -159,8 +159,8 @@ def execute_tests(args, current_conf):
                     )
 
                     # main logic
-                    run_tool(simple_tool_path, prepared_keys, simple_log)
-                    run_tool(xma_tool_path, ma35_prepared_keys, ma35_log)
+                    run_tool(simple_tool_path, prepared_keys, simple_log, error_messages)
+                    run_tool(xma_tool_path, ma35_prepared_keys, ma35_log, error_messages)
 
                     execution_time = time.time() - case_start_time
 
@@ -257,8 +257,8 @@ def execute_tests(args, current_conf):
                     )
 
                     # main logic
-                    run_tool(amf_ffmpeg_path, prepared_keys, amf_log)
-                    run_tool(xma_ffmpeg_path, xma_prepared_keys, ma35_log)
+                    run_tool(amf_ffmpeg_path, prepared_keys, amf_log, error_messages)
+                    run_tool(xma_ffmpeg_path, xma_prepared_keys, ma35_log, error_messages)
                     execution_time = time.time() - case_start_time
 
                     # results processing

@@ -7,17 +7,25 @@ from utils import prepare_keys, select_extension
 from jobs_launcher.core.config import main_logger
 
 
-def run_tool(tool: str, params: str, log: str):
-    command = [tool] + params.split()
+def run_tool(tool: str, params: str, log: str, error_messages: set):
     tool_name = tool.split('/')[-1]
 
+    # run complex ffmpeg commands with filters
+    if tool_name == 'ffmpeg':
+        shell = True
+        command = f"{tool} {params}"
+    else:
+        shell = False
+        command = [tool] + params.split()
+
     with open(log, 'w+') as file:
-        process = Popen(command, stderr=file.fileno(), stdout=file.fileno())
+        process = Popen(command, stderr=file.fileno(), stdout=file.fileno(), shell=shell)
         exit_code = process.wait()  # noqa: E501
         # check simple tools and ama tools for non-zero exit codes
-        if tool_name not in ('ffmpeg', 'ffprobe') and exit_code != 0:
+        if tool_name not in ('ffprobe') and exit_code != 0:
             message = f"{tool_name} returned non-zero exit code processing prams '{params}'"  # noqa: E501
             main_logger.error(message)
+            error_messages.add(message)
             raise ToolFailedException(message)
 
 

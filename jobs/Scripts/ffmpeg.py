@@ -53,23 +53,20 @@ def prepare_ffmpeg_parameters(
 def measure_ffmpeg_performance(
     amf_log: str, xma_log: str, *, error_messages: set
 ):
-    with open(amf_log, 'r') as file:
-        amf_log_content = file.read()
 
-    with open(xma_log, 'r') as file:
-        xma_log_content = file.read()
+    def _get_last_fps_entry_from_log(log: str):
+        with open(log, 'r', encoding='utf-8') as file:
+            content = file.readlines()
 
-    # find fps in each log and compare values
-    try:
-        amf_avg_fps = float(amf_log_content.split('fps=')[1].split(' ')[0])
-    except IndexError:
-        main_logger.error(f"Couldn't find 'fps=' information from {amf_log}, set value to 0")
-        amf_avg_fps = 0
-    try:
-        xma_avg_fps = int(xma_log_content.split('fps=')[1].split(' ')[0])
-    except IndexError:
-        main_logger.error(f"Couldn't find 'fps=' information from {xma_log}, set value to 0")
-        xma_avg_fps = 0
+        for line in content[::-1]:
+            if 'fps=' in line:
+                return line.split('fps=')[1].split(' ')[0]
+
+        error_messages.add(f"Couldn't find 'fps=' information from {log}, set value to 0")
+        return 0
+
+    amf_avg_fps = _get_last_fps_entry_from_log(amf_log)
+    xma_avg_fps = _get_last_fps_entry_from_log(xma_log)
 
     if amf_avg_fps < (xma_avg_fps + (xma_avg_fps * 3 / 100)) or amf_avg_fps > (xma_avg_fps + (xma_avg_fps * 3 / 100)):
         message = f"AMF_FFMPEG's performace (fps={amf_avg_fps}) difference with VPI_FFMPG's performance (fps={xma_avg_fps}) is more than 3%"

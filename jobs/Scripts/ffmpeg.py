@@ -55,15 +55,17 @@ def measure_ffmpeg_performance(
 ):
 
     def _get_last_fps_entry_from_log(log: str):
+        result = 0
         with open(log, 'r', encoding='utf-8') as file:
             content = file.readlines()
 
         for line in content[::-1]:
             if 'fps=' in line:
-                return line.split('fps=')[1].split(' ')[0]
+                result = int(line.split('fps=')[1].split(' ')[0])
+                return result
 
         error_messages.add(f"Couldn't find 'fps=' information from {log}, set value to 0")
-        return 0
+        return result
 
     amf_avg_fps = _get_last_fps_entry_from_log(amf_log)
     xma_avg_fps = _get_last_fps_entry_from_log(xma_log)

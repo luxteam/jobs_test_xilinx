@@ -89,7 +89,7 @@ def select_extension(case: Dict[str, Any]) -> Union[str, Tuple[str, str]]:
 
 
 def prepare_keys(keys: str, input_stream: str, output_stream: str,
-                 iterate: bool = False, extension: str = '') -> str:
+                 extension: str) -> str:
     """Prepare command keys by replacing placeholder tokens with actual paths.
 
     This function processes a template string containing placeholders and
@@ -112,17 +112,34 @@ def prepare_keys(keys: str, input_stream: str, output_stream: str,
         str: Processed string with placeholders replaced by actual paths
     """
     keys = keys.replace("<input_stream>", input_stream)
+    count = keys.count('<output_stream>')
 
-    if iterate:
-        count = keys.count('<output_stream>')
-        for i in range(1, count+1):
-            keys = keys.replace(
-                "<output_stream>", f"{output_stream}_{i}.{extension}", 1
-            )
-    else:
-        keys = keys.replace("<output_stream>", output_stream)
+    if count == 1:
+        return keys.replace("<output_stream>", f"{output_stream}.{extension}")
+
+    for i in range(1, count+1):
+        keys = keys.replace(
+            "<output_stream>", f"{output_stream}_{i}.{extension}", 1
+        )
 
     return keys
+
+
+def prepare_command(tool: str, params):
+    tool_name = tool.split('/')[-1]
+
+    if tool_name == 'ffmpeg':
+        if '&' not in params:
+            return f"{tool} {params}"
+
+        commands = params.split(' & ')
+        for idx, value in enumerate(commands):
+            commands[idx] = f"{tool} {value}"
+
+        return ' & '.join(commands)
+
+    else:
+        return [tool] + params.split()
 
 
 def save_results(

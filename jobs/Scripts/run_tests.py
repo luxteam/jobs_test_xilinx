@@ -12,7 +12,7 @@ from process_results import get_ffprobe_info, hash_and_comapre
 from scaler import prepare_scaler_parameters
 from transcoder import prepare_transcoder_input, prepare_transcoder_parameters
 from utils import (copy_test_cases, is_case_skipped, prepare_empty_reports,
-                   save_logs, save_results, remove_artifact)
+                   save_logs, save_results, remove_artifact, prepare_command)
 
 from jobs_launcher.core.config import main_logger
 from jobs_launcher.core.system_info import get_gpu
@@ -159,8 +159,10 @@ def execute_tests(args, current_conf):
                     )
 
                     # main logic
-                    run_tool(simple_tool_path, prepared_keys, simple_log, error_messages)
-                    run_tool(xma_tool_path, ma35_prepared_keys, ma35_log, error_messages)
+                    simple_command = prepare_command(simple_tool_path, prepared_keys)
+                    ma35_command = prepare_command(xma_tool_path, ma35_prepared_keys)
+                    run_tool(simple_command, simple_log, error_messages)
+                    run_tool(ma35_command, ma35_log, error_messages)
 
                     execution_time = time.time() - case_start_time
 
@@ -257,8 +259,10 @@ def execute_tests(args, current_conf):
                     )
 
                     # main logic
-                    run_tool(amf_ffmpeg_path, prepared_keys, amf_log, error_messages)
-                    run_tool(xma_ffmpeg_path, xma_prepared_keys, ma35_log, error_messages)
+                    simple_command = prepare_command(amf_ffmpeg_path, prepared_keys)
+                    xma_command = prepare_command(xma_ffmpeg_path, xma_prepared_keys)
+                    run_tool(simple_command, amf_log, error_messages)
+                    run_tool(xma_command, ma35_log, error_messages)
                     execution_time = time.time() - case_start_time
 
                     # results processing

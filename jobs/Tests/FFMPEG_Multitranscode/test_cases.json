@@ -1,0 +1,11 @@
+[
+    {
+        "case": "FFMPEG_MTRC_001",
+        "status": "active",
+        "script_info": [
+            "ABR transcode use case"
+        ],
+        "simple_parameters": "-y -hide_banner -init_hw_device amf:,use_ama=1 -hwaccel amf -hwaccel_output_format amf -i <input_stream> -c:v hevc_amf -encoder_instance 0 -b:v 24M <output_stream> & -y -hide_banner -init_hw_device amf:,use_ama=1 -hwaccel amf -hwaccel_output_format amf -i <input_stream> -c:v hevc_amf -encoder_instance 1 -b:v 24M <output_stream> & -y -hide_banner -init_hw_device amf:,use_ama=1 -hwaccel amf -hwaccel_output_format amf -i <input_stream> -c:v av1_amf -encoder_instance 1 -b:v 16M <output_stream> & -y -hide_banner -init_hw_device amf:,use_ama=1 -hwaccel amf -hwaccel_output_format amf -i <input_stream> -c:v av1_amf -encoder_instance 2 -b:v 16M <output_stream>",
+        "xma_parameters": ""
+    }
+]

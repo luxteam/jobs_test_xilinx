@@ -17,18 +17,20 @@ def prepare_transcoder_parameters(
 
     if simple_transcoder:
         output_stream = os.path.relpath(
-            os.path.join(output_path, f"{case['case']}.{output_extension}")
+            os.path.join(output_path, f"{case['case']}")
         )
         prepared_keys = prepare_keys(
-            case['simple_parameters'], input_stream, output_stream
+            case['simple_parameters'], input_stream, output_stream,
+            output_extension
         )
         case['prepared_keys_simple'] = prepared_keys
     else:
         output_stream = os.path.relpath(
-            os.path.join(output_path, f"{case['case']}_ma35.{output_extension}")  # noqa: E501
+            os.path.join(output_path, f"{case['case']}_ma35")
         )
         prepared_keys = prepare_keys(
-            case['xma_parameters'], input_stream, output_stream
+            case['xma_parameters'], input_stream, output_stream,
+            output_extension
         )
         case["prepared_keys_xma"] = prepared_keys
 

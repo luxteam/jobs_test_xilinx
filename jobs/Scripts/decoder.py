@@ -14,21 +14,24 @@ def prepare_decoder_parameters(
     input_stream = os.path.relpath(
         os.path.join(output_path, f"{case['case']}.{input_extension}")
     )
+    extension = 'yuv'
 
     if simple_decoder:
         output_stream = os.path.relpath(
-            os.path.join(output_path, f"{case['case']}.yuv")
+            os.path.join(output_path, f"{case['case']}")
         )
         prepared_keys = prepare_keys(
-            case['simple_parameters'], input_stream, output_stream
+            case['simple_parameters'], input_stream, output_stream,
+            extension
         )
         case['prepared_keys_simple'] = prepared_keys
     else:
         output_stream = os.path.relpath(
-            os.path.join(output_path, f"{case['case']}_ma35.yuv")
+            os.path.join(output_path, f"{case['case']}_ma35")
         )
         prepared_keys = prepare_keys(
-            case['xma_parameters'], input_stream, output_stream
+            case['xma_parameters'], input_stream, output_stream,
+            extension
         )
         case["prepared_keys_xma"] = prepared_keys
 

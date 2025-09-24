@@ -285,6 +285,8 @@ def execute_tests(args, current_conf):
                         # measure preformance
                         measure_ffmpeg_performance(amf_log, ma35_log, error_messages=error_messages)
                     else:
+                        reference_stream_params = []
+                        output_stream_params = []
                         output_dir, output_filename = os.path.split(output_stream)
                         output_files = os.listdir(output_dir)
                         simple_res = []

@@ -8,7 +8,7 @@ from decoder import prepare_decoder_input, prepare_decoder_parameters
 from encoder import prepare_encoder_parameters, run_tool
 from exceptions import ToolFailedException
 from ffmpeg import prepare_ffmpeg_parameters, measure_ffmpeg_performance
-from process_results import get_ffprobe_info, hash_and_comapre
+from process_results import get_ffprobe_info, hash_and_comapre, filter_video_names
 from scaler import prepare_scaler_parameters
 from transcoder import prepare_transcoder_input, prepare_transcoder_parameters
 from utils import (copy_test_cases, is_case_skipped, prepare_empty_reports,
@@ -297,8 +297,8 @@ def execute_tests(args, current_conf):
                             if '_xma' not in name and f'{output_filename}_' in name:  # noqa: E501
                                 simple_res.append(name)
 
-                        xma_res.sort()
-                        simple_res.sort()
+                        sorted(xma_res, key=filter_video_names)
+                        sorted(simple_res, key=filter_video_names)
 
                         for index, value in enumerate(simple_res):
                             output_stream = os.path.join(output_dir, value)

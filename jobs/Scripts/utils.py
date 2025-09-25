@@ -6,6 +6,7 @@ from datetime import datetime
 from shutil import copyfile
 from typing import Any, Dict, List, Set, Tuple, Union
 
+from process_results import filter_video_names
 from jobs_launcher.common.scripts.script_info_by_platform import \
     get_script_info  # noqa: E501
 from jobs_launcher.common.scripts.status_by_platform import get_status
@@ -167,19 +168,40 @@ def save_results(
     test_case_report["simple_parameters"] = case["prepared_keys_simple"]
     test_case_report["xma_parameters"] = case["prepared_keys_xma"]
 
-    test_case_report["ref_stream_params"] = case.get("ref_stream_params", {})
-    test_case_report["output_stream_params"] = case.get("output_stream_params", {})  # noqa: E501
+    ref_stream_params = case.get("ref_stream_params", {})
+    output_stream_params = case.get("output_stream_params", {})
+    if len(output_stream_params) > 1:
+        ref_stream_params
+        ref_stream_params = sorted(ref_stream_params, key=filter_video_names)
+        output_stream_params = sorted(output_stream_params, key=filter_video_names)
+        for idx, value in enumerate(output_stream_params, 1):
+            test_case_report[f"ref_stream_params_{idx}"] = ref_stream_params[idx]
+            test_case_report[f"output_stream_params_{idx}"] = value
+    else:
+        test_case_report["ref_stream_params"] = ref_stream_params
+        test_case_report["output_stream_params"] = output_stream_params
+
     test_case_report["test_status"] = test_case_status
 
     if test_case_report["test_status"] in ["passed", "observed", "error"]:
         test_case_report["group_timeout_exceeded"] = False
 
-    video_path = os.path.join("Color", f'{case["case"]}.mp4')
-    if os.path.exists(os.path.join(args.output, video_path)):
-        test_case_report[VIDEO_KEY] = video_path
-    video_path = os.path.join("Color", f'{case["case"]}_xma.mp4')
-    if os.path.exists(os.path.join(args.output, video_path)):
-        test_case_report[f"ref_{VIDEO_KEY}"] = video_path
+    if args.test_group in ('FFMPEG_Transcode', 'FFMPEG_Multitranscode'):
+        outputs = case['simple_parameters'].count('<output_stream>')
+        if outputs > 1:
+            for i in range(1, outputs + 1):
+                test_case_report[f"{VIDEO_KEY}_{i}"] = os.path.join("Color", f'{case["case"]}_{1}.mp4')
+                test_case_report[f"ref_{VIDEO_KEY}_{i}"] = os.path.join("Color", f'{case["case"]}_{i}_xma.mp4')
+        else:
+            test_case_report[VIDEO_KEY] = os.path.join("Color", f'{case["case"]}.mp4')
+            test_case_report[f"ref_{VIDEO_KEY}"] = os.path.join("Color", f'{case["case"]}_xma.mp4')
+    else:
+        video_path = os.path.join("Color", f'{case["case"]}.mp4')
+        if os.path.exists(os.path.join(args.output, video_path)):
+            test_case_report[VIDEO_KEY] = video_path
+        video_path = os.path.join("Color", f'{case["case"]}_xma.mp4')
+        if os.path.exists(os.path.join(args.output, video_path)):
+            test_case_report[f"ref_{VIDEO_KEY}"] = video_path
 
     test_case_report["script_info"] = case["script_info"]
 

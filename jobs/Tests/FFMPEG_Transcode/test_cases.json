@@ -1,0 +1,29 @@
+[
+    {
+        "case": "FFMPEG_TRC_001",
+        "status": "active",
+        "script_info": [
+            "ABR transcode use case"
+        ],
+        "simple_parameters": "-y -hide_banner -benchmark -init_hw_device amf:,use_ama=1 -hwaccel amf -hwaccel_output_format amf -i <input_stream> -filter_complex 'sr_amf_abr=1280|720|full [a]' -map '[a]' -c:v h264_amf -b:v 6M -f mp4 -y <output_stream>",
+        "xma_parameters": "-y -hide_banner -benchmark -hwaccel ama -i <input_stream> -filter_complex 'scaler_ama=outputs=1:out_res=(1280x720) [a]' -map '[a]' -c:v h264_ama -b:v 6M -f mp4 -y <output_stream>"
+    },
+    {
+        "case": "FFMPEG_TRC_002",
+        "status": "active",
+        "script_info": [
+            "ABR transcode use case"
+        ],
+        "simple_parameters": "-y -hide_banner -benchmark -init_hw_device amf:,use_ama=1 -hwaccel amf -hwaccel_output_format amf -i <input_stream> -filter_complex 'sr_amf_abr=1280|720|full:1920|1080:1280|720:720|480:360|240 [a][b][c][d]' -map '[a]' -c:v hevc_amf -b:v 6M -f mp4 -y <output_stream> -map '[b]' -c:v av1_amf -b:v 2M -f mp4 -y <output_stream> -map '[c]' -c:v h264_amf -b:v 1M -f mp4 -y <output_stream> -map '[d]' -c:v av1_amf -b:v 1M -f mp4 -y <output_stream>",
+        "xma_parameters": "-y -hide_banner -benchmark -hwaccel ama -i <input_stream> -filter_complex 'scaler_ama=outputs=4:out_res=(1920x1080)(1280x720)(720x480)(360x240) [a][b][c][d]' -map '[a]' -c:v hevc_ama -b:v 6M -f mp4 -y <output_stream> -map '[b]' -c:v av1_ama  -b:v 2M -f mp4 -y <output_stream> -map '[c]' -c:v h264_ama -b:v 1M -f mp4 -y <output_stream> -map '[d]' -c:v av1_ama  -b:v 1M -f mp4 -y <output_stream>"
+    },
+    {
+        "case": "FFMPEG_TRC_003",
+        "status": "active",
+        "script_info": [
+            "ABR transcode use case"
+        ],
+        "simple_parameters": "-y -hide_banner -benchmark -init_hw_device amf:,use_ama=1 -hwaccel amf -hwaccel_output_format amf -i <input_stream> -filter_complex 'sr_amf_abr=1920|1080:1856|1048:1792|1016:1728|984:1664|952:1600|920:1472|888:1408|856:1344|824:1280|792 [a][b][c][d][e][f][g][h][i][k]' -map '[a]' -c:v hevc_amf -b:v 6M -f mp4 -y <output_stream> -map '[b]' -c:v av1_amf  -b:v 2M -f mp4 -y <output_stream> -map '[c]' -c:v h264_amf -b:v 1M -f mp4 -y <output_stream> -map '[d]' -c:v av1_amf  -b:v 1M -f mp4 -y <output_stream> -map '[e]' -c:v hevc_amf -b:v 6M -f mp4 -y <output_stream> -map '[f]' -c:v av1_amf  -b:v 2M -f mp4 -y <output_stream> -map '[g]' -c:v h264_amf -b:v 1M -f mp4 -y <output_stream> -map '[h]' -c:v av1_amf  -b:v 1M -f mp4 -y <output_stream> -map '[i]' -c:v hevc_amf -b:v 6M -f mp4 -y <output_stream> -map '[k]' -c:v av1_amf  -b:v 2M -f mp4 -y <output_stream>",
+        "xma_parameters": "-y -hide_banner -benchmark -hwaccel ama -i <input_stream> -filter_complex 'scaler_ama=outputs=10:out_res=(1920x1080)(1856x1048)(1792x1016)(1728x984)(1664x952)(1600x920)(1472x888)(1408x856)(1344x824)(1280x792) [a][b][c][d][e][f][g][h][i][k]' -map '[a]' -c:v hevc_ama -b:v 6M -f mp4 -y <output_stream> -map '[b]' -c:v av1_ama  -b:v 2M -f mp4 -y <output_stream> -map '[c]' -c:v h264_ama -b:v 1M -f mp4 -y <output_stream> -map '[d]' -c:v av1_ama  -b:v 1M -f mp4 -y <output_stream> -map '[e]' -c:v hevc_ama -b:v 6M -f mp4 -y <output_stream> -map '[f]' -c:v av1_ama  -b:v 2M -f mp4 -y <output_stream> -map '[g]' -c:v h264_ama -b:v 1M -f mp4 -y <output_stream> -map '[h]' -c:v av1_ama  -b:v 1M -f mp4 -y <output_stream> -map '[i]' -c:v hevc_ama -b:v 6M -f mp4 -y <output_stream> -map '[k]' -c:v av1_ama  -b:v 2M -f mp4 -y <output_stream>"
+    }
+]

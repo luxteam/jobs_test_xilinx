@@ -9,7 +9,7 @@ def select_input_file(case: Dict[str, Any]):
     # map videos to ffmpeg usecases
     inputs_map = {
         "tms": "bbb_360p30.mp4",
-        "trs": "journey-to-space-h264.mp4",
+        "trc": "journey-to-space-h264.mp4",
         "mlt": "bbb_360p30.mp4"
     }
     test_usecase = case['case'].split('_')[1].lower()

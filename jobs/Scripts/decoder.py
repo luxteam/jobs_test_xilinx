@@ -41,6 +41,6 @@ def prepare_decoder_parameters(
 def prepare_decoder_input(
     case: Dict[str, Any], encoder: str, output_stream: str, log: str
 ) -> None:
-    encoder_keys = prepare_keys(case['prepare'], '', output_stream)
+    encoder_keys = case['prepare'].replace("<output_stream>", output_stream)
 
     run_tool(encoder, encoder_keys, log)

@@ -8,16 +8,19 @@ def prepare_scaler_parameters(
     case: Dict[str, Any], *, output_path: str = '',
     simple_scaler: bool = False
 ) -> Tuple[str, str, str]:
+
     input_stream = os.path.relpath(
         os.path.join(output_path, f"{case['case']}.yuv")
     )
+    extension = 'yuv'
+
     if simple_scaler:
         output_stream = os.path.relpath(
             os.path.join(output_path, f"{case['case']}")
         )
         prepared_keys = prepare_keys(
             case['simple_parameters'], input_stream, output_stream,
-            iterate=True, extension='yuv'
+            extension
         )
         case['prepared_keys_simple'] = prepared_keys
     else:
@@ -26,9 +29,10 @@ def prepare_scaler_parameters(
         )
         prepared_keys = prepare_keys(
             case['xma_parameters'], input_stream, output_stream,
-            iterate=True, extension='yuv'
+            extension
         )
         case['prepared_keys_xma'] = prepared_keys
+
     return prepared_keys, input_stream, output_stream
 
 

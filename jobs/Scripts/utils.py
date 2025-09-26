@@ -126,7 +126,7 @@ def prepare_keys(keys: str, input_stream: str, output_stream: str,
 
 
 def filter_video_names(x, /):
-    if x.__getattribute__('keys'):
+    if x is dict:
         x = x['format']['filename']
     # ../Work/Results/Xilinx/FFMPEG_Transcode/Color/FFMPEG_TRC_003_9.mp4 -> 9
     return int(x.split('_')[-1].split('.')[0])

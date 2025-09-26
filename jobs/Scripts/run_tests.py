@@ -297,9 +297,9 @@ def execute_tests(args, current_conf):
                                 xma_res.append(name)
                             if '_xma' not in name and f'{output_filename}_' in name:  # noqa: E501
                                 simple_res.append(name)
-
-                        sorted(xma_res, key=filter_video_names)
-                        sorted(simple_res, key=filter_video_names)
+                        if len(simple_res) > 1:
+                            xma_res = sorted(xma_res, key=filter_video_names)
+                            simple_res = sorted(simple_res, key=filter_video_names)
 
                         for index, value in enumerate(simple_res):
                             output_stream = os.path.join(output_dir, value)

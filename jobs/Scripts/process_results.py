@@ -78,10 +78,3 @@ def hash_and_comapre(video_1, video_2):
         return 'identical'
     else:
         return 'different'
-
-
-def filter_video_names(x, /):
-    if x.__getattribute__('keys'):
-        x = x['format']['filename']
-    # ../Work/Results/Xilinx/FFMPEG_Transcode/Color/FFMPEG_TRC_003_9.mp4 -> 9
-    return int(x.split('_')[-1].split('.')[0])

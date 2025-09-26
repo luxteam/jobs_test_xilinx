@@ -8,11 +8,12 @@ from decoder import prepare_decoder_input, prepare_decoder_parameters
 from encoder import prepare_encoder_parameters, run_tool
 from exceptions import ToolFailedException
 from ffmpeg import prepare_ffmpeg_parameters, measure_ffmpeg_performance
-from process_results import get_ffprobe_info, hash_and_comapre, filter_video_names
+from process_results import get_ffprobe_info, hash_and_comapre
 from scaler import prepare_scaler_parameters
 from transcoder import prepare_transcoder_input, prepare_transcoder_parameters
 from utils import (copy_test_cases, is_case_skipped, prepare_empty_reports,
-                   save_logs, save_results, remove_artifact, prepare_command)
+                   save_logs, save_results, remove_artifact, prepare_command,
+                   filter_video_names)
 
 from jobs_launcher.core.config import main_logger
 from jobs_launcher.core.system_info import get_gpu

@@ -6,7 +6,6 @@ from datetime import datetime
 from shutil import copyfile
 from typing import Any, Dict, List, Set, Tuple, Union
 
-from process_results import filter_video_names
 from jobs_launcher.common.scripts.script_info_by_platform import \
     get_script_info  # noqa: E501
 from jobs_launcher.common.scripts.status_by_platform import get_status
@@ -124,6 +123,13 @@ def prepare_keys(keys: str, input_stream: str, output_stream: str,
         )
 
     return keys
+
+
+def filter_video_names(x, /):
+    if x.__getattribute__('keys'):
+        x = x['format']['filename']
+    # ../Work/Results/Xilinx/FFMPEG_Transcode/Color/FFMPEG_TRC_003_9.mp4 -> 9
+    return int(x.split('_')[-1].split('.')[0])
 
 
 def prepare_command(tool: str, params):

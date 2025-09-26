@@ -35,12 +35,14 @@ def prepare_decoder_parameters(
         )
         case["prepared_keys_xma"] = prepared_keys
 
-    return prepared_keys, input_stream, output_stream
+    return prepared_keys, input_stream, f"{output_stream}_1.{extension}"
 
 
 def prepare_decoder_input(
     case: Dict[str, Any], encoder: str, output_stream: str, log: str
 ) -> None:
     encoder_keys = case['prepare'].replace("<output_stream>", output_stream)
+    error_messages = {*()}
+    command = [encoder] + encoder_keys.split()
 
-    run_tool(encoder, encoder_keys, log)
+    run_tool(command, log, error_messages)

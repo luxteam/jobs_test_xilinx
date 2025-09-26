@@ -9,7 +9,10 @@ from jobs_launcher.core.config import main_logger
 
 def run_tool(command: str, log: str, error_messages: set):
     # run complex ffmpeg commands as shell
-    shell = 'ffmpeg' in command
+    if command is list:
+        shell = 'ffmpeg' in command[0]
+    else:
+        shell = 'ffmpeg' in command
 
     with open(log, 'w+') as file:
         process = Popen(
@@ -19,7 +22,10 @@ def run_tool(command: str, log: str, error_messages: set):
         exit_code = process.wait()  # noqa: E501
         # check simple tools and ama tools for non-zero exit codes
         if 'ffprobe' not in command and exit_code != 0:
-            tool_name = command.split()[0].split('/')[-1]
+            if shell:
+                tool_name = command.split()[0].split('/')[-1]
+            else:
+                tool_name = command[0].split()[0].split('/')[-1]
             message = f"{tool_name} returned non-zero exit code"
             main_logger.error(message)
             error_messages.add(message)
@@ -57,4 +63,4 @@ def prepare_encoder_parameters(
         )
         case["prepared_keys_xma"] = prepared_keys
 
-    return prepared_keys, input_stream, output_stream
+    return prepared_keys, input_stream, f"{output_stream}_1.{output_extension}"

@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<job-manifest enable="False">
+
+    <outpath value="{OutputDir}"/>
+
+    <execute command='python "{ResourcesDir}/entrypoint.py"' timeout="3600">
+        <argument>--output "{OutputDir}"</argument>
+        <argument>--tool_path "{toolPath}"</argument>
+        <argument>--test_group "FFMPEG_Transcode"</argument>
+        <argument>--test_cases "{TestCases}"</argument>
+        <argument>--retries "{retries}"</argument>
+        <argument>--tools "{tools}"</argument>
+    </execute>
+
+    <execute command='python "{ResourcesDir}/make_compare_report.py"'>
+        <argument>--work_dir "{OutputDir}"</argument>
+    </execute>
+
+</job-manifest>

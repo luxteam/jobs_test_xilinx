@@ -12,7 +12,8 @@ from process_results import get_ffprobe_info, hash_and_comapre
 from scaler import prepare_scaler_parameters
 from transcoder import prepare_transcoder_input, prepare_transcoder_parameters
 from utils import (copy_test_cases, is_case_skipped, prepare_empty_reports,
-                   save_logs, save_results, remove_artifact)
+                   save_logs, save_results, remove_artifact, prepare_command,
+                   filter_video_names)
 
 from jobs_launcher.core.config import main_logger
 from jobs_launcher.core.system_info import get_gpu
@@ -159,8 +160,10 @@ def execute_tests(args, current_conf):
                     )
 
                     # main logic
-                    run_tool(simple_tool_path, prepared_keys, simple_log, error_messages)
-                    run_tool(xma_tool_path, ma35_prepared_keys, ma35_log, error_messages)
+                    simple_command = prepare_command(simple_tool_path, prepared_keys)
+                    ma35_command = prepare_command(xma_tool_path, ma35_prepared_keys)
+                    run_tool(simple_command, simple_log, error_messages)
+                    run_tool(ma35_command, ma35_log, error_messages)
 
                     execution_time = time.time() - case_start_time
 
@@ -257,31 +260,67 @@ def execute_tests(args, current_conf):
                     )
 
                     # main logic
-                    run_tool(amf_ffmpeg_path, prepared_keys, amf_log, error_messages)
-                    run_tool(xma_ffmpeg_path, xma_prepared_keys, ma35_log, error_messages)
+                    simple_command = prepare_command(amf_ffmpeg_path, prepared_keys)
+                    xma_command = prepare_command(xma_ffmpeg_path, xma_prepared_keys)
+                    run_tool(simple_command, amf_log, error_messages)
+                    run_tool(xma_command, ma35_log, error_messages)
                     execution_time = time.time() - case_start_time
 
                     # results processing
                     reference_stream_params = {}
                     output_stream_params = {}
 
-                    # compare hashes
-                    compare_result = hash_and_comapre(output_stream, reference_stream)  # noqa: E501
+                    if 'Teams' in args.test_group:
+                        # compare hashes
+                        compare_result = hash_and_comapre(output_stream, reference_stream)  # noqa: E501
 
-                    if compare_result == 'identical':
-                        test_case_status = "passed"
+                        if compare_result == 'identical':
+                            test_case_status = "passed"
+                        else:
+                            test_case_status = "failed"
+                            output_stream_params = get_ffprobe_info(case, output_stream)  # noqa: E501
+                            reference_stream_params = get_ffprobe_info(
+                                case, reference_stream
+                            )
+
+                        # measure preformance
+                        measure_ffmpeg_performance(amf_log, ma35_log, error_messages=error_messages)
                     else:
-                        test_case_status = "failed"
-                        output_stream_params = get_ffprobe_info(case, output_stream)  # noqa: E501
-                        reference_stream_params = get_ffprobe_info(
-                            case, reference_stream
-                        )
+                        reference_stream_params = []
+                        output_stream_params = []
+                        output_dir, output_filename = os.path.split(output_stream)
+                        output_files = os.listdir(output_dir)
+                        simple_res = []
+                        xma_res = []
+                        for name in output_files:
+                            if '_xma' in name and f'{output_filename}_' in name:
+                                xma_res.append(name)
+                            if '_xma' not in name and f'{output_filename}_' in name:  # noqa: E501
+                                simple_res.append(name)
+                        if len(simple_res) > 1:
+                            xma_res = sorted(xma_res, key=filter_video_names)
+                            simple_res = sorted(simple_res, key=filter_video_names)
+
+                        for index, value in enumerate(simple_res):
+                            output_stream = os.path.join(output_dir, value)
+                            reference_stream = os.path.join(output_dir, xma_res[index])  # noqa: E501
+
+                            compare_result = hash_and_comapre(output_stream, reference_stream)  # noqa: E501
+
+                            if compare_result != 'identical':
+                                output_info = get_ffprobe_info(case, output_stream)
+                                reference_info = get_ffprobe_info(case, reference_stream)  # noqa: E501
+
+                                output_stream_params.append(output_info)
+                                reference_stream_params.append(reference_info)  # noqa: E501
+
+                        if output_stream_params == []:
+                            test_case_status = "passed"
+                        else:
+                            test_case_status = "failed"
 
                     case["ref_stream_params"] = reference_stream_params
                     case["output_stream_params"] = output_stream_params
-
-                    # measure preformance
-                    measure_ffmpeg_performance(amf_log, ma35_log, error_messages=error_messages)
 
                     save_logs(args, case, ma35_log)
                     save_logs(args, case, amf_log)

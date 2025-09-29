@@ -89,7 +89,7 @@ def select_extension(case: Dict[str, Any]) -> Union[str, Tuple[str, str]]:
 
 
 def prepare_keys(keys: str, input_stream: str, output_stream: str,
-                 iterate: bool = False, extension: str = '') -> str:
+                 extension: str) -> str:
     """Prepare command keys by replacing placeholder tokens with actual paths.
 
     This function processes a template string containing placeholders and
@@ -112,17 +112,38 @@ def prepare_keys(keys: str, input_stream: str, output_stream: str,
         str: Processed string with placeholders replaced by actual paths
     """
     keys = keys.replace("<input_stream>", input_stream)
+    count = keys.count('<output_stream>')
 
-    if iterate:
-        count = keys.count('<output_stream>')
-        for i in range(1, count+1):
-            keys = keys.replace(
-                "<output_stream>", f"{output_stream}_{i}.{extension}", 1
-            )
-    else:
-        keys = keys.replace("<output_stream>", output_stream)
+    for i in range(1, count+1):
+        keys = keys.replace(
+            "<output_stream>", f"{output_stream}_{i}.{extension}", 1
+        )
 
     return keys
+
+
+def filter_video_names(x, /):
+    if hasattr(x, 'keys'):
+        x = x['format']['filename']
+    # ../Work/Results/Xilinx/FFMPEG_Transcode/Color/FFMPEG_TRC_003_9.mp4 -> 9
+    return int(x.split('_')[-1].split('.')[0])
+
+
+def prepare_command(tool: str, params):
+    tool_name = tool.split('/')[-1]
+
+    if tool_name == 'ffmpeg':
+        if '&' not in params:
+            return f"{tool} {params}"
+
+        commands = params.split(' & ')
+        for idx, value in enumerate(commands):
+            commands[idx] = f"{tool} {value}"
+
+        return ' & '.join(commands)
+
+    else:
+        return [tool] + params.split()
 
 
 def save_results(
@@ -150,19 +171,36 @@ def save_results(
     test_case_report["simple_parameters"] = case["prepared_keys_simple"]
     test_case_report["xma_parameters"] = case["prepared_keys_xma"]
 
-    test_case_report["ref_stream_params"] = case.get("ref_stream_params", {})
-    test_case_report["output_stream_params"] = case.get("output_stream_params", {})  # noqa: E501
+    ref_stream_params = case.get("ref_stream_params", {})
+    output_stream_params = case.get("output_stream_params", {})
+    if args.tools == 'FFMPEG' and args.test_group != 'FFMPEG_Teams':
+        ref_stream_params
+        ref_stream_params = sorted(ref_stream_params, key=filter_video_names)
+        output_stream_params = sorted(output_stream_params, key=filter_video_names)
+        for idx, value in enumerate(output_stream_params, 1):
+            test_case_report[f"ref_stream_params_{idx}"] = ref_stream_params[idx-1]
+            test_case_report[f"output_stream_params_{idx}"] = value
+    else:
+        test_case_report["ref_stream_params"] = ref_stream_params
+        test_case_report["output_stream_params"] = output_stream_params
+
     test_case_report["test_status"] = test_case_status
 
     if test_case_report["test_status"] in ["passed", "observed", "error"]:
         test_case_report["group_timeout_exceeded"] = False
 
-    video_path = os.path.join("Color", f'{case["case"]}.mp4')
-    if os.path.exists(os.path.join(args.output, video_path)):
-        test_case_report[VIDEO_KEY] = video_path
-    video_path = os.path.join("Color", f'{case["case"]}_xma.mp4')
-    if os.path.exists(os.path.join(args.output, video_path)):
-        test_case_report[f"ref_{VIDEO_KEY}"] = video_path
+    if args.test_group != 'FFMPEG_Teams':
+        outputs = case['simple_parameters'].count('<output_stream>')
+        for i in range(1, outputs + 1):
+            test_case_report[f"{VIDEO_KEY}_{i}"] = os.path.join("Color", f'{case["case"]}_{i}.mp4')
+            test_case_report[f"ref_{VIDEO_KEY}_{i}"] = os.path.join("Color", f'{case["case"]}_{i}_xma.mp4')
+    else:
+        video_path = os.path.join("Color", f'{case["case"]}.mp4')
+        if os.path.exists(os.path.join(args.output, video_path)):
+            test_case_report[VIDEO_KEY] = video_path
+        video_path = os.path.join("Color", f'{case["case"]}_xma.mp4')
+        if os.path.exists(os.path.join(args.output, video_path)):
+            test_case_report[f"ref_{VIDEO_KEY}"] = video_path
 
     test_case_report["script_info"] = case["script_info"]
 

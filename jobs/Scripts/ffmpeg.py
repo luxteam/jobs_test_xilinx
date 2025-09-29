@@ -9,15 +9,12 @@ def select_input_file(case: Dict[str, Any]):
     # map videos to ffmpeg usecases
     inputs_map = {
         "tms": "bbb_360p30.mp4",
-        "trs": "journey-to-space-h264.mp4",
-        # "mlt": "bbb_360p30.mp4"
+        "trc": "journey-to-space-h264.mp4",
+        "mlt": "bbb_360p30.mp4"
     }
     test_usecase = case['case'].split('_')[1].lower()
-    for ffmpeg_usecase, input_file in inputs_map.items():
-        if test_usecase == ffmpeg_usecase:
-            return input_file
 
-    return 'bbb_360p30.mp4'
+    return inputs_map.get(test_usecase, 'bbb_360p30.mp4')
 
 
 def prepare_ffmpeg_parameters(
@@ -25,25 +22,29 @@ def prepare_ffmpeg_parameters(
     input_path: str = '', output_path: str = '',
     amf_ffmpeg: bool = False
 ) -> Tuple[str, str, str]:
+
     input_file = select_input_file(case)
     input_stream = os.path.relpath(
         os.path.join(input_path, input_file)
     )
+    extension = 'mp4'
 
     if amf_ffmpeg:
         output_stream = os.path.relpath(
-            os.path.join(output_path, f"{case['case']}.mp4")
+            os.path.join(output_path, f"{case['case']}")
         )
         prepared_keys = prepare_keys(
-            case["simple_parameters"], input_stream, output_stream
+            case["simple_parameters"], input_stream, output_stream,
+            extension
         )
         case["prepared_keys_simple"] = prepared_keys
     else:
         output_stream = os.path.relpath(
-            os.path.join(output_path, f"{case['case']}_xma.mp4")
+            os.path.join(output_path, f"{case['case']}_xma")
         )
         prepared_keys = prepare_keys(
-            case["xma_parameters"], input_stream, output_stream
+            case["xma_parameters"], input_stream, output_stream,
+            extension
         )
         case["prepared_keys_xma"] = prepared_keys
 

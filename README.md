@@ -1,13 +1,18 @@
 # Run tests locally
+To run tests locally please, setup environment variable `CIS_RENDER_DEVICE="MA35D"`, get ma35 samples in ./Xilinx folder using `./scripts/build_ma35_samples.sh`. Then run the `./scripts/run.sh` file with correct parameters.
+
+A command to do all actions mentioned above:
 ```sh
     # from ./scripts
     export CIS_RENDER_DEVICE="MA35D" \
+    chmod +x ./build_ma35_samples.sh \
+    && ./build_ma35_samples.sh ../Xilinx \
     && chmod u+x ./run.sh \
     && ./run.sh "none" "<Test_Group_1> <Test_Group_2>" "<Tested_Tool>"
 ```
 Please, note that the framework doesn't create a python virtual environment automatically. Instead it installs all the dependencies directly to system's Python.
 
-## Scripts parameters
+## Script parameters
 - Tested tools:
     - SimpleSamples - includes SimpleEncoder, SimpleDecoder, SimpleTranscoder, SimpleScaler
     - FFMPEG - includes only ffmpeg

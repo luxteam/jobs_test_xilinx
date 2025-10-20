@@ -131,6 +131,7 @@ class Tool(ABC):
             shell = 'ffmpeg' in command
 
         with open(self.log, 'w+') as file:
+            main_logger.debug(f"Running: {command}")
             process = Popen(
                 command, stderr=file.fileno(), stdout=file.fileno(),
                 shell=shell
@@ -151,17 +152,14 @@ class Tool(ABC):
 class Encoder(Tool):
     def __init__(self, log_path, simple_tool=False):
         super().__init__(log_path, simple_tool)
-
-    @property
-    def tool_path(self):
-        return self._tool_path
-
-    @tool_path.setter
-    def tool_path(self):
         if self.simple_tool:
             self._tool_path = os.path.join(self.binaries_common_path, 'amf_Release', 'bin', 'SimpleEncoderAMA')
         else:
             self._tool_path = os.path.join(self.binaries_common_path, 'ma35', 'bin', 'ma35_encoder_app')
+
+    @property
+    def tool_path(self):
+        return self._tool_path
 
     def prepare_parameters(
         self, case: Dict[str, Any], *, output_path: str = ''
@@ -199,24 +197,21 @@ class Encoder(Tool):
 class Decoder(Tool):
     def __init__(self, log_path, simple_tool=False):
         super().__init__(log_path, simple_tool)
-
-    @property
-    def tool_path(self):
-        return self._tool_path
-
-    @tool_path.setter
-    def tool_path(self):
         if self.simple_tool:
             self._tool_path = os.path.join(self.binaries_common_path, 'amf_Release', 'bin', 'SimpleDecoderAMA')
         else:
             self._tool_path = os.path.join(self.binaries_common_path, 'ma35', 'bin', 'ma35_decoder_app')
 
+    @property
+    def tool_path(self):
+        return self._tool_path
+
     def prepare_input(
         self, case: Dict[str, Any], output_stream: str, log: str
     ) -> None:
-        encoder = Encoder(log, False)
+        encoder = Encoder(log, True)
         encoder_keys = case['prepare'].replace("<output_stream>", output_stream)
-        command = [encoder] + encoder_keys.split()
+        command = encoder.prepare_command(encoder_keys)
 
         encoder.run_tool(command, {*()})
 
@@ -255,17 +250,14 @@ class Decoder(Tool):
 class Scaler(Tool):
     def __init__(self, log_path, simple_tool=False):
         super().__init__(log_path, simple_tool)
-
-    @property
-    def tool_path(self):
-        return self._tool_path
-
-    @tool_path.setter
-    def tool_path(self):
         if self.simple_tool:
             self._tool_path = os.path.join(self.binaries_common_path, 'amf_Release', 'bin', 'SimpleScalerAMA')
         else:
             self._tool_path = os.path.join(self.binaries_common_path, 'ma35', 'bin', 'ma35_scaler_app')
+
+    @property
+    def tool_path(self):
+        return self._tool_path
 
     def prepare_parameters(
         self, case: Dict[str, Any], *, output_path: str = ''
@@ -301,24 +293,21 @@ class Scaler(Tool):
 class Transcoder(Tool):
     def __init__(self, log_path, simple_tool=False):
         super().__init__(log_path, simple_tool)
-
-    @property
-    def tool_path(self):
-        return self._tool_path
-
-    @tool_path.setter
-    def tool_path(self):
         if self.simple_tool:
             self._tool_path = os.path.join(self.binaries_common_path, 'amf_Release', 'bin', 'SimpleTranscoderAMA')
         else:
             self._tool_path = os.path.join(self.binaries_common_path, 'ma35', 'bin', 'ma35_transcoder_app')
+
+    @property
+    def tool_path(self):
+        return self._tool_path
 
     def prepare_input(
         self, case: Dict[str, Any], output_stream: str, log: str
     ) -> None:
         encoder = Encoder(log, False)
         encoder_keys = case['prepare'].replace("<output_stream>", output_stream)
-        command = [encoder] + encoder_keys.split()
+        command = encoder.prepare_command(encoder_keys)
 
         encoder.run_tool(command, {*()})
 

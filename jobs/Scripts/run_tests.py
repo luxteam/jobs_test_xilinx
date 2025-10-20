@@ -77,13 +77,13 @@ def execute_tests(args, current_conf):
                         ma35_tool = Transcoder(log_path=ma35_log, simple_tool=False)
                         simple_tool = Transcoder(log_path=simple_log, simple_tool=True)
 
-                    ma35_prepared_keys, input_stream, reference_stream = ma35_tool.prepare_parameters(case, output_path)
-                    prepared_keys, input_stream, output_stream = simple_tool.prepare_parameters(case, output_path)
+                    ma35_prepared_keys, input_stream, reference_stream = ma35_tool.prepare_parameters(case, output_path=output_path)
+                    prepared_keys, input_stream, output_stream = simple_tool.prepare_parameters(case, output_path=output_path)
 
                     ma35_command = ma35_tool.prepare_command(ma35_prepared_keys)
                     simple_command = simple_tool.prepare_command(prepared_keys)
-                    if args.test_group in ('Decoder', 'Transcoder'):
-                        simple_tool.prepare_input(case, output_stream, input_preparation_log)
+                    if 'Decoder' in args.test_group or 'Transcoder' in args.test_group:
+                        simple_tool.prepare_input(case, input_stream, input_preparation_log)
 
                     case["script_info"].append(
                         f"Simple parameters: {prepared_keys}"
@@ -92,8 +92,8 @@ def execute_tests(args, current_conf):
                         f"MA35 parameters: {ma35_prepared_keys}"
                     )
 
-                    ma35_tool.run_tool(ma35_command, error_messages)
                     simple_tool.run_tool(simple_command, error_messages)
+                    ma35_tool.run_tool(ma35_command, error_messages)
 
                     execution_time = time.time() - case_start_time
 

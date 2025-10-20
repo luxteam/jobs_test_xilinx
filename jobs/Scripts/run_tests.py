@@ -4,13 +4,10 @@ import platform
 import time
 import traceback
 
-from decoder import prepare_decoder_input, prepare_decoder_parameters
-from encoder import prepare_encoder_parameters, run_tool
-from exceptions import ToolFailedException
+from tools import Encoder, Decoder, Scaler, Transcoder
+from encoder import run_tool
 from ffmpeg import prepare_ffmpeg_parameters, measure_ffmpeg_performance
 from process_results import get_ffprobe_info, hash_and_comapre
-from scaler import prepare_scaler_parameters
-from transcoder import prepare_transcoder_input, prepare_transcoder_parameters
 from utils import (copy_test_cases, is_case_skipped, prepare_empty_reports,
                    save_logs, save_results, remove_artifact, prepare_command,
                    filter_video_names)
@@ -35,43 +32,7 @@ def execute_tests(args, current_conf):
     for case in [x for x in cases if not is_case_skipped(x, current_conf)]:
         # select tools to execute
         binaries_common_path = '/opt/amd/ama/'
-        if args.tools == "SimpleSamples":
-            if "Encoder" in args.test_group:
-                xma_tool_path = os.path.join(
-                    binaries_common_path, 'ma35', 'bin', 'ma35_encoder_app'
-                )
-                simple_tool_path = os.path.join(
-                    binaries_common_path, 'amf_Release', 'bin', 'SimpleEncoderAMA'
-                )
-            elif "Decoder" in args.test_group:
-                xma_tool_path = os.path.join(
-                    binaries_common_path, 'ma35', 'bin', 'ma35_decoder_app'
-                )
-                simple_tool_path = os.path.join(
-                    binaries_common_path, 'amf_Release', 'bin', 'SimpleDecoderAMA'
-                )
-                encoder_path = os.path.join(
-                    binaries_common_path, 'amf_Release', 'bin', 'SimpleEncoderAMA'
-                )
-            elif "Scaler" in args.test_group:
-                xma_tool_path = os.path.join(
-                    binaries_common_path, 'ma35', 'bin', 'ma35_scaler_app'
-                )
-                simple_tool_path = os.path.join(
-                    binaries_common_path, 'amf_Release', 'bin', 'SimpleScalerAMA'
-                )
-            elif "Transcoder" in args.test_group:
-                xma_tool_path = os.path.join(
-                    binaries_common_path, 'ma35', 'bin', 'ma35_transcoder_app'
-                )
-                simple_tool_path = os.path.join(
-                    binaries_common_path, 'amf_Release', 'bin',
-                    'SimpleTranscoderAMA'
-                )
-                encoder_path = os.path.join(
-                    binaries_common_path, 'amf_Release', 'bin', 'SimpleEncoderAMA'
-                )
-        elif args.tools == "FFMPEG":
+        if args.tools == "FFMPEG":
             amf_ffmpeg_path = os.path.join(
                 binaries_common_path, 'amf_Release', 'bin', 'ffmpeg'
             )
@@ -96,7 +57,7 @@ def execute_tests(args, current_conf):
 
             try:
                 if args.tools == "SimpleSamples":
-                    # prepare parameters/keys for simple tool and xma
+                    # prepare parameters/keys for simple tool and ma35
                     simple_log = os.path.join(
                         logs_path, f"{case['case']}_simple.log"
                     )
@@ -104,53 +65,25 @@ def execute_tests(args, current_conf):
                     input_preparation_log = os.path.join(logs_path, f"{case['case']}_input_preparation.log")  # noqa: E501
 
                     if "Encoder" in args.test_group:
-                        prepared_keys, input_stream, output_stream = prepare_encoder_parameters(
-                            case, output_path=output_path,
-                            simple_encoder=True
-                        )
-                        ma35_prepared_keys, input_stream, reference_stream = prepare_encoder_parameters(  # noqa: E501
-                            case, output_path=output_path,
-                            simple_encoder=False
-                        )
+                        ma35_tool = Encoder(log_path=ma35_log, simple_tool=False)
+                        simple_tool = Encoder(log_path=simple_log, simple_tool=True)
                     elif "Decoder" in args.test_group:
-                        # prepare output file and keys
-                        prepared_keys, input_stream, output_stream = prepare_decoder_parameters(  # noqa: E501
-                            case, output_path=output_path,
-                            simple_decoder=True
-                        )
-                        ma35_prepared_keys, input_stream, reference_stream = prepare_decoder_parameters(  # noqa: E501
-                            case, output_path=output_path,
-                            simple_decoder=False
-                        )
-
-                        # prepare input file for decoder
-                        prepare_decoder_input(
-                            case, encoder_path, input_stream,
-                            input_preparation_log
-                        )
+                        ma35_tool = Decoder(log_path=ma35_log, simple_tool=False)
+                        simple_tool = Decoder(log_path=simple_log, simple_tool=True)
                     elif "Scaler" in args.test_group:
-                        prepared_keys, input_stream, output_stream = prepare_scaler_parameters(  # noqa: E501
-                            case, output_path=output_path,
-                            simple_scaler=True
-                        )
-                        ma35_prepared_keys, input_stream, reference_stream = prepare_scaler_parameters(  # noqa: E501
-                            case, output_path=output_path,
-                            simple_scaler=False
-                        )
+                        ma35_tool = Scaler(log_path=ma35_log, simple_tool=False)
+                        simple_tool = Scaler(log_path=simple_log, simple_tool=True)
                     elif "Transcoder" in args.test_group:
-                        prepared_keys, input_stream, output_stream = prepare_transcoder_parameters(  # noqa: E501
-                            case, output_path=output_path,
-                            simple_transcoder=True
-                        )
-                        ma35_prepared_keys, input_stream, reference_stream = prepare_transcoder_parameters(  # noqa: E501
-                            case, output_path=output_path,
-                            simple_transcoder=False
-                        )
-                        # prepare input file for transcoder
-                        prepare_transcoder_input(
-                            case, encoder_path, input_stream,
-                            input_preparation_log
-                        )
+                        ma35_tool = Transcoder(log_path=ma35_log, simple_tool=False)
+                        simple_tool = Transcoder(log_path=simple_log, simple_tool=True)
+
+                    ma35_prepared_keys, input_stream, reference_stream = ma35_tool.prepare_parameters(case, output_path)
+                    prepared_keys, input_stream, output_stream = simple_tool.prepare_parameters(case, output_path)
+
+                    ma35_command = ma35_tool.prepare_command(ma35_prepared_keys)
+                    simple_command = simple_tool.prepare_command(prepared_keys)
+                    if args.test_group in ('Decoder', 'Transcoder'):
+                        simple_tool.prepare_input(case, output_stream, input_preparation_log)
 
                     case["script_info"].append(
                         f"Simple parameters: {prepared_keys}"
@@ -159,11 +92,8 @@ def execute_tests(args, current_conf):
                         f"MA35 parameters: {ma35_prepared_keys}"
                     )
 
-                    # main logic
-                    simple_command = prepare_command(simple_tool_path, prepared_keys)
-                    ma35_command = prepare_command(xma_tool_path, ma35_prepared_keys)
-                    run_tool(simple_command, simple_log, error_messages)
-                    run_tool(ma35_command, ma35_log, error_messages)
+                    ma35_tool.run_tool(ma35_command, error_messages)
+                    simple_tool.run_tool(simple_command, error_messages)
 
                     execution_time = time.time() - case_start_time
 

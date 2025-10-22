@@ -5,12 +5,11 @@ import time
 import traceback
 
 from tools import Encoder, Decoder, Scaler, Transcoder
-from encoder import run_tool
 from ffmpeg import prepare_ffmpeg_parameters, measure_ffmpeg_performance
 from process_results import get_ffprobe_info, hash_and_comapre
 from utils import (copy_test_cases, is_case_skipped, prepare_empty_reports,
                    save_logs, save_results, remove_artifact, prepare_command,
-                   filter_video_names)
+                   filter_video_names, run_tool)
 
 from jobs_launcher.core.config import main_logger
 from jobs_launcher.core.system_info import get_gpu

@@ -3,8 +3,6 @@ import os
 from subprocess import STDOUT, CalledProcessError, check_output
 from typing import Any, Dict
 
-from scaler import get_video_size
-
 from jobs_launcher.core.config import main_logger
 
 
@@ -22,6 +20,19 @@ def run_executable(command):
         output = str(e)
 
     return (success, output)
+
+
+def get_video_size(keys: str, count: int) -> str:
+    keys = keys.split()
+
+    for i in range(1, count+1):
+        # get index of the first ocurrance of <output_stream>
+        index = keys.index('<output_stream>')
+        if i == count:
+            return keys[index-2]
+
+        # update list to find the next ocurrance of <output_stream>
+        keys = keys[index+1:]
 
 
 def get_ffprobe_info(case: Dict[str, Any], stream: str):

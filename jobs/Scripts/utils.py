@@ -3,9 +3,11 @@ import os
 import traceback
 from argparse import Namespace
 from datetime import datetime
+from subprocess import Popen
 from shutil import copyfile
 from typing import Any, Dict, List, Set, Tuple, Union
 
+from exceptions import ToolFailedException
 from jobs_launcher.common.scripts.script_info_by_platform import \
     get_script_info  # noqa: E501
 from jobs_launcher.common.scripts.status_by_platform import get_status
@@ -144,6 +146,31 @@ def prepare_command(tool: str, params):
 
     else:
         return [tool] + params.split()
+
+
+def run_tool(command: str, log: str, error_messages: set):
+    # run complex ffmpeg commands as shell
+    if command is list:
+        shell = 'ffmpeg' in command[0]
+    else:
+        shell = 'ffmpeg' in command
+
+    with open(log, 'w+') as file:
+        process = Popen(
+            command, stderr=file.fileno(), stdout=file.fileno(),
+            shell=shell
+        )
+        exit_code = process.wait()  # noqa: E501
+        # check simple tools and ama tools for non-zero exit codes
+        if 'ffprobe' not in command and exit_code != 0:
+            if shell:
+                tool_name = command.split()[0].split('/')[-1]
+            else:
+                tool_name = command[0].split()[0].split('/')[-1]
+            message = f"{tool_name} returned non-zero exit code"
+            main_logger.error(message)
+            error_messages.add(message)
+            raise ToolFailedException(message)
 
 
 def save_results(

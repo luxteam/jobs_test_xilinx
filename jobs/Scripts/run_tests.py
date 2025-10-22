@@ -64,16 +64,16 @@ def execute_tests(args, current_conf):
                     ma35_log = os.path.join(logs_path, f"{case['case']}_ma35.log")
                     input_preparation_log = os.path.join(logs_path, f"{case['case']}_input_preparation.log")  # noqa: E501
 
-                    if "Encoder" in args.test_group:
+                    if args.test_group.split('_')[0] == "Encoder":
                         ma35_tool = Encoder(log_path=ma35_log, simple_tool=False)
                         simple_tool = Encoder(log_path=simple_log, simple_tool=True)
-                    elif "Decoder" in args.test_group:
+                    elif args.test_group.split('_')[0] == "Decoder":
                         ma35_tool = Decoder(log_path=ma35_log, simple_tool=False)
                         simple_tool = Decoder(log_path=simple_log, simple_tool=True)
-                    elif "Scaler" in args.test_group:
+                    elif args.test_group.split('_')[0] == "Scaler":
                         ma35_tool = Scaler(log_path=ma35_log, simple_tool=False)
                         simple_tool = Scaler(log_path=simple_log, simple_tool=True)
-                    elif "Transcoder" in args.test_group:
+                    elif args.test_group.split('_')[0] == "Transcoder":
                         ma35_tool = Transcoder(log_path=ma35_log, simple_tool=False)
                         simple_tool = Transcoder(log_path=simple_log, simple_tool=True)
 
@@ -82,7 +82,7 @@ def execute_tests(args, current_conf):
 
                     ma35_command = ma35_tool.prepare_command(ma35_prepared_keys)
                     simple_command = simple_tool.prepare_command(prepared_keys)
-                    if 'Decoder' in args.test_group or 'Transcoder' in args.test_group:
+                    if args.test_group.split('_')[0] in ('Decoder', 'Transcoder'):
                         simple_tool.prepare_input(case, input_stream, input_preparation_log)
 
                     case["script_info"].append(

@@ -305,7 +305,7 @@ class Transcoder(Tool):
     def prepare_input(
         self, case: Dict[str, Any], output_stream: str, log: str
     ) -> None:
-        encoder = Encoder(log, False)
+        encoder = Encoder(log, True)
         encoder_keys = case['prepare'].replace("<output_stream>", output_stream)
         command = encoder.prepare_command(encoder_keys)
 
@@ -340,3 +340,4 @@ class Transcoder(Tool):
             case["prepared_keys_xma"] = prepared_keys
 
         return prepared_keys, input_stream, f"{output_stream}_1.{output_extension}"
+
